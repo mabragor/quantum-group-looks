@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amsthm}
+\usepackage{amsopn}
 \usepackage{verbatim}
 \newcommand{\hp}{\frac{\hbar}{i} \partial_x}
 \newcommand{\lb}{\left (}
@@ -23,7 +24,10 @@
 \newcommand{\Lambdan}{\Lambda^{2(N-M)}}
 \DeclareMathOperator{\Or}{or}
 \DeclareMathOperator{\tr}{tr}
-%% \DeclareMathOperator{\And}{and}
+\DeclareMathOperator{\If}{if}
+\DeclareMathOperator{\And1}{and}
+\DeclareMathOperator{\that}{that}
+\DeclareMathOperator{\is}{is}
 \newcommand{\p}{\partial}
 \newcommand{\mF}{\mathcal{F}}
 \newcommand{\e}{\epsilon}
@@ -336,18 +340,22 @@ the construction below.
 
 One is to consider
 \be
-T_+ = q^H \hT_+,\ \and \ T_- = \hT_- q^{-H}
+\label{twist-positively}
+T_+ = q^H \hT_+,\ \And1 \ T_- = \hT_- q^{-H}
 \ee
 with comultiplication rules
 \be
+\label{comultiply-positively}
 \Delta(T_+) = q^{2H} \otimes T_+ + T_+ \otimes I,\ \ \Delta(T_-) = I \otimes T_- + T_- \otimes q^{-2H},
 \ee
 and another is
 \be
-T_- = q^H \hT_-,\ \and \ T_+ = \hT_+ q^{-H},
+\label{twist-negatively}
+T_- = q^H \hT_-,\ \And1 \ T_+ = \hT_+ q^{-H},
 \ee
 with comultiplication rules
 \be
+\label{comultiply-negatively}
 \Delta(T_-) = q^{2H} \otimes T_- + T_- \otimes I,\ \ \Delta(T_+) = I \otimes T_+ + T_+ \otimes q^{-2H},
 \ee
 
@@ -361,6 +369,7 @@ T_+ = \Eoned{1},\ T_- = \Foned{1},\ H = \matd{\frac{1}{2}}{0}{0}{-\frac{1}{2}}
 In this simple case we have only one pair of positive-negative simple roots, hence group
 element contains only one building block
 \be
+\label{quantum-group-element-sl2}
 g = B(1),
 \ee
 where $B$ can be chosen to be in one of two equivalent forms.
@@ -390,12 +399,19 @@ $$[n] = \frac{q^n - q^{-n}}{q - q^{-1}}$$
 and we have explicitly used the fact, that in fundamental representation $T_+^2 = T_-^2 = 0$,
 so exponential is in fact quite simple and not yet so quantum.
 
+For the reasons, that will become clear in section \ref{comm-relations-dual-algebra-sl2},
+$T_+$ and $T_-$ in these formulae should be twisted like in \delabel{twist-positively}
+(otherwise there won't be any solution to quantum group defining equation).
+Looking a little bit ahead one can say, that the other twist convention \delabel{twist-negatively}
+is relevant when we change the order of positive-negative roots in the ansatz for $B(1)$.
+
 If variables $w$, $x$, $y$ and $\psi$, $\chi$, $q^\phi$ were commutative, then we could immediately
 conclude (by equating two different forms of $B(1)$ \delabel{building-block-sl2-fg} and \delabel{building-block-sl2-mv}),
  that relation between them is
 \begin{equation}
   \boxed {
-    q^\phi = w x y, \ \ \psi = w,\ \ \chi = y, \label{subs_suggest}
+    \label{mv-fg-relation-sl2}
+    q^\phi = w x y, \ \ \psi = w,\ \ \chi = y,
   }
 \end{equation}
 
@@ -404,8 +420,9 @@ We have to assume specific form of commutational relations.
 
 Namely, let's assume, that
 \begin{equation}
+  \label{comm-assumption-sl2}
   \boxed {
-    \psi \chi = \chi \psi,\ q^\phi \psi = q^\alpha \psi q^\phi,\ q^\phi \chi = q^\alpha \chi q^\phi,
+    \psi \chi = \chi \psi,\ q^\phi \psi = q^\alpha \psi q^\phi,\ q^\phi \chi = q^\alpha \chi q^\phi,\ \And1 \
     w y = y w,\ x w = q^\alpha w x, \ x y = q^\alpha y x
   }
 \end{equation}
@@ -413,9 +430,9 @@ Namely, let's assume, that
 for some parameter $\alpha$.
 Then
 \be
-w x y = y x w,\ \and \ \lb w^{1/2} x^{1/2} y^{1/2} \rb \lb w^{1/2} x^{1/2} y^{1/2} \rb = w x y,
+w x y = y x w,\ \And1 \ \lb w^{1/2} x^{1/2} y^{1/2} \rb \lb w^{1/2} x^{1/2} y^{1/2} \rb = w x y,
 \ee
-and formula \delabel{subs_suggest} is a valid non-commutative substitution of variables.
+and formula \delabel{mv-fg-relation-sl2} is a valid non-commutative substitution of variables.
 
 %% If we denote by $1$ the positive root and by $\overline{1}$ the negative root,
 %% then Fock-Goncharov ansatz for group element, corresponding to the ``word'' $1\overline{1}$
@@ -471,75 +488,111 @@ and formula \delabel{subs_suggest} is a valid non-commutative substitution of va
 %% }
 %% \ee
 
-\subsection{Correct quantum commutators from comultiplication}
+\subsection{Commutational relations on the dual algebra from comultiplication}
+\label{comm-relations-dual-algebra-sl2}
 
-\subsubsection{Twisted root generators}
-Comultiplication rule for Chevalley root generators was
-\be
-\comul{\hat{T}_\pm} = q^H \otimes \hat{T}_\pm + \hat{T}_\pm \otimes q^{-H}
-\ee
+In this section we use quantum group defining equation $\dg = \gog$ to determine
+commutational relations on the dual algebra, following the lines of \cite{MV1}.
+ Namely, we take $g$ to be of the form
+\delabel{quantum-group-element-sl2}, where $B(1)$ is taken to be of Morozov-Vinet form
+\delabel{building-block-sl2-mv}, substitute it into defining equation and provide
+such commutational relations for $\phi$, $\psi$ and $\chi$, that the equation becomes valid.
 
-Since we've changed the order of roots in the expression of the quantum group element, we must also change the
-definition of the twisted generators, in order for main equation $\dg = \gog$ to have a solution
+%% \subsubsection{Twisted root generators}
+%% Comultiplication rule for Chevalley root generators was
+%% \be
+%% \comul{\hat{T}_\pm} = q^H \otimes \hat{T}_\pm + \hat{T}_\pm \otimes q^{-H}
+%% \ee
 
-Namely, we twist generators like this
-\be
-T_+ = q^H \hat{T}_+,\ T_- = \hat{T}_- q^{-H},
-\ee
-and comultiplication rules for these twisted generators become
-\be
-\comul{T_+} = q^H \otimes q^H \lsb q^H \otimes \hat{T}_+ + \hat{T}_+ \otimes q^{-H} \rsb = q^{2H} \otimes T_+ + T_+ \otimes I \\
-\comul{T_-} = \lsb q^H \otimes \hat{T}_- + \hat{T}_- \otimes q^{-H} \rsb q^{-H} \otimes q^{-H} = I \otimes T_- + T_- \otimes q^{-2H}
-\ee
+%% Since we've changed the order of roots in the expression of the quantum group element, we must also change the
+%% definition of the twisted generators, in order for main equation $\dg = \gog$ to have a solution
 
-\subsubsection{q-Exponent factorisation and macrolanguage}
+%% Namely, we twist generators like this
+%% \be
+%% T_+ = q^H \hat{T}_+,\ T_- = \hat{T}_- q^{-H},
+%% \ee
+%% and comultiplication rules for these twisted generators become
+%% \be
+%% \comul{T_+} = q^H \otimes q^H \lsb q^H \otimes \hat{T}_+ + \hat{T}_+ \otimes q^{-H} \rsb = q^{2H} \otimes T_+ + T_+ \otimes I \\
+%% \comul{T_-} = \lsb q^H \otimes \hat{T}_- + \hat{T}_- \otimes q^{-H} \rsb q^{-H} \otimes q^{-H} = I \otimes T_- + T_- \otimes q^{-2H}
+%% \ee
+
+\subsubsection{q-Exponent factorisation and comultiplication}
 q-Exponent has an interesting property
 \be
-\me_q(y)\me_q(x) = \me_q(x + y)\ if\ xy = q^2 yx, \label{fact_q}
+\me_q(y)\me_q(x) = \me_q(x + y)\ \If \ xy = q^2 yx, \label{fact_q}
 \ee
 which, for convenience, we will also write in terms of $1/q$ instead of $q$
 \be
 \me_{1/q}(y)\me_{1/q}(x) = \me_{1/q}(x + y)\ if\ xy = q^{-2} yx, \label{fact_over_q}
 \ee
 
-Now comultiplication of the part of the group element corresponding to he positive root factorises as (using (\ref{fact_q}))
+Now comultiplication of the part of the group element corresponding to he positive root factorises as
+(using \delabel{fact_q}; recall, that we use twisting convention \delabel{twist-positively}, hence
+comultiplication rules \delabel{comultiply-positively} apply)
 \be
+\label{comul-expt-positive-sl2}
 \comul{\me_q \lb \psi T_+ \rb} & = \me_q \lb \psi \comul{T_+}\rb = \me_q \lb \psi \lb q^{2H} \otimes T_+ + T_+ \otimes I \rb \rb & \\
 & = \me_q \lb \psi T_+ \otimes I\rb \me_q \lb \psi q^{2H} \otimes T_+\rb
 \ee
 
 Analogously, using (\ref{fact_over_q}) we get for the negative root
 \be
+\label{comul-expt-negative-sl2}
 \comul{\me_{1/q} \lb \chi T_- \rb} & = \me_{1/q} \lb \chi \comul{T_-}\rb = \me_{1/q} \lb \chi \lb I \otimes T_- + T_- \otimes q^{-2H} \rb \rb & \\
 & = \me_{1/q} \lb \chi T_- \otimes q^{-2H}\rb \me_{1/q} \lb \chi I \otimes T_-\rb
 \ee
 
-At this point it is convenient to introduce some notations, which will be like macrolanguage
+\subsubsection{Convenient notation}
+
+When written directly in terms of $\me_q$, $T_\pm$, $H$ and $\otimes$, formulae quickly become involved,
+although these elementary 'letters' often enter only in specific combinations.
+In situations like this, commonly used technique is to introduce some higher-level language,
+in which to express the statements.
+
+Namely, let's define the following
+
 \be
-\Psi \equiv \me_q \lb \psi T_+ \rb,\ \Chi \equiv \me_{1/q} \lb \chi T_- \rb,\ \Phi = q^H \\
-\EPsiD \equiv \comul{\me_\psi},\ \EChiD \equiv \comul{\me_\chi},\ \QPhiD \equiv \comul{Q_\phi} \\
-\EPsiL = \me_q \lb \psi T_+ \otimes I\rb,\ \EPsiR = \me_q \lb \psi I \otimes T_+ \rb \\
-\EPsiLT = \me_q \lb \psi T_+ \otimes q^{-2H}\rb,\ \EPsiRT = \me_q \lb \psi q^{2H} \otimes T_+ \rb \\
-\EChiL = \me_{1/q} \lb \chi T_- \otimes I\rb,\ \EChiR = \me_{1/q} \lb \chi I \otimes T_- \rb \\
-\EChiLT = \me_{1/q} \lb \chi T_- \otimes q^{-2H}\rb,\ \EChiRT = \me_{1/q} \lb \chi q^{2H} \otimes T_- \rb \\
-\QPhiL = q^H \otimes I,\ \QPhiR = I \otimes q^H
+& \Psi = \me_q \lb \psi T_+ \rb,\ \Chi = \me_{1/q} \lb \chi T_- \rb,\ \Phi = q^H \nonumber \\
+& \EPsiD = \comul{\me_\psi},\ \EChiD = \comul{\me_\chi},\ \QPhiD = \comul{Q_\phi} \nonumber \\
+& \EPsiL = \me_q \lb \psi T_+ \otimes I\rb,\ \EPsiR = \me_q \lb \psi I \otimes T_+ \rb \nonumber \\
+\label{macrolanguage-sl2}
+& \EPsiLT = \me_q \lb \psi T_+ \otimes q^{-2H}\rb,\ \EPsiRT = \me_q \lb \psi q^{2H} \otimes T_+ \rb \\
+& \EChiL = \me_{1/q} \lb \chi T_- \otimes I\rb,\ \EChiR = \me_{1/q} \lb \chi I \otimes T_- \rb \nonumber \\
+& \EChiLT = \me_{1/q} \lb \chi T_- \otimes q^{-2H}\rb,\ \EChiRT = \me_{1/q} \lb \chi q^{2H} \otimes T_- \rb \nonumber \\
+& \QPhiL = q^H \otimes I,\ \QPhiR = I \otimes q^H \nonumber 
 \ee
 
-Using this notation, rules for comultiplication can be expressed as
+Mnemonics is as follows:
+\begin{itemize}
+\item $\Psi$, $\Chi$ or $\Phi$ means, that the expression it denotes depends, respectively,
+on $\psi$, $\chi$ or $\phi$.
+\item $L$ in the superscript means that in the expression there is a tensor product,
+and something non-trivial (Chevalley generator) is in the {\it left} part of it.
+\item Similarly, $R$ means, that something non-trivial is on the {\it right} of the tensor product entering the expression.
+\item Finally, $t$ in the superscript means that tensor product involved is ``twisted'', that is the trivial piece
+of the tensor product is multiplied by $q^H$ to a certain power.
+\end{itemize}
+
+\subsubsection{Solution of defining equation}
+
+Using the notation \delabel{macrolanguage-sl2}, comultiplication rules \delabel{comul-expt-positive-sl2} and
+\delabel{comul-expt-negative-sl2}, together with obvious comultiplication rule for the exponent of Cartan element,
+can be expressed as
 \be
 \EPsiD = \EPsiL \EPsiRT,\ \EChiD = \EChiLT \EChiR,\ \QPhiD = \QPhiL \QPhiR
 \ee
 
-Now we are ready to tackle derivation of commutation relations for $\phi$, $\psi$ and $\chi$.
+Now, left and right hand side of defining equation is equal, respectively
 \be
-\gog = \EPsiL \QPhiL \EChiL \EPsiR \QPhiR \EPsiR \label{gog_sl_two} \\ 
-\dg = \EPsiD \QPhiD \EChiD = \EPsiL \EPsiRT \QPhiL \QPhiR \EChiLT \EChiR \label{dg_sl_two}
+& \dg = \EPsiD \QPhiD \EChiD = \EPsiL \EPsiRT \QPhiL \QPhiR \EChiLT \EChiR \label{dg_sl_two} & \\
+& \gog = \EPsiL \QPhiL \EChiL \EPsiR \QPhiR \EPsiR \label{gog_sl_two} &
 \ee
 
-One can see that if
+We immediately see that if
 \be
-\EPsiRT \QPhiL = \QPhiL \EPsiR,\ \QPhiR \EChiLT = \EChiL \QPhiR \label{sl_two_first_pass} \\
-\EPsiR \EChiL = \EChiL \EPsiR \label{sl_two_second_pass}
+& \EPsiRT \QPhiL = \QPhiL \EPsiR,\ \QPhiR \EChiLT = \EChiL \QPhiR \label{sl_two_first_pass} \\
+& \EPsiR \EChiL = \EChiL \EPsiR \label{sl_two_second_pass}
 ,
 \ee
 then (\ref{dg_sl_two}) coincides with (\ref{gog_sl_two}).
@@ -551,13 +604,13 @@ Equation (\ref{sl_two_second_pass}) is satisfied if
 
 First of (\ref{sl_two_first_pass}) is satisfied if
 \be
-\psi \lb q^{2H} \otimes T_+ \rb \lb q^{\phi H} \otimes I \rb = \psi \lb q^{\phi H} \otimes I \rb \lb q^{2H} \otimes T_+ \rb =
-\lb q^{\phi H} \otimes I \rb \psi \lb q^{-2H} \otimes I \rb \lb q^{2H} \otimes T_+ \rb = \lb q^{\phi H} \otimes I \rb \psi \lb I \otimes T_+ \rb,
+\psi \lb q^{2H} \otimes T_+ \rb \lb q^{\phi H} \otimes I \rb & = \psi \lb q^{\phi H} \otimes I \rb \lb q^{2H} \otimes T_+ \rb = & \nonumber \\
+& = \lb q^{\phi H} \otimes I \rb \psi \lb q^{-2H} \otimes I \rb \lb q^{2H} \otimes T_+ \rb = & \lb q^{\phi H} \otimes I \rb \psi \lb I \otimes T_+ \rb,
 \ee
 
 which implies
 \be
-\psi q^{\phi/2} = q^{\phi/2} \psi q^{-1},\ that\ is\ q^\phi \psi = q^2 \psi q^\phi
+\psi q^{\phi/2} = q^{\phi/2} \psi q^{-1},\ \that\ \is\ q^\phi \psi = q^2 \psi q^\phi
 \ee
 
 Similarly, second of (\ref{sl_two_first_pass}) is satisfied if
@@ -565,7 +618,7 @@ Similarly, second of (\ref{sl_two_first_pass}) is satisfied if
 q^{\phi H} \chi = \chi q^{\phi H} q^{2H} \\ q^{\phi/2} \chi = \chi q^{\phi/2} q \nonumber \\ q^\phi \chi = q^2 \chi q^\phi \nonumber
 \ee
 
-Again, let us write all the commutational relations obtained
+Let's write commutational relations just obtained all on one line
 
 \be
 \boxed{
@@ -573,11 +626,13 @@ q^\phi \psi = q^2 \psi q^\phi,\ \ q^\phi \chi = q^2 \chi q^\phi,\ \ \psi \chi = 
 }
 \ee
 
-
-
-Note, that our {\it ad hoc} suggestion \delabel{comm_suggest} on the form of commutation relations proved to be true.
-Hence, relation between quantum and ``classical'' variables \delabel{quant_class} is valid already in the quantum case,
-which justifies quotes around ``classical''.
+Thus, our {\it ad hoc} suggestion \delabel{comm-assumption-sl2} proved to be true for commutational
+relations on $\psi$, $\chi$ and $\phi$, with $\alpha = 2$.
+Now \delabel{mv-fg-relation-sl2}, understood as {\it quantum} substitution of variables is sufficient to
+prove, that commutational relations for $x$, $y$ and $w$ are also of the form \delabel{comm-assumption-sl2},
+also with $\alpha = 2$.
+Hence, formula \delabel{mv-fg-relation-sl2} is indeed a full non-commutative change of variables on the
+dual algebra of the quantum group $SL_q(2)$.
 
 %% \subsection{Heisenbergisation of commutation relations}
 
