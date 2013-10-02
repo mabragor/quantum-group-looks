@@ -1,0 +1,704 @@
+\documentclass{article}
+
+%\textheight 25cm \textwidth 17cm \voffset= - 1.2in \hoffset= - 1.0in
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{verbatim}
+\newcommand{\hp}{\frac{\hbar}{i} \partial_x}
+\newcommand{\lb}{\left (}
+\newcommand{\rb}{\right )}
+\newcommand{\lsb}{\left [}
+\newcommand{\rsb}{\right ]}
+\newcommand{\lab}{\left \langle}
+\newcommand{\rab}{\right \rangle}
+
+\newcommand{\eq}[1]{\begin{equation} #1 \end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray} #1 \end{eqnarray}}
+\newcommand{\be}{\begin{eqnarray}}
+\newcommand{\ee}{\end{eqnarray}}
+\newcommand{\bc}{\begin{comment}}
+\newcommand{\ec}{\end{comment}}
+
+\newcommand{\Lambdan}{\Lambda^{2(N-M)}}
+\DeclareMathOperator{\Or}{or}
+\DeclareMathOperator{\tr}{tr}
+%% \DeclareMathOperator{\And}{and}
+\newcommand{\p}{\partial}
+\newcommand{\mF}{\mathcal{F}}
+\newcommand{\e}{\epsilon}
+\newcommand{\wk}{\widetilde{k}}
+\newcommand{\ok}{\overline{k}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\cmO}{\hat{\mathcal{O}}}
+\newcommand{\wLambda}{\widetilde{\Lambda}}
+\newcommand {\?}{\textit{???}}
+\newcommand{\wZ}{\widetilde{Z}}
+\newcommand{\wF}{\widetilde{F}}
+\newcommand{\wG}{\widetilde{G}}
+\newcommand{\me}[0]{\mathcal{E}}
+\newcommand{\hT}[0]{\hat{T}}
+
+\newcommand{\YAMLSectionize}[1]{}
+
+\def\dg{\Delta (g)}
+\def\gog{g \otimes g}
+\def\classlim{q \rightarrow 1}
+%\newcommand{\ll}[1]{\left ( #1 \rb}
+\newcommand{\Echi}[1]{\me_{1/q} \lb \chi_#1 T_{-#1} \rb}
+\newcommand{\Epsi}[1]{\me_{q} \lb\psi_#1 T_{+#1}\rb}
+\newcommand{\Cartan}[1]{\lsb q^{2\phi_i H_i} \rsb}
+\newcommand{\EchiFirst}[1]{\me_{1/q} \lb\chi_#1 T_{-#1} \otimes I \rb}
+\newcommand{\EchiSecond}[1]{\me_{1/q} \lb\chi_#1 I \otimes T_{-#1} \rb}
+\newcommand{\EpsiFirst}[1]{\me_{q} \lb\psi_#1 T_{+#1} \otimes I \rb}
+\newcommand{\EpsiSecond}[1]{\me_{q} \lb\psi_#1 I \otimes T_{+#1} \rb}
+\newcommand{\CartanFirst}[1]{\lsb q^{2\phi_#1 H_#1} \otimes I \rsb}
+\newcommand{\CartanSecond}[1]{\lsb I \otimes q^{2\phi_#1 H_#1}  \rsb}
+\newcommand{\CartanCoprod}[1]{\lsb q^{2\phi_#1 H_#1} \otimes q^{2\phi_#1 H_#1}  \rsb}
+\newcommand{\EchiPreCoprod}[1]{\me_{1/q} \lb\chi_#1 \Delta \lb T_{-#1} \rb \rb}
+\newcommand{\EpsiPreCoprod}[1]{\me_{q} \lb\psi_#1 \Delta \lb T_{+#1} \rb \rb}
+\newcommand{\EchiCoprod}[1]{\me_{1/q} \lb\chi_#1 \lb q^{2H_i} \otimes T_{-#1} + T_{-#1} \otimes I\rb \rb}
+\newcommand{\EpsiCoprod}[1]{\me_{q} \lb\psi_#1 \lb I \otimes T_{+#1} + T_{+#1} \otimes q^{-2H_i}\rb \rb}
+\newcommand{\EchiTwisted}[1]{\me_{1/q} \lb\chi_#1 q^{2H_i} \otimes T_{-#1} \rb}
+\newcommand{\EpsiTwisted}[1]{\me_{q} \lb\psi_#1 T_{+#1} \otimes q^{-2H_i} \rb}
+
+
+\def\Chi{\mathcal{X}}
+
+
+%% \newcommand{\EChi}[0]{\me_{1/q} \lb \chi_#1 T_{-#1} \rb}
+%% \newcommand{\EPsi}[0]{\me_{q} \lb\psi_#1 T_{+#1}\rb}
+\newcommand{\EChiL}[0]{\Chi^L}
+\newcommand{\EChiR}[0]{\Chi^R}
+\newcommand{\EChiLT}[0]{\Chi^{Lt}}
+\newcommand{\EChiRT}[0]{\Chi^{Rt}}
+\newcommand{\EChiD}[0]{\Chi^\Delta}
+\newcommand{\EPsiL}[0]{\Psi^L}
+\newcommand{\EPsiR}[0]{\Psi^R}
+\newcommand{\EPsiLT}[0]{\Psi^{Lt}}
+\newcommand{\EPsiRT}[0]{\Psi^{Rt}}
+\newcommand{\EPsiD}[0]{\Psi^\Delta}
+\newcommand{\QPhiL}[0]{\Phi^L}
+\newcommand{\QPhiR}[0]{\Phi^R}
+\newcommand{\QPhiD}[0]{\Phi^\Delta}
+
+\newcommand{\EPsii}[1]{\Psi_#1}
+\newcommand{\EChii}[1]{\Chi_#1}
+\newcommand{\QPhii}[1]{\Phi_#1}
+\newcommand{\EChiLi}[1]{\Chi_#1^L}
+\newcommand{\EChiRi}[1]{\Chi_#1^R}
+\newcommand{\EChiLTi}[1]{\Chi_#1^{Lt}}
+\newcommand{\EChiRTi}[1]{\Chi_#1^{Rt}}
+\newcommand{\EChiDi}[1]{\Chi_#1^\Delta}
+\newcommand{\EPsiLi}[1]{\Psi_#1^L}
+\newcommand{\EPsiRi}[1]{\Psi_#1^R}
+\newcommand{\EPsiLTi}[1]{\Psi_#1^{Lt}}
+\newcommand{\EPsiRTi}[1]{\Psi_#1^{Rt}}
+\newcommand{\EPsiDi}[1]{\Psi_#1^\Delta}
+\newcommand{\QPhiLi}[1]{\Phi_#1^L}
+\newcommand{\QPhiRi}[1]{\Phi_#1^R}
+\newcommand{\QPhiDi}[1]{\Phi_#1^\Delta}
+\newcommand{\EBlockLi}[1]{\EPsiLi{#1} \QPhiLi{#1} \EChiLi{#1}}
+\newcommand{\EBlockRi}[1]{\EPsiRi{#1} \QPhiRi{#1} \EChiRi{#1}}
+\newcommand{\ComultBlock}[1]{\EPsiLi{#1}\EPsiRTi{#1}\QPhiLi{#1}\QPhiRi{#1}\EChiLTi{#1}\EChiRi{#1}}
+
+\newcommand{\matd}[4]{\lb \begin{array}{cc}
+#1 & #2 \\ #3 & #4
+\end{array} \rb}
+
+\newcommand{\comul}[1]{\Delta \lb #1 \rb}
+
+\newcommand{\delabel}[1]{(\ref{#1})}
+
+\newcommand{\Hone}[1]{\lb \begin{array}{ccc}
+#1^{2/3} & 0 & 0 \\ 0 & #1^{-1/3} & 0 \\ 0 & 0 & #1^{-1/3}
+\end{array} \rb}
+\newcommand{\Honed}[1]{\lb \begin{array}{ccc}
+#1^{1/2} & 0 \\ 0 & #1^{-1/2}
+\end{array} \rb}
+\newcommand{\Eone}[1]{\lb \begin{array}{ccc}
+1 & #1 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1
+\end{array} \rb}
+\newcommand{\Eoned}[1]{\lb \begin{array}{cc}
+1 & #1 \\ 0 & 1
+\end{array} \rb}
+\newcommand{\Fone}[1]{\lb \begin{array}{ccc}
+1 & 0 & 0 \\ #1 & 1 & 0 \\ 0 & 0 & 1
+\end{array} \rb}
+\newcommand{\Foned}[1]{\lb \begin{array}{cc}
+1 & 0 \\ #1 & 1
+\end{array} \rb}
+
+
+\newcommand{\Htwo}[1]{\lb \begin{array}{ccc}
+#1^{1/3} & 0 & 0 \\ 0 & #1^{1/3} & 0 \\ 0 & 0 & #1^{-2/3}
+\end{array} \rb}
+\newcommand{\Etwo}[1]{\lb \begin{array}{ccc}
+1 & 0 & 0 \\ 0 & 1 & #1 \\ 0 & 0 & 1
+\end{array} \rb}
+\newcommand{\Ftwo}[1]{\lb \begin{array}{ccc}
+1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & #1 & 1
+\end{array} \rb}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%               SPACE FILLING SETTINGS               %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textheight 24.5cm
+\textwidth 17cm
+%\voffset=-1.2in
+\voffset=-1.4in
+%\voffset= - 1.85in
+\hoffset= - 1.0in         % switch off for draft style
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{{\bf The cluster variety face of quantum groups} \vspace{.2cm}}
+\author{{\bf A.Popolitov}\thanks{{\small
+{\it ITEP, Moscow, Russia}}; popolit@itep.ru}}
+
+\begin{document}
+ \maketitle
+
+\vspace{-5.0cm}
+
+\begin{center}
+\hfill ITEP/TH-\?\\
+\end{center}
+
+\vspace{3.5cm}
+
+\centerline{ABSTRACT}
+
+\bigskip
+
+{\footnotesize
+Using the well-known free-field formalism for quantum groups \cite{MV1}, we demonstrate
+in case of $A(n)_q$, that quantum group is naturally also a cluster variety \cite{FG1}.
+Widely used \cite{Hik1} formulae for mutations \cite{FG1},\cite{FG2} are
+direct consequence of independency of group element on the order of simple roots.
+Usual formulae \cite{Mars1} for $2 n$ Poisson leaf emerge in classical limit,
+if all but few ($2n$) coordinates vanish.
+{\it do not know, whether I should say here, that formulae are in fact a little
+bit different}
+}
+
+%\tableofcontents
+
+\YAMLSectionize{
+# The sketch and logic of the presentation
+- Introduction :
+  - first a blah-blah-blah on how quantum groups are great and important objects,
+    and cluster varieties - even more important
+  - convenient MV parametrization of group element and commutational relations
+  - convenient MFG parametrization of group element
+  - mutations
+- Body :
+  - Details :
+    commutational relations for dual algebra from comultiplication :
+      - brief overview of original Morozov-Vinet
+      - derivation for sl(2)
+      - derivation for sl(3)
+      - derivation for sl(n)
+    connection between multicartan and Gauss parametrization
+      - sl(2)
+      - sl(n)
+    commutational relations for multicartan parametrization
+      - sl(2)
+      - sl(n)
+    mutations
+      - sl(2) fundamental
+      - sl(n) fundamental reduces to sl(2)
+      - sl(2) first symmetrical
+- Conclusion
+}
+
+\bigskip
+
+\bigskip
+
+%% \section{Introduction}
+
+%% Quantum groups were studied by Leningrad school and particularly Drinfeld.
+%% They arise as symmetries of non-commutative spaces, though their applications
+%% are not limited by this.
+%% Cluster varieties, on the other hand, originate from cluster algebras, which
+%% appeared in works of Zelevinski et al, and were developed by Goncharov and Fock \?
+
+%% In \? the explicit construction was developed to embed cluster variety into classical Lie group.
+%% The claim was made (though not illustrated with formulas), that this can also be done in the quantum case.
+%% The drawback (or the advantage) of this approach, however, is, that cluster varieties and
+%% Lie groups still seem to be quite different objects, though an embeddings exist, that
+%% respect the structures of these objects.
+
+%% In this paper we demonstrate, for the case of quantum $SL(n)$ group, that quantum group
+%% naturally is a (quantum) cluster variety, with certain intersection matrix \?.
+%%  Namely, starting from certain version of ansatz for
+%% quantum group element (long known as free-field formalism \?) and comultiplication rules.
+%% We derive commutational relations for the algebra of functions on quantum group (the so-called {\it dual algebra}),
+%% which turn out to be of the form of relations defined in \? and formulas for gluing maps between
+%% parametrisations, related to different equivalent choices of ordering of simple roots
+%% turn out to be of the form of (quantum) mutations, also defined in \?.
+
+%% This requirement of correspondence between quantum group setting and cluster variety setting
+%% allows us to fix both constructions a little bit.
+%% On one hand, we find, that certain subfamily of ansaetze, suggested in \?,
+%% has most simple (Darboux-like) commutational relations.
+%% On the other hand, only particular ``words'' of roots in the construction from \?
+%% allow to parametrize whole quantum group.
+%% Also we find, that lower-indexed, not upped-indexed basis in Cartan subalgebra is involved in the construction.
+
+%% This last fact indicates, either, that some other definition of quantum group is possible
+%% (involving the other basis in the rules for comultiplications),
+%% or that classical construction, presented in \? is somehow isomorphic to to the one we find here.
+
+%% This, however, is out of scope of this paper and is left for further investigation.
+
+\section{Introduction/Cheatsheet}
+Quantum groups are very cool and everywhere-important objects.
+
+So do cluster varieties.
+
+Let's briefly summarize the progress made in this paper.
+If this section looks somewhat overgeneric or sketchy to you, you can safely skip to the next
+section, where ideas are elaborated in the simplest case of $SL(2)_q$.
+
+First, we take the quantum group element $g$ to be of the form
+of the word of elementary {\it building blocks} $B(i)$, each related to some positive-negative pair
+of simple roots $\alpha_{\pm \lsb i \rsb}$
+\be
+g = B \lb i_1 \rb B \lb i_2 \rb \dots B \lb i_{n^2-1} \rb,
+\ee
+where building block $B(i)$ can be expressed in one of the two equivalent forms
+\be
+B(i) = \me_q \lb \psi_i q^{H_{[i]}} \hT_{+[i]} \rb q^{\phi_i H_{[i]}} \me_{1/q} \lb \chi_i \hT_{-[i]} q^{-H_{[i]}} \rb
+\equiv
+w_i^{H_{[i]}} \me_q \lb q^{H_{[i]}} \hT_{+[i]} \rb x_i^{H_{[i]}} \me_{1/q} \lb \hT_{-[i]} q^{-H_{[i]}} \rb y_i^{H_{[i]}},
+\ee
+where $\me_q(x)$ is $q$-exponential, and $H_{[i]}$, $T_{+[i]}$ and $T_{-[i]}$ are Chevalley generators of the algebra.
+Square brackets denote the \? map from $n^2-1-n$ parameters to only {\it simple} ones.
+
+Equivalence between two building block parametrisations is given by
+\be
+\psi_i = w_i,\ \ \chi_i = y_i,\ \ q^{\phi_i} = w_i x_i y_i = y_i x_i w_i
+\ee
+
+Quantum group defining equation $\dg = \gog$ then implies the Darboux-like commutational
+relations on the quantum group parameters (also called elements of the dual algebra).
+\be
+& \psi_i \chi_j = \chi_j \psi_i, \ \ q^{\phi_i} \psi_j = q^{2 \delta_{ij}} \psi_j q^{\phi_i}, \ \
+q^{\phi_i} \chi_j = q^{2 \delta_{ij}} \chi_j q^{\phi_i} & \\ &
+y_i w_j = w_j y_i, \ \ x_i w_j = q^{2\delta_{ij}} w_j x_i, \ \ x_i y_j = q^{2\delta_{ij}} y_j x_i
+\ee
+
+Furthermore, in every place where building block $B(i)$ is, slightly
+different building block $B^{'}(i)$ could be used
+\be
+B^{'}(i) = \me_{1/q} \lb \alpha_i q^{H_{[i]}} \hT_{-[i]} \rb q^{\beta_i H_{[i]}} \me_q \lb \gamma_i \hT_{+[i]} q^{-H_{[i]}} \rb   = 
+a_i^{H_{[i]}} \me_{1/q} \lb q^{H_{[i]}} \hT_{-[i]} \rb b_i^{H_{[i]}} \me_q \lb  \hT_{+[i]} q^{-H_{[i]}} \rb c_i^{H_{[i]}},
+\ee
+and {\bf quantum} substitution of variables, which relates newly obtained $g$' to the old one
+is of the form of a mutation.
+\be
+a_i = w_i(1 + q x_i), \ \ c_i = y_i(1 + q x_i), \ \ b_i = \frac{1}{x_i},
+\ee 
+assuming mutation occured in the building block $B(i)$.
+
+We interpret our results as follows: quantum group $SL(n)_q$ is a cluster  variety,
+with very simple cluster data:
+\begin{enumerate}
+\item $I$ - it is in fact hard to describe what seed and frozen seed look like
+\item $I_0$ - since it is being done on like two pages in Fock Goncharov 0508408.
+\item $\epsilon_{ij} = offdiag \lb \delta_{ij}, -\delta_{ij} \rb$
+\item $d_i \equiv 1$ for all $i$
+\end{enumerate}
+
+\section {$SL(2)_q$ case}
+In this section we detail all parts of the construction in case simplest example of $SL(2)_q$.
+Furthermore, unless explicitly stated, we restrict considerations to fundamental representation.
+This is done to make this section clear and illustrarive, although all calculations, of course,
+remain valid in higher representations.
+
+\subsection{Quantum algebra's commutational relations and comultiplication rules}
+In case of $SL(2)_q$ there are only one positive root $T_{+}$, one negative root $T_{-}$
+and one Cartan element $H$.
+
+Commutational relations read
+\be
+q^H \hT_{\pm} = q^{\pm 1} \hT_{\pm} q^H,\ \ \hT_+ \hT_- - \hT_- \hT_+ = \frac{q^{2H} - q^{-2H}}{q - q^{-1}},
+\ee
+and comultiplication relations are
+\be
+\Delta(H) = I \otimes H + H \otimes I, \ \ \Delta(\hT_\pm) = q^H \otimes \hT_\pm + \hT_\pm \otimes q^{-H}
+\ee
+
+There are two obvious ways to twist generators, associated to roots, which play crucial role in
+the construction below.
+
+One is to consider
+\be
+T_+ = q^H \hT_+,\ \and \ T_- = \hT_- q^{-H}
+\ee
+with comultiplication rules
+\be
+\Delta(T_+) = q^{2H} \otimes T_+ + T_+ \otimes I,\ \ \Delta(T_-) = I \otimes T_- + T_- \otimes q^{-2H},
+\ee
+and another is
+\be
+T_- = q^H \hT_-,\ \and \ T_+ = \hT_+ q^{-H},
+\ee
+with comultiplication rules
+\be
+\Delta(T_-) = q^{2H} \otimes T_- + T_- \otimes I,\ \ \Delta(T_+) = I \otimes T_+ + T_+ \otimes q^{-2H},
+\ee
+
+If we restrict ourselves to only consider root-associated generators twisted this or that way or only untwisted,
+then in fundamental representation they can be chosen to be
+\be
+T_+ = \Eoned{1},\ T_- = \Foned{1},\ H = \matd{\frac{1}{2}}{0}{0}{-\frac{1}{2}}
+\ee
+
+\subsection{Ansatz for group element in two equivalent forms}
+In this simple case we have only one pair of positive-negative simple roots, hence group
+element contains only one building block
+\be
+g = B(1),
+\ee
+where $B$ can be chosen to be in one of two equivalent forms.
+
+The former is inspired by Fock-Goncharov construction and reads
+\be
+\label{building-block-sl2-fg}
+B(1) = & w^H \me_q \lb T_+\rb x^H \me_{1/q} \lb T_- \rb y^H & = \\
+= & \Honed{w} \Eoned{1} \Honed{x} \Foned{1} \Honed{y} & = \nonumber \\
+= & \matd{w^{1/2}x^{1/2}y^{1/2} + w^{1/2}x^{-1/2}y^{1/2}}{w^{1/2}x^{-1/2}y^{-1/2}}
+{w^{-1/2}x^{-1/2}y^{1/2}}{w^{-1/2}x^{-1/2}y^{-1/2}} \nonumber,
+\ee
+
+The latter comes from Morozov-Vinet considerations and reads
+\be
+\label{building-block-sl2-mv}
+B(1) = & \me_q \lb \psi T_+ \rb q^{\phi H} \me_{1/q} \lb \chi T_- \rb & = \\
+= & \Eoned{\psi} \matd{q^{\phi/2}}{0}{0}{q^{-\phi/2}} \Foned{\chi} = \matd{q^{\phi/2} + \psi q^{-\phi/2}\chi}{\psi q^{-\phi/2}}{q^{-\phi/2}\chi}{q^{-\phi/2}} \nonumber.
+\ee
+
+In the above formulae $\me_q(x)$ is $q$-exponential (known also as quantum dilogarithm)
+\be
+\me_q(x) = \sum_{i = 0}^\infty \frac{x^n}{[n]!} q^{-\frac{1}{2}n(n-1)},
+\ee
+quantum numbers are defined to be symmetrical
+$$[n] = \frac{q^n - q^{-n}}{q - q^{-1}}$$
+and we have explicitly used the fact, that in fundamental representation $T_+^2 = T_-^2 = 0$,
+so exponential is in fact quite simple and not yet so quantum.
+
+If variables $w$, $x$, $y$ and $\psi$, $\chi$, $q^\phi$ were commutative, then we could immediately
+conclude (by equating two different forms of $B(1)$ \delabel{building-block-sl2-fg} and \delabel{building-block-sl2-mv}),
+ that relation between them is
+\begin{equation}
+  \boxed {
+    q^\phi = w x y, \ \ \psi = w,\ \ \chi = y, \label{subs_suggest}
+  }
+\end{equation}
+
+but in quantum (non-commutative) case, everything is not so straightforward.
+We have to assume specific form of commutational relations.
+
+Namely, let's assume, that
+\begin{equation}
+  \boxed {
+    \psi \chi = \chi \psi,\ q^\phi \psi = q^\alpha \psi q^\phi,\ q^\phi \chi = q^\alpha \chi q^\phi,
+    w y = y w,\ x w = q^\alpha w x, \ x y = q^\alpha y x
+  }
+\end{equation}
+
+for some parameter $\alpha$.
+Then
+\be
+w x y = y x w,\ \and \ \lb w^{1/2} x^{1/2} y^{1/2} \rb \lb w^{1/2} x^{1/2} y^{1/2} \rb = w x y,
+\ee
+and formula \delabel{subs_suggest} is a valid non-commutative substitution of variables.
+
+%% If we denote by $1$ the positive root and by $\overline{1}$ the negative root,
+%% then Fock-Goncharov ansatz for group element, corresponding to the ``word'' $1\overline{1}$
+%% reads
+%% \be
+%% g_{cl} & = \Honed{w} \Eoned{1} \Honed{x} \Foned{1} \Honed{y} = & \\
+%% & \matd{w^{1/2}x^{1/2}y^{1/2} + w^{1/2}x^{-1/2}y^{1/2}}{w^{1/2}x^{-1/2}y^{-1/2}}
+%% {w^{-1/2}x^{-1/2}y^{1/2}}{w^{-1/2}x^{-1/2}y^{-1/2}},
+%% \label{g_classd}
+%% \ee
+%% where we explicitly kept the order of $w$, $x$ and $y$ in the monomials, since we expect this formula to
+%% generalize to quantum case, where they are not commutative.
+
+
+%% On the quantum side, we consider the analog of Morozov-Vinet parametrization, but with the difference, that positive root
+%% is to the left of the cartan, not to the right, and different normalization of cartan element is used
+%% \be
+%% g_{q} = \Eoned{\psi} \matd{q^{\phi/2}}{0}{0}{q^{-\phi/2}} \Foned{\chi} = \matd{q^{\phi/2} + \psi q^{-\phi/2}\chi}{\psi q^{-\phi/2}}{q^{-\phi/2}\chi}{q^{-\phi/2}} \label{g_quantd}
+%% \ee
+
+%% One can immediately see, that if we identify
+%% \be
+%% \boxed{
+%% q^\phi = w x y,\ \psi = w,\ \chi = y \label{quant_class}
+%% }
+%% \ee
+
+%% then in classical limit where $\phi$, $\psi$ and $\chi$ become mutually commutative,
+%% formula for the quantum element reproduces formula for the classical element.
+
+%% What {\bf is} nontrivial is that if we suppose (which will turn out to be the case)
+%% that commutation relations of the quantum variables take the form
+%% \be
+%% \boxed{
+%% \psi \chi = \chi \psi,\ q^\phi \psi = q^\alpha \psi q^\phi,\ q^\phi \chi = q^\alpha \chi q^\phi, \label{comm_suggest}
+%% }
+%% \ee
+
+%% then already on the quantum side $w x y$ = $y x w$, and expression (\ref{g_quantd}) can be put into form (\ref{g_classd}), using formula \delabel{quant_class}.
+
+%% \subsubsection{Different roots order}
+%% If we consider the other order of roots - the word $\overline{1}1$,
+%% i.e. the elements
+%% \be
+%% g_{cl} & = \Honed{a} \Foned{1} \Honed{b} \Eoned{1} \Honed{c} \\
+%% g_q & = \Foned{\alpha} \matd{q^{\beta/2}}{0}{0}{q^{-\beta/2}} \Eoned{\gamma},
+%% \ee
+
+%% then the respective relation between $a, b, c$ and $\alpha, \beta, \gamma$ would be
+%% \be
+%% \boxed{
+%%   q^\beta = a b c,\ \ \alpha = \frac{1}{a},\ \ \gamma = \frac{1}{c} \label{quant_class_other}
+%% }
+%% \ee
+
+\subsection{Correct quantum commutators from comultiplication}
+
+\subsubsection{Twisted root generators}
+Comultiplication rule for Chevalley root generators was
+\be
+\comul{\hat{T}_\pm} = q^H \otimes \hat{T}_\pm + \hat{T}_\pm \otimes q^{-H}
+\ee
+
+Since we've changed the order of roots in the expression of the quantum group element, we must also change the
+definition of the twisted generators, in order for main equation $\dg = \gog$ to have a solution
+
+Namely, we twist generators like this
+\be
+T_+ = q^H \hat{T}_+,\ T_- = \hat{T}_- q^{-H},
+\ee
+and comultiplication rules for these twisted generators become
+\be
+\comul{T_+} = q^H \otimes q^H \lsb q^H \otimes \hat{T}_+ + \hat{T}_+ \otimes q^{-H} \rsb = q^{2H} \otimes T_+ + T_+ \otimes I \\
+\comul{T_-} = \lsb q^H \otimes \hat{T}_- + \hat{T}_- \otimes q^{-H} \rsb q^{-H} \otimes q^{-H} = I \otimes T_- + T_- \otimes q^{-2H}
+\ee
+
+\subsubsection{q-Exponent factorisation and macrolanguage}
+q-Exponent has an interesting property
+\be
+\me_q(y)\me_q(x) = \me_q(x + y)\ if\ xy = q^2 yx, \label{fact_q}
+\ee
+which, for convenience, we will also write in terms of $1/q$ instead of $q$
+\be
+\me_{1/q}(y)\me_{1/q}(x) = \me_{1/q}(x + y)\ if\ xy = q^{-2} yx, \label{fact_over_q}
+\ee
+
+Now comultiplication of the part of the group element corresponding to he positive root factorises as (using (\ref{fact_q}))
+\be
+\comul{\me_q \lb \psi T_+ \rb} & = \me_q \lb \psi \comul{T_+}\rb = \me_q \lb \psi \lb q^{2H} \otimes T_+ + T_+ \otimes I \rb \rb & \\
+& = \me_q \lb \psi T_+ \otimes I\rb \me_q \lb \psi q^{2H} \otimes T_+\rb
+\ee
+
+Analogously, using (\ref{fact_over_q}) we get for the negative root
+\be
+\comul{\me_{1/q} \lb \chi T_- \rb} & = \me_{1/q} \lb \chi \comul{T_-}\rb = \me_{1/q} \lb \chi \lb I \otimes T_- + T_- \otimes q^{-2H} \rb \rb & \\
+& = \me_{1/q} \lb \chi T_- \otimes q^{-2H}\rb \me_{1/q} \lb \chi I \otimes T_-\rb
+\ee
+
+At this point it is convenient to introduce some notations, which will be like macrolanguage
+\be
+\Psi \equiv \me_q \lb \psi T_+ \rb,\ \Chi \equiv \me_{1/q} \lb \chi T_- \rb,\ \Phi = q^H \\
+\EPsiD \equiv \comul{\me_\psi},\ \EChiD \equiv \comul{\me_\chi},\ \QPhiD \equiv \comul{Q_\phi} \\
+\EPsiL = \me_q \lb \psi T_+ \otimes I\rb,\ \EPsiR = \me_q \lb \psi I \otimes T_+ \rb \\
+\EPsiLT = \me_q \lb \psi T_+ \otimes q^{-2H}\rb,\ \EPsiRT = \me_q \lb \psi q^{2H} \otimes T_+ \rb \\
+\EChiL = \me_{1/q} \lb \chi T_- \otimes I\rb,\ \EChiR = \me_{1/q} \lb \chi I \otimes T_- \rb \\
+\EChiLT = \me_{1/q} \lb \chi T_- \otimes q^{-2H}\rb,\ \EChiRT = \me_{1/q} \lb \chi q^{2H} \otimes T_- \rb \\
+\QPhiL = q^H \otimes I,\ \QPhiR = I \otimes q^H
+\ee
+
+Using this notation, rules for comultiplication can be expressed as
+\be
+\EPsiD = \EPsiL \EPsiRT,\ \EChiD = \EChiLT \EChiR,\ \QPhiD = \QPhiL \QPhiR
+\ee
+
+Now we are ready to tackle derivation of commutation relations for $\phi$, $\psi$ and $\chi$.
+\be
+\gog = \EPsiL \QPhiL \EChiL \EPsiR \QPhiR \EPsiR \label{gog_sl_two} \\ 
+\dg = \EPsiD \QPhiD \EChiD = \EPsiL \EPsiRT \QPhiL \QPhiR \EChiLT \EChiR \label{dg_sl_two}
+\ee
+
+One can see that if
+\be
+\EPsiRT \QPhiL = \QPhiL \EPsiR,\ \QPhiR \EChiLT = \EChiL \QPhiR \label{sl_two_first_pass} \\
+\EPsiR \EChiL = \EChiL \EPsiR \label{sl_two_second_pass}
+,
+\ee
+then (\ref{dg_sl_two}) coincides with (\ref{gog_sl_two}).
+
+Equation (\ref{sl_two_second_pass}) is satisfied if
+\be
+\psi \chi = \chi \psi
+\ee
+
+First of (\ref{sl_two_first_pass}) is satisfied if
+\be
+\psi \lb q^{2H} \otimes T_+ \rb \lb q^{\phi H} \otimes I \rb = \psi \lb q^{\phi H} \otimes I \rb \lb q^{2H} \otimes T_+ \rb =
+\lb q^{\phi H} \otimes I \rb \psi \lb q^{-2H} \otimes I \rb \lb q^{2H} \otimes T_+ \rb = \lb q^{\phi H} \otimes I \rb \psi \lb I \otimes T_+ \rb,
+\ee
+
+which implies
+\be
+\psi q^{\phi/2} = q^{\phi/2} \psi q^{-1},\ that\ is\ q^\phi \psi = q^2 \psi q^\phi
+\ee
+
+Similarly, second of (\ref{sl_two_first_pass}) is satisfied if
+\be
+q^{\phi H} \chi = \chi q^{\phi H} q^{2H} \\ q^{\phi/2} \chi = \chi q^{\phi/2} q \nonumber \\ q^\phi \chi = q^2 \chi q^\phi \nonumber
+\ee
+
+Again, let us write all the commutational relations obtained
+
+\be
+\boxed{
+q^\phi \psi = q^2 \psi q^\phi,\ \ q^\phi \chi = q^2 \chi q^\phi,\ \ \psi \chi = \chi \psi
+}
+\ee
+
+
+
+Note, that our {\it ad hoc} suggestion \delabel{comm_suggest} on the form of commutation relations proved to be true.
+Hence, relation between quantum and ``classical'' variables \delabel{quant_class} is valid already in the quantum case,
+which justifies quotes around ``classical''.
+
+%% \subsection{Heisenbergisation of commutation relations}
+
+%% Let's rewrite commutation relations, say, between, $\psi$ and $q^\phi$ in terms of Planck constant
+%% \be
+%% e^{\hbar \phi} \psi = e^{2\hbar} \psi e^{\hbar \phi}
+%% \ee
+
+%% Note that if we substitute $\phi = \frac{\partial}{\partial x}$ and $\psi = e^{2x}$, then above equality remains valid.
+%% This means, we've found representation of $\phi$ and $\psi$.
+
+%% Commutation relation between $\frac{\partial}{\partial x}$ and $2x$ is
+%% \be
+%% \lsb \partial_x, 2x \rsb = 2,
+%% \ee
+%% from which we can conclude, that if we introduce new variable $\mu$
+%% \be
+%% \psi = e^{2 \mu},
+%% \ee
+%% then we would have the following commutation relation between $\phi$ and $\mu$
+%% \be
+%% \lsb \phi, \mu \rsb = 1
+%% \ee
+
+%% Analogously,
+%% \be
+%% \chi = e^{2\nu},\ \ \lsb \phi, \nu \rsb = 1
+%% \ee
+
+%% If we introduce logarithmic coordinates on the ``classical'' side
+%% \be
+%% w = e^{\tw},\ y = e^{\ty},\ x = e^{\tx}
+%% \ee
+
+%% then our quantum-classical correspondance \delabel{quant_class} can be rewritten as
+%% \be
+%% e^{\hbar \phi} = e^{\tw} e^{\tx} e^{\ty}\\
+%% e^{2\mu} = e^{\tw} \\
+%% e^{2\nu} = e^{\ty},
+%% \ee
+%% from which we derive
+%% \be
+%% \tw = 2\mu,\ \ty = 2\nu,\ \tx = \ln \lb e^{-2\mu}e^{\hbar \phi} e^{-2\nu}\rb,
+%% \ee
+%% and expression for $\tx$ simplifies only in classical limit $\hbar \rightarrow 0$, because exponents become mutually commuting and
+%% logarithm can be taken, leading
+%% \be
+%% \tx = \hbar \phi - 2\nu - 2\mu
+%% \ee
+
+\subsection{Poisson submanifold}
+Although reduction $\psi = 1$ is not consistent with commutational relations, if we
+restrict ourselves to only functions, depending on $\chi$ and $q^\phi$, it is still consistent,
+since we will never get any $\psi$'s while considering such functions, hence will never actually
+know, that commutation relations did break.
+
+Note: in Fock-Goncharov they do precisely that in their example with $sl(2)$ (arXiv:math/0508408),
+but in classical limit.
+
+\subsection{Mutation}
+
+One can consider different parametrization of group element
+\be
+g = \Foned{\alpha} \matd{q^{\beta/2}}{0}{0}{q^{-\beta/2}} \Eoned{\gamma} = \matd{q^{\beta/2} }{q^{\beta/2}\gamma}{\alpha q^{\beta/2}}{q^{-\beta/2} + \alpha q^{\beta/2}\gamma} \label{g_quantd_2}
+\ee
+
+Thus, transition is given by equations
+\be
+q^{\phi/2} + \psi q^{-\phi/2} \chi = q^{\beta/2} \\
+\psi q^{-\phi/2} = q^{\beta/2} \gamma \\
+q^{-\phi/2} \chi = \alpha q^{\beta/2} \\
+q^{-\phi/2} = \alpha q^{\beta/2} \gamma + q^{-\beta/2}
+\ee
+
+One can explicitly solve these equations w.r.t $\alpha$, $\beta$ and $\gamma$
+(fourth equation provides a consistency check) to get
+\be
+q^{\beta/2} = q^{\phi/2} + \psi q^{-\phi/2} \chi \\
+\alpha = q^{-\phi/2} \chi q^{-\phi/2} \lb 1 + \psi q^{-\phi/2} \chi q^{-\phi/2} \rb^{-1}
+\gamma = \lb 1 + q^{-\phi/2} \psi q^{-\phi/2} \chi \rb^{-1} q^{-\phi/2} \psi q^{-\phi/2}
+\ee
+
+One can further verify that the form of the commutation relations is preserved by this transformation, i.e.
+\be
+q^{\beta} \alpha = q^2 \alpha q^{\beta} \\
+q^{\beta} \gamma = q^2 \gamma q^{\beta} \\
+\alpha \gamma = \gamma \alpha
+\ee
+
+These formulas look much nicer, when expressed as relation between $x, y, z$ and $a, b, c$
+variables, namely (see formulas \delabel{quant_class} and \delabel{quant_class_other})
+
+\be
+\boxed{
+  a = w (1 + q x),\ \ c = y(1 + q x), \ \ b = \frac{\lb 1 + x\rb^2}{\lb 1 + q x\rb\lb 1 + \frac{x}{q}\rb} \frac{1}{x},
+}
+\ee
+
+and they reproduce classical formulas for mutation in the limit $\classlim$
+\be
+a = w \lb 1 + x\rb \\
+c = y \lb 1 + x\rb \\
+b = \frac{1}{x}
+\ee
+
+
+\section*{Acknowledgements}
+
+Our work is partly supported by Ministry of Education and Science of
+the Russian Federation under contract \?, by RFBR
+grants \? by joint grants \?.
+
+\appendix
+\section{Appendix. Some explicit calculations not to be placed in the main text}
+
+\begin{thebibliography}{12}
+
+\bibitem{RefName}
+ Authors., Journal {\bf issue} (year) pages, arxiv:99999999;
+
+\end{thebibliography}
+
+
+\end{document}

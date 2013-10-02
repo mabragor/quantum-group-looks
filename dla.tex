@@ -1,0 +1,633 @@
+\documentclass{paper}
+\usepackage{graphicx}
+\usepackage{graphicx,amssymb,amsmath,amsfonts,mathtext,color,wrapfig}
+
+%\usepackage[cp866]{inputenc}   %  for MiKTeX package
+%\usepackage[russian]{babel}
+
+\def\be{\begin{eqnarray}}
+\def\ee{\end{eqnarray}}
+\def\nn{\nonumber}
+\newcommand{\eq}[1]{\begin{equation} #1 \end{equation}}
+
+\def\p{\partial}
+\def\tr{{\rm tr}\,}
+\def\Tr{{\rm Tr}\,}
+\def\tchi{\tilde{\chi}}
+\def\tpsi{\tilde{\psi}}
+\def\me{\mathcal{E}}
+\def\dg{\Delta \lb g \rb}
+\def\lb{\left (}
+\def\rb{\right )}
+\def\lsb{\left [}
+\def\rsb{\right ]}
+\def\lcb{\left \{}
+\def\rcb{\right \}}
+\def\lab{\left <}
+\def\rab{\right >}
+\def\tx{\tilde{x}}
+\def\ty{\tilde{y}}
+\def\tw{\tilde{w}}
+
+\def\gog{g \otimes g}
+%\newcommand{\ll}[1]{\left ( #1 \rb}
+\newcommand{\Echi}[1]{\me_{1/q} \lb \chi_#1 T_{-#1} \rb}
+\newcommand{\Epsi}[1]{\me_{q} \lb\psi_#1 T_{+#1}\rb}
+\newcommand{\Cartan}[1]{\lsb q^{2\phi_i H_i} \rsb}
+\newcommand{\EchiFirst}[1]{\me_{1/q} \lb\chi_#1 T_{-#1} \otimes I \rb}
+\newcommand{\EchiSecond}[1]{\me_{1/q} \lb\chi_#1 I \otimes T_{-#1} \rb}
+\newcommand{\EpsiFirst}[1]{\me_{q} \lb\psi_#1 T_{+#1} \otimes I \rb}
+\newcommand{\EpsiSecond}[1]{\me_{q} \lb\psi_#1 I \otimes T_{+#1} \rb}
+\newcommand{\CartanFirst}[1]{\lsb q^{2\phi_#1 H_#1} \otimes I \rsb}
+\newcommand{\CartanSecond}[1]{\lsb I \otimes q^{2\phi_#1 H_#1}  \rsb}
+\newcommand{\CartanCoprod}[1]{\lsb q^{2\phi_#1 H_#1} \otimes q^{2\phi_#1 H_#1}  \rsb}
+\newcommand{\EchiPreCoprod}[1]{\me_{1/q} \lb\chi_#1 \Delta \lb T_{-#1} \rb \rb}
+\newcommand{\EpsiPreCoprod}[1]{\me_{q} \lb\psi_#1 \Delta \lb T_{+#1} \rb \rb}
+\newcommand{\EchiCoprod}[1]{\me_{1/q} \lb\chi_#1 \lb q^{2H_i} \otimes T_{-#1} + T_{-#1} \otimes I\rb \rb}
+\newcommand{\EpsiCoprod}[1]{\me_{q} \lb\psi_#1 \lb I \otimes T_{+#1} + T_{+#1} \otimes q^{-2H_i}\rb \rb}
+\newcommand{\EchiTwisted}[1]{\me_{1/q} \lb\chi_#1 q^{2H_i} \otimes T_{-#1} \rb}
+\newcommand{\EpsiTwisted}[1]{\me_{q} \lb\psi_#1 T_{+#1} \otimes q^{-2H_i} \rb}
+
+
+
+
+
+%\input{head.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%               SPACE FILLING SETTINGS               %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textheight 21.5cm
+\textwidth 19.0cm
+% \voffset=-1.2in
+\voffset=-0.5in
+% \voffset= - 1.85in
+\hoffset= - 1.5in         % switch off for draft style
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+\thispagestyle{empty}
+
+\baselineskip14pt
+
+\hfill ITEP/TH-???
+
+\bigskip
+
+\bigskip
+
+\centerline{\LARGE{On poissonable sector of quantum groups
+}}
+
+\vspace{5ex}
+
+\centerline{\large{\emph{A.Popolitov\footnote{Institute for Theoretical and Experimental Physics, Moscow, Russia; popolit@itep.ru}}}}
+
+\vspace{4ex}
+
+\centerline{ABSTRACT}
+
+\bigskip
+
+{\footnotesize
+In \cite{Mars},\cite{FG} there is a certain construction of integrable system being built, based on
+classical lie algebra. This construction there seems rther {\it ad hoc}. We show, that this
+construction can be obtained from quantum group construction of \cite{MV}, as a peculiar quasiclassical limit,
+which involves setting some of quantum coordinates to zero, and simultaneously expanding other coordinates
+and deformation parameter $q$ near $1$.
+}
+
+\section{Introduction}
+
+???
+
+% so, what is the plan?
+
+\section{Example: sl(3) (A(2))}
+\subsection{Classical side}
+We have two positive simple roots $e_1$ and $e_2$, two negative simple roots $f_1$ and $f_2$ and
+two Cartan elements $h_1$ and $h_2$, which in fundamental represention are given by matrices:
+\be
+e_1 = \lb \begin{array}{ccc}
+  0 & 1 & 0 \\
+  0 & 0 & 0 \\
+  0 & 0 & 0
+\end{array}\rb
+\
+e_2 = \lb \begin{array}{ccc}
+  0 & 0 & 0 \\
+  0 & 0 & 1 \\
+  0 & 0 & 0
+\end{array}\rb \nonumber
+\\
+f_1 = \lb \begin{array}{ccc}
+  0 & 0 & 0 \\
+  1 & 0 & 0 \\
+  0 & 0 & 0
+\end{array}\rb
+\
+f_2 = \lb \begin{array}{ccc}
+  0 & 0 & 0 \\
+  0 & 0 & 0 \\
+  0 & 1 & 0
+\end{array}\rb \nonumber
+\\
+h_1 = \lb \begin{array}{ccc}
+  1 & 0 & 0 \\
+  0 & -1 & 0 \\
+  0 & 0 & 0
+\end{array}\rb
+\
+h_2 = \lb \begin{array}{ccc}
+  0 & 0 & 0 \\
+  0 & 1 & 0 \\
+  0 & 0 & -1
+\end{array}\rb \nonumber
+\ee
+
+These matrices are subject to commutational relations:
+\be
+\lsb h_i e_j \rsb = C_{ij} e_j\ \
+\lsb h_i f_j \rsb = -C_{ij} f_j\ \
+\lsb e_i f_j \rsb = \delta_{ij} h_j \nonumber,
+\ee
+where summation on the r.h.s is {\bf not} assumed and $C_{ij}$ is the Cartan matrix
+$$
+C_{ij} = \lb \begin{array}{cc}
+  2 & -1 \\
+  -1 & 2
+\end{array}\rb
+$$
+of sl(3).
+
+On top of small (algebra) matrices, we build large (group) ones as follows:
+\be
+E_1 = e^{e_1} = \lb \begin{array}{ccc}
+  1 & 1 & 0 \\
+  0 & 1 & 0 \\
+  0 & 0 & 1
+\end{array}\rb\ \ 
+E_2 = e^{e_2} = \lb \begin{array}{ccc}
+  1 & 0 & 0 \\
+  0 & 1 & 1 \\
+  0 & 0 & 1
+\end{array}\rb \nonumber \\
+F_1 = e^{f_1} = \lb \begin{array}{ccc}
+  1 & 0 & 0 \\
+  1 & 1 & 0 \\
+  0 & 0 & 1
+\end{array}\rb\ \ 
+F_2 = e^{f_2} = \lb \begin{array}{ccc}
+  1 & 0 & 0 \\
+  0 & 1 & 0 \\
+  0 & 1 & 1
+\end{array}\rb \nonumber \\
+H_1(x) = e^{h_1 x} = \lb \begin{array}{ccc}
+  e^x & 0 & 0 \\
+  0 & e^{-x} & 0 \\
+  0 & 0 & 1
+\end{array}\rb\ \ 
+H_2(x) = e^{h_2 x} = \lb \begin{array}{ccc}
+  1 & 0 & 0 \\
+  0 & e^x & 0 \\
+  0 & 0 & e^{-x}
+\end{array}\rb \nonumber
+\ee
+
+We then consider the following matrix-valued function
+$$
+g = E_1 H_1(x_1) F_1 H_1(y_1) E_2 H_2(x_2) F_2 H_2(y_2)
+$$
+and non-trivial coefficients $R^{(1)}$ $R^{(2)}$ of its characteristic polynomial
+$$
+det(g - \lambda E) = \lambda^3 + R^{(2)}(x, y) \lambda^2 + R^{(1)}(x, y) \lambda + 1
+$$
+
+If we than search for Poisson bracket on $x_i$ and $y_i$ in the class of {\it constant}
+matrices, such that given this bracket, $R^{(1)}$ and $R^{(2)}$ Poisson-commute,
+we find, that the only option is:
+$$
+\Pi = \lb \begin{array}{cccc}
+  0 & 1 & 0 & 0 \\
+  -1 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 1 \\
+  0 & 0 & -1 & 0
+\end{array}\rb
+$$
+in the basis $\lbx_1, y_1, x_2, y_2 \rb$
+
+Thus, we have 2 Poisson-commuting functions on the 4-dimensional phase-space,
+i.e. we have an integrable system, which turns out to be (relativistic) Toda chain (orly ???).
+
+Note, however, that this is not exactly the construction of Fock-Goncharov-Marshakov.
+Namely, instead of lower-index basis in Lie-algebra, they work in higher-index basis
+\be
+e^1 \equiv \lb \begin{array}{ccc}
+  0 & 1 & 0 \\
+  0 & 0 & 0 \\
+  0 & 0 & 0
+\end{array}\rb
+\
+e^2 \equiv \lb \begin{array}{ccc}
+  0 & 0 & 0 \\
+  0 & 0 & 1 \\
+  0 & 0 & 0
+\end{array}\rb \nonumber
+\\
+f^1 \equiv \lb \begin{array}{ccc}
+  0 & 0 & 0 \\
+  1 & 0 & 0 \\
+  0 & 0 & 0
+\end{array}\rb
+\
+f^2 \equiv \lb \begin{array}{ccc}
+  0 & 0 & 0 \\
+  0 & 0 & 0 \\
+  0 & 1 & 0
+\end{array}\rb \nonumber
+\\
+h^1 = \lb \begin{array}{ccc}
+  \frac{2}{3} & 0 & 0 \\
+  0 & -\frac{1}{3} & 0 \\
+  0 & 0 & -\frac{1}{3}
+\end{array}\rb
+\
+h^2 = \lb \begin{array}{ccc}
+  \frac{1}{3} & 0 & 0 \\
+  0 & \frac{1}{3} & 0 \\
+  0 & 0 & -\frac{2}{3}
+\end{array}\rb, \nonumber
+\ee
+with commutational relations
+$$
+\left[  h_i e_j \rsb = \delta_{ij}\ \
+\left[  h_i f_j \rsb = -\delta_{ij}\ \
+\left[  e_i f_j \rsb = -\delta_{ij}\ \
+\left[  e_i f_j \rsb = \delta_{ij} \sum_k C_{jk} h^k
+$$
+
+However, all the rest of the construction (map from algebra to group,
+form of group element $g$ in terms of $E^i$, $F^i$ and $H^i(x)$,
+and consideration of $R^{(i)}$ stays the same.
+
+At the end of the day, (constant) Poisson bracket on $x$ and $y$ turns out to be
+$$
+\Pi = \lb \begin{array}{cccc}
+  0 & 2 & 0 -1 \\
+  -2 & 0 & 1 & 0 \\
+  0 & -1 & 0 & 2 \\
+  1 & 0 & -2 & 0,
+\end{array}\rb
+$$
+
+which can be encoded in this peculiar picture, which is like fat Dynkin diagram.
+However, my personal belief is that all there compications are not necessary and
+arise from (slightly) inefficient choice of basis.
+In the right basis Poisson bracket is very simple, and does not carry any information
+about Lie-algebraic structure - construction becomes sort-of orthogonal to it.
+
+\subsection{Relation between quantum and classical variables in case of A(1)}
+
+Every element of $SL(2)$ can be represented as:
+\be
+g_{cl} = \lb \begin{array}{cc}
+w & 0 \\ 0 & \frac{1}{w}
+\end{array} \rb \lb \begin{array}{cc}
+1 & 0 \\ 1 & 1
+\end{array} \rb \lb \begin{array}{cc}
+x & 0 \\ 0 & \frac{1}{x}
+\end{array} \rb \lb \begin{array}{cc}
+1 & 1 \\ 0 & 1
+\end{array} \rb \lb \begin{array}{cc}
+y & 0 \\ 0 & \frac{1}{y}
+\end{array} \rb = \lb \begin{array}{cc}
+wxy & \frac{wx}{y} \\ \frac{xy}{w} & \frac{x}{wy} + \frac{1}{wxy}
+\end{array} \rb 
+\ee
+
+At the same time, element of $SL_q(2)$ can be represented as:
+\be
+g_{q} = \lb \begin{array}{cc}
+1 & 0 \\ \chi & 1
+\end{array} \rb \lb \begin{array}{cc}
+q^\phi & 0 \\ 0 & q^{-\phi}
+\end{array} \rb \lb \begin{array}{cc}
+1 & \psi \\ 0 & 1
+\end{array} \rb = \lb \begin{array}{cc}
+q^\phi & q^\phi\psi \\ \chi q^\phi & \chi q^\phi \psi + q^{-\phi}
+\end{array} \rb,
+\ee
+
+Equating, $g_{cl}$ to $g_q$, we get
+\be
+q^\phi = wxy,\ \ \psi = \frac{1}{y^2},\ \ \chi=\frac{1}{w^2}
+\ee
+
+{\bf Note:} it is now unclear, how to take the limit $w \rightarrow 1$ to get original Fock-Goncharov
+(since $\chi$ does not commute with the rest of the variables, this is not a valid
+reduction on the quantum side).
+
+\subsection{Relation between quantum and classical variables in case of A(n)}
+
+Extrapolating results for $SL(2)$ to the case of $SL(n)$, it is safe to write
+\be
+q^\phi_i = w_ix_iy_i,\ \ \psi_i = \frac{1}{y_i^2},\ \ \chi_i=\frac{1}{w_i^2},
+\ee
+where $i$ runs from 1 to $n$.
+
+\subsection{Ansatz for subsector of quantum group}
+We take the following ansatz for part of quantum group, which as we expect will contain something, that
+will correspond to Fock-Goncharov on the classical side.
+
+\be
+g_q = \prod_{i=1}^n \lsb \Echi{i} \Cartan{i} \Epsi{i} \rsb
+\ee
+
+{\bf Note:} In case of $SL(3)$ classical element looks like
+\be
+g_{cl} = & \lb \begin{array}{ccc}
+w_1 & 0 & 0 \\ 0 & \frac{1}{w_1} & 0 \\ 0 & 0 & 1
+\end{array} \rb \lb \begin{array}{ccc}
+1 & 0 & 0 \\ 1 & 1 & 0 \\ 0 & 0 & 1
+\end{array} \rb \lb \begin{array}{ccc}
+x_1 & 0 & 0 \\ 0 & \frac{1}{x_1} & 0 \\ 0 & 0 & 1
+\end{array} \rb \lb \begin{array}{ccc}
+1 & 1 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1
+\end{array} \rb \lb \begin{array}{ccc}
+y_1 & 0 & 0 \\ 0 & \frac{1}{y_1} & 0 \\ 0 & 0 & 1
+\end{array} \rb \times
+& \\ \times &
+
+\lb \begin{array}{ccc}
+1 & 0 & 0 \\ 0 & w_2 & 0 \\ 0 & 0 & \frac{1}{w_2}
+\end{array} \rb \lb \begin{array}{ccc}
+1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 1 & 1
+\end{array} \rb \lb \begin{array}{ccc}
+1 & 0 & 0 \\ 0 & x_2 & 0 \\ 0 & 0 & \frac{1}{x_2}
+\end{array} \rb \lb \begin{array}{ccc}
+1 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1
+\end{array} \rb \lb \begin{array}{ccc}
+1 & 0 & 0 \\ 0 & y_2 & 0 \\ 0 & 0 & \frac{1}{y_2}
+\end{array} \rb \nonumber,
+
+\ee
+
+that is, we have two more variables $w_1$ and $w_2$, that we should somehow get rid of.
+
+\subsection{Commutational relations on $\chi$, $\psi$ and $\phi$ from $\dg = \gog$}
+
+\subsubsection{$SL(3)$}
+
+\be
+\gog = & \EchiFirst{1} \CartanFirst{1} \EpsiFirst{1} \EchiFirst{2} \CartanFirst{2} \EpsiFirst{2} & \label{gtensorproduct} \\
+& \EchiSecond{1} \CartanSecond{1} \EpsiSecond{1} \EchiSecond{2} \CartanSecond{2} \EpsiSecond{2} & \nonumber 
+\ee
+
+\be
+\dg = & \EchiPreCoprod{1} \CartanCoprod{1} \EpsiPreCoprod{1} & \\
+& \EchiPreCoprod{2} \CartanCoprod{2} \EpsiPreCoprod{2} & = \nonumber \\
+= & \EchiCoprod{1} \CartanCoprod{1} \EpsiCoprod{1} & \\
+& \EchiCoprod{2} \CartanCoprod{2} \EpsiCoprod{2} & = \nonumber \\
+= & \EchiFirst{1} \EchiTwisted{1} \CartanFirst{1} \CartanSecond{1} \EpsiTwisted{1} \EpsiSecond{1} &  \label{gcoproduct} \\
+& \EchiFirst{2} \EchiTwisted{2} \CartanFirst{2} \CartanSecond{2} \EpsiTwisted{2} \EpsiSecond{2}
+ \nonumber \ee
+
+Let's gradually transform (\ref{gcoproduct}) to the form (\ref{gtensorproduct}),
+figuring out on the fly, what commutational relations are necessary for it.
+
+First, the following equalities
+
+\be
+\CartanSecond{1} \EpsiTwisted{1} = \EpsiFirst{1} \CartanSecond{1} \\
+\CartanSecond{2} \EpsiTwisted{2} = \EpsiFirst{2} \CartanSecond{2} \\
+\EchiTwisted{1} \CartanFirst{1} = \CartanFirst{1} \EchiSecond{1} \\
+\EchiTwisted{2} \CartanFirst{2} = \CartanFirst{2} \EchiSecond{2} \\
+\EchiSecond{1} \EpsiFirst{1} = \EpsiFirst{1} \EchiSecond{1} \\
+\EchiSecond{2} \EpsiFirst{2} = \EpsiFirst{2} \EchiSecond{2} \\
+\ee
+
+allow us to bring (\ref{gcoproduct}) to the form
+\be
+\dg = & \EchiFirst{1}\CartanFirst{1}\EpsiFirst{1} \EchiSecond{1}\CartanSecond{1}\EpsiSecond{1} & \label{ginterm} \\
+& \EchiFirst{2}\CartanFirst{2}\EpsiFirst{2} \EchiSecond{2}\CartanSecond{2}\EpsiSecond{2}
+\ee
+
+Now to bring (\ref{ginterm}) to (\ref{gtensorproduct}) we must commute
+$\EchiSecond{1}\CartanSecond{1}\EpsiSecond{1}$ with $\EchiFirst{2}\CartanFirst{2}\EpsiFirst{2}$.
+
+From above commutational relations for exponents, one can deduce the following
+commutational relations for $\chi$ $\psi$ and $\phi$.'
+\be
+q^\phi_i \psi_j = q^{2 \delta_{ij}} \psi_j q^\phi_i \\
+q^\phi_i \chi_j = q^{2 \delta_{ij}} \chi_j q^\phi_i \\
+[q^\phi_i, q^\phi_j] = 0 \\
+[\chi_i, \psi_j] = 0 \\
+\ee
+
+\subsubsection{Commutational relations on $x$ $y$ and $w$.}
+
+Since
+\be
+x_i = \chi_i^{1/2} q^{\phi_i} \psi_i^{1/2} \\
+y_i = \psi_i^{-1/2} \\
+w_i = \chi_i^{-1/2},
+\ee
+
+we have following non-trivial commutational relations
+\be
+x_i y_j = q^{- \delta_{ij}} y_j x_i
+x_i w_j = q^{- \delta_{ij}} w_j x_i,
+\ee
+
+now taking the limit $q = e^\hbar$ $\hbar \rightarrow 0$, we get
+\be
+\lsb x_i y_j \rsb = - \hbar \delta_{ij} x_i y_j \\
+\lsb x_i w_j \rsb = - \hbar \delta_{ij} x_i w_j \\
+\ee
+
+
+If we now recall, that in Fock-Goncharov construction there were another $x$'s, namely
+\be
+x_i = e^{\tx_i},\ y_i = e^{\ty_i},\ w_i = e^{\tw_i} \\
+\tx_i = \ln(x_i),\ \ty_i = \ln(y_i),\ \tw_i = \ln(w_i),
+\ee
+
+then for bracket on tilded variables we get
+\be
+\lsb \tx_i \ty_j \rsb = - \hbar \delta_{ij} \\
+\lsb \tx_i \tw_j \rsb = - \hbar \delta_{ij},
+\ee
+
+so for $x-y$ sector we get precisely the bracket we got in the naive classical approach
+to Fock-Goncharov.
+
+\subsubsection{open questions}
+\begin{itemize}
+\item how to take the limit $w \rightarrow 1$ ?
+\item how to obtain commutational relations with Cartan matrix intertwined there from
+quantum group perspective?
+\end{itemize}
+
+\subsubsection{$SL(n)$}
+
+
+\subsection{Quantum side}
+On the quantum side there is this construction of Morozov-Vinet.
+Arbitrary element of quantum group $SL(3)_q$ is expressed as:
+$$
+g = e_q^{\chi_1 f_1} e_q^{\chi_2 f_2} e_q^{\chi_3 f_1}
+q^{\phi_1 h_1} q^{\phi_2 h_2}
+e_q^{\psi_1 e_1} e_q^{\psi_2 e_2} e_q^{\psi_3 e_1},
+$$
+As you can see, $\psi$ and $\chi$ coordinates are related to {\it simple}
+roots, but since there are more coordinates, that simple roots,
+correspondance is not one-to-one.
+
+In what follows, we denote this correspondence by square brackets, so,
+in particular
+$$
+[1] = 1\ \ [2] = 2\ \ [3] = 1
+$$
+
+$\chi$'s, $\psi$'s and $\phi$'s form Heisenberg-like algebra
+
+\be
+\psi_i \chi_j = \chi_j \psi_i \nonumber \\
+\psi_i \psi_j = q^{C_{[i][j]} \psi_j \psi_i, i < j \nonumber \\
+\chi_i \chi_j = q^{C_{[i][j]} \chi_j \chi_i, i < j \nonumber \\
+q^{\phi_i} \psi_j = q^{C_{[i][j]}} \psi_j q^{\phi_i} \nonumber \\
+q^{\phi_i} \psi_j = q^{C_{[i][j]}} \psi_j q^{\phi_i} \nonumber
+\ee
+
+This product $g$ is an element of quantum group since in satisfies
+comultiplication rule ???.
+
+\subsection{Relation}
+The striking difference between quantum and classical pictures is,
+that while on quantum side coordinates with {\it similar} names
+do not commute and with different - commute (i.e $\chi$ commute
+with $\psi$ but not (in general) with $\chi$),
+on classical side coordinates with {\it distinct} names do not
+commute and with similar - commute (i.e $x$ commute with $x$'s, but
+not with $y$'s).
+Clearly, no naive limit can fix this discrepancy.
+
+However, if one somehow manages to perform change of variables
+$$
+\chi \rightarrow \tchi
+\psi \rightarrow \tpsi
+$$
+such that $\tchi$'s now commute with $\tchi$'s, but not with
+$\tpsi$'s, then, maybe, in these coordinates, classical picture
+can be revealed. This turns out to be the case.
+
+One can try to dress fields $\chi$ and $\psi$ with help of either
+lower or upper Cartan elements.
+Looking a little bit ahead, it is impossible for general $n$ to
+disentangle all $\chi$'s from $\chi$'s completely. But, it is always
+possible to disentangle $\chi_i$'s with $i = 1 .. n$.
+Imposing commutation of only these, primary fields with similar names,
+one obtains
+
+(again, I dunno how to write the motivation for general formula in this rather non-specific case)
+
+General formula is:
+When dressing with upper Cartans:
+$$
+\tchi_i = \chi_i e^{-\phi_{[i]}},
+$$
+and ditto for $\tpsi$.
+
+When dressing with lower Cartans:
+$$
+\tchi_i = \chi_i e^{-[i]\phi_{[i]}},
+$$
+and ditto for $\tpsi$.
+
+In this case of $n = 2$ this implies the following commutational
+relations of $\tchi$'s with $\tpsi$'s (again, only in primary sector)
+$$
+\tchi_i \tpsi_j = q^A_{ij} \tpsi_j \tchi_i,
+$$
+where $A$ is $2 x 2$ matrix  
+$$
+A = \lb\begin{array}{cc}
+0 & -1 \\
+1 & 0
+\end{array}\rb
+$$
+
+We are not concerned with what are the commuational relations with the rest of
+$\tchi$'s and $\tpsi$'s, since they are {\it linear} in them, and hence allow the
+reduction by setting them all to zero. In following, it is assumed, that
+this is done and now we are working with $2 n$ dimensional object.
+So, dimension is already as in the classical case, all that's left is
+to correctly take the limit.
+
+For that, consider the following
+$$
+\tchi_i = 1 + \hbar y_i + \hbar^2 z_i + o(\hbar^2)\ \
+\tpsi_i = 1 + \hbar x_i + \hbar^2 w_i + o(\hbar^2)\ \
+q = 1 + \hbar^2 + o(\hbar^2)
+$$
+
+L.h.s of the commutational relation for, say, $\chi_2$ with $\psi_1$ becomes
+$$
+\tchi_2 \tpsi_1 =
+\lb 1 + \hbar y_2 + \hbar^2 z_2 + o(\hbar^2)\rb
+\lb 1 + \hbar x_1 + \hbar^2 w_1 + o(\hbar^2)\rb =
+1 + \hbar \lb y_2 + x_1 \rb + \hbar^2 \lb y_2 x_1 + z_2 + w_1\rb + o(\hbar^2)
+$$
+And r.h.s becomes
+$$
+q \tpsi_1 \tchi_2 = \lb1 + \hbar^2 + o(\hbar^2) \rb
+\lb 1 + \hbar x_1 + \hbar^2 w_1 + o(\hbar^2)\rb
+\lb 1 + \hbar y_2 + \hbar^2 z_2 + o(\hbar^2)\rb =
+1 + \hbar \lb x_1 + y_2 \rb + \hbar^2 \lb x_1 y_2 + 1 w_1 + z_2 \rb + o(\hbar^2)
+$$
+
+Zero and first orders in $\hbar$ trivialize, and in second
+order in $\hbar$ we have
+$$
+[x_1 y_2] = -1,
+$$
+which (up a sign, which is arbitrary), coincides with what we had at the classical side.
+
+\section{General construction}
+
+\subsection{Classical picture}
+\subsection{Quantum picture}
+\subsection{Relation}
+
+As in the $sl(3)$ case, consideration of ansatz
+$$
+\tchi_i = \chi_i e^{-\phi_{[i]}},\ \ \tpsi_i = \psi_i e^{-\phi_{[i]}},
+$$
+or the ansatz
+$$
+\tchi_i = \chi_i e^{-[i]\phi_{[i]}},\ \ \tpsi_i = \psi_i e^{-[i]\phi_{[i]}},
+$$
+results in commutation of $\tchi$'s with $\tchi$'s and of $\tpsi$'s with $\tpsi$'s
+for $i = 1 .. n$ (for coordinates, directly corresponding to simple roots, for primary coordinates,
+for main stratum of coordinates).
+
+And for commutational relations of $\tchi$'s with $\tpsi$'s we have, that they
+also commute except when
+$$
+\chi_i \psi_j = q^{A_{ij}} \psi_j \chi_i,
+$$
+where
+$$
+A_{ij} = 0, \except \when j = i + 1,
+$$
+which, again, already resembles picture from the classical side in {\it lower} Lie algebra
+basis.
+
+Taking same kind of quasiclassical limit (simultaneously in $\tchi$ $\t
+
+psi$ and $q$),
+completely reproduces then the classical picture.
+
+\end{document}

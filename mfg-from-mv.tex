@@ -1,0 +1,717 @@
+\documentclass{paper}
+\usepackage{graphicx}
+\usepackage{graphicx,amssymb,amsmath,amsfonts,mathtext,color,wrapfig}
+
+%\usepackage[cp866]{inputenc}   %  for MiKTeX package
+%\usepackage[russian]{babel}
+
+\def\be{\begin{eqnarray}}
+\def\ee{\end{eqnarray}}
+\def\nn{\nonumber}
+\newcommand{\eq}[1]{\begin{equation} #1 \end{equation}}
+
+\def\p{\partial}
+\def\tr{{\rm tr}\,}
+\def\Tr{{\rm Tr}\,}
+\def\tchi{\tilde{\chi}}
+\def\tpsi{\tilde{\psi}}
+\def\me{\mathcal{E}}
+\def\dg{\Delta \lb g \rb}
+\def\lb{\left (}
+\def\rb{\right )}
+\def\lsb{\left [}
+\def\rsb{\right ]}
+\def\lcb{\left \{}
+\def\rcb{\right \}}
+\def\lab{\left <}
+\def\rab{\right >}
+\def\tx{\tilde{x}}
+\def\ty{\tilde{y}}
+\def\tw{\tilde{w}}
+
+\def\gog{g \otimes g}
+
+\def\classlim{\hbar \rightarrow 0}
+
+%\newcommand{\ll}[1]{\left ( #1 \rb}
+\newcommand{\Echi}[1]{\me_{1/q} \lb \chi_#1 T_{-#1} \rb}
+\newcommand{\Epsi}[1]{\me_{q} \lb\psi_#1 T_{+#1}\rb}
+\newcommand{\Cartan}[1]{\lsb q^{2\phi_i H_i} \rsb}
+\newcommand{\EchiFirst}[1]{\me_{1/q} \lb\chi_#1 T_{-#1} \otimes I \rb}
+\newcommand{\EchiSecond}[1]{\me_{1/q} \lb\chi_#1 I \otimes T_{-#1} \rb}
+\newcommand{\EpsiFirst}[1]{\me_{q} \lb\psi_#1 T_{+#1} \otimes I \rb}
+\newcommand{\EpsiSecond}[1]{\me_{q} \lb\psi_#1 I \otimes T_{+#1} \rb}
+\newcommand{\CartanFirst}[1]{\lsb q^{2\phi_#1 H_#1} \otimes I \rsb}
+\newcommand{\CartanSecond}[1]{\lsb I \otimes q^{2\phi_#1 H_#1}  \rsb}
+\newcommand{\CartanCoprod}[1]{\lsb q^{2\phi_#1 H_#1} \otimes q^{2\phi_#1 H_#1}  \rsb}
+\newcommand{\EchiPreCoprod}[1]{\me_{1/q} \lb\chi_#1 \Delta \lb T_{-#1} \rb \rb}
+\newcommand{\EpsiPreCoprod}[1]{\me_{q} \lb\psi_#1 \Delta \lb T_{+#1} \rb \rb}
+\newcommand{\EchiCoprod}[1]{\me_{1/q} \lb\chi_#1 \lb q^{2H_i} \otimes T_{-#1} + T_{-#1} \otimes I\rb \rb}
+\newcommand{\EpsiCoprod}[1]{\me_{q} \lb\psi_#1 \lb I \otimes T_{+#1} + T_{+#1} \otimes q^{-2H_i}\rb \rb}
+\newcommand{\EchiTwisted}[1]{\me_{1/q} \lb\chi_#1 q^{2H_i} \otimes T_{-#1} \rb}
+\newcommand{\EpsiTwisted}[1]{\me_{q} \lb\psi_#1 T_{+#1} \otimes q^{-2H_i} \rb}
+
+\def\Chi{\mathcal{X}}
+
+
+%% \newcommand{\EChi}[0]{\me_{1/q} \lb \chi_#1 T_{-#1} \rb}
+%% \newcommand{\EPsi}[0]{\me_{q} \lb\psi_#1 T_{+#1}\rb}
+\newcommand{\EChiL}[0]{\Chi^L}
+\newcommand{\EChiR}[0]{\Chi^R}
+\newcommand{\EChiLT}[0]{\Chi^{Lt}}
+\newcommand{\EChiRT}[0]{\Chi^{Rt}}
+\newcommand{\EChiD}[0]{\Chi^\Delta}
+\newcommand{\EPsiL}[0]{\Psi^L}
+\newcommand{\EPsiR}[0]{\Psi^R}
+\newcommand{\EPsiLT}[0]{\Psi^{Lt}}
+\newcommand{\EPsiRT}[0]{\Psi^{Rt}}
+\newcommand{\EPsiD}[0]{\Psi^\Delta}
+\newcommand{\QPhiL}[0]{\Phi^L}
+\newcommand{\QPhiR}[0]{\Phi^R}
+\newcommand{\QPhiD}[0]{\Phi^\Delta}
+
+\newcommand{\EPsii}[1]{\Psi_#1}
+\newcommand{\EChii}[1]{\Chi_#1}
+\newcommand{\QPhii}[1]{\Phi_#1}
+\newcommand{\EChiLi}[1]{\Chi_#1^L}
+\newcommand{\EChiRi}[1]{\Chi_#1^R}
+\newcommand{\EChiLTi}[1]{\Chi_#1^{Lt}}
+\newcommand{\EChiRTi}[1]{\Chi_#1^{Rt}}
+\newcommand{\EChiDi}[1]{\Chi_#1^\Delta}
+\newcommand{\EPsiLi}[1]{\Psi_#1^L}
+\newcommand{\EPsiRi}[1]{\Psi_#1^R}
+\newcommand{\EPsiLTi}[1]{\Psi_#1^{Lt}}
+\newcommand{\EPsiRTi}[1]{\Psi_#1^{Rt}}
+\newcommand{\EPsiDi}[1]{\Psi_#1^\Delta}
+\newcommand{\QPhiLi}[1]{\Phi_#1^L}
+\newcommand{\QPhiRi}[1]{\Phi_#1^R}
+\newcommand{\QPhiDi}[1]{\Phi_#1^\Delta}
+\newcommand{\EBlockLi}[1]{\EPsiLi{#1} \QPhiLi{#1} \EChiLi{#1}}
+\newcommand{\EBlockRi}[1]{\EPsiRi{#1} \QPhiRi{#1} \EChiRi{#1}}
+\newcommand{\ComultBlock}[1]{\EPsiLi{#1}\EPsiRTi{#1}\QPhiLi{#1}\QPhiRi{#1}\EChiLTi{#1}\EChiRi{#1}}
+
+\newcommand{\matd}[4]{\lb \begin{array}{cc}
+#1 & #2 \\ #3 & #4
+\end{array} \rb}
+
+\newcommand{\comul}[1]{\Delta \lb #1 \rb}
+
+\newcommand{\delabel}[1]{(\ref{#1})}
+
+\newcommand{\Hone}[1]{\lb \begin{array}{ccc}
+#1^{2/3} & 0 & 0 \\ 0 & #1^{-1/3} & 0 \\ 0 & 0 & #1^{-1/3}
+\end{array} \rb}
+\newcommand{\Honed}[1]{\lb \begin{array}{ccc}
+#1^{1/2} & 0 \\ 0 & #1^{-1/2}
+\end{array} \rb}
+\newcommand{\Eone}[1]{\lb \begin{array}{ccc}
+1 & #1 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1
+\end{array} \rb}
+\newcommand{\Eoned}[1]{\lb \begin{array}{cc}
+1 & #1 \\ 0 & 1
+\end{array} \rb}
+\newcommand{\Fone}[1]{\lb \begin{array}{ccc}
+1 & 0 & 0 \\ #1 & 1 & 0 \\ 0 & 0 & 1
+\end{array} \rb}
+\newcommand{\Foned}[1]{\lb \begin{array}{cc}
+1 & 0 \\ #1 & 1
+\end{array} \rb}
+
+
+\newcommand{\Htwo}[1]{\lb \begin{array}{ccc}
+#1^{1/3} & 0 & 0 \\ 0 & #1^{1/3} & 0 \\ 0 & 0 & #1^{-2/3}
+\end{array} \rb}
+\newcommand{\Etwo}[1]{\lb \begin{array}{ccc}
+1 & 0 & 0 \\ 0 & 1 & #1 \\ 0 & 0 & 1
+\end{array} \rb}
+\newcommand{\Ftwo}[1]{\lb \begin{array}{ccc}
+1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & #1 & 1
+\end{array} \rb}
+
+
+
+%\input{head.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%               SPACE FILLING SETTINGS               %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textheight 21.5cm
+\textwidth 19.0cm
+% \voffset=-1.2in
+\voffset=-0.5in
+% \voffset= - 1.85in
+\hoffset= - 1.5in         % switch off for draft style
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+\thispagestyle{empty}
+
+\baselineskip14pt
+
+\hfill ITEP/TH-???
+
+\bigskip
+
+\bigskip
+
+\centerline{\LARGE{Marshakov-Fock-Goncharov from Morozov-Vinet}}
+
+\centerline{ABSTRACT}
+
+\bigskip
+
+{\footnotesize
+The goal of the present note is to derive Marshakov-Fock-Goncharov construction for
+classical integrable system from free-field representation of quantum group element of Morozov-Vinet.
+$SL(3)$ case is worked out in great detail.
+% Hints of the derivation for $SL(n)$ case for generic $n$ are given.
+% Conjecture is made for other Lie algebras.
+}
+
+It is best to introduce complications one at a time, hence we start with the simplest nontrivial
+
+\section {$SL(2)$ case}
+
+\subsection{Preliminaries}
+In the case of $SL(2)$ we have only one positive root, one negative root and one cartan element.
+In fundamental representation they are equal, respectively
+\be
+T_+ = \Eoned{1},\ T_- = \Foned{1},\ H = \matd{\frac{1}{2}}{0}{0}{-\frac{1}{2}}
+\ee
+
+\subsection{Sketch of relation between quantum and classical}
+
+If we denote by $1$ the positive root and by $\overline{1}$ the negative root,
+then Fock-Goncharov ansatz for group element, corresponding to the ``word'' $1\overline{1}$
+reads
+\be
+g_{cl} & = \Honed{w} \Eoned{1} \Honed{x} \Foned{1} \Honed{y} = & \\
+& \matd{w^{1/2}x^{1/2}y^{1/2} + w^{1/2}x^{-1/2}y^{1/2}}{w^{1/2}x^{-1/2}y^{-1/2}}
+{w^{-1/2}x^{-1/2}y^{1/2}}{w^{-1/2}x^{-1/2}y^{-1/2}},
+\label{g_classd}
+\ee
+where we explicitly kept the order of $w$, $x$ and $y$ in the monomials, since we expect this formula to
+generalize to quantum case, where they are not commutative.
+
+
+On the quantum side, we consider the analog of Morozov-Vinet parametrization, but with the difference, that positive root
+is to the left of the cartan, not to the right, and different normalization of cartan element is used
+\be
+g_{q} = \Eoned{\psi} \matd{q^{\phi/2}}{0}{0}{q^{-\phi/2}} \Foned{\chi} = \matd{q^{\phi/2} + \psi q^{-\phi/2}\chi}{\psi q^{-\phi/2}}{q^{-\phi/2}\chi}{q^{-\phi/2}} \label{g_quantd}
+\ee
+
+One can immediately see, that if we identify
+\be
+\boxed{
+q^\phi = w x y,\ \psi = w,\ \chi = y \label{quant_class}
+}
+\ee
+
+then in classical limit where $\phi$, $\psi$ and $\chi$ become mutually commutative,
+formula for the quantum element reproduces formula for the classical element.
+
+What {\bf is} nontrivial is that if we suppose (which will turn out to be the case)
+that commutation relations of the quantum variables take the form
+\be
+\boxed{
+\psi \chi = \chi \psi,\ q^\phi \psi = q^\alpha \psi q^\phi,\ q^\phi \chi = q^\alpha \chi q^\phi, \label{comm_suggest}
+}
+\ee
+
+then already on the quantum side $w x y$ = $y x w$, and expression (\ref{g_quantd}) can be put into form (\ref{g_classd}), using formula \delabel{quant_class}.
+
+\subsubsection{Different roots order}
+If we consider the other order of roots - the word $\overline{1}1$,
+i.e. the elements
+\be
+\be
+g_{cl} & = \Honed{a} \Foned{1} \Honed{b} \Eoned{1} \Honed{c} \\
+g_q & = \Foned{\alpha} \matd{q^{\beta/2}}{0}{0}{q^{-\beta/2}} \Eoned{\gamma},
+\ee
+
+then the respective relation between $a, b, c$ and $\alpha, \beta, \gamma$ would be
+\be
+\boxed{
+  q^\beta = a b c,\ \ \alpha = \frac{1}{a},\ \ \gamma = \frac{1}{c} \label{quant_class_other}
+}
+\ee
+
+\subsection{Correct quantum commutators from comultiplication}
+
+\subsubsection{Twisted root generators}
+Comultiplication rule for Chevalley root generators was
+\be
+\comul{\hat{T}_\pm} = q^H \otimes \hat{T}_\pm + \hat{T}_\pm \otimes q^{-H}
+\ee
+
+Since we've changed the order of roots in the expression of the quantum group element, we must also change the
+definition of the twisted generators, in order for main equation $\dg = \gog$ to have a solution
+
+Namely, we twist generators like this
+\be
+T_+ = q^H \hat{T}_+,\ T_- = \hat{T}_- q^{-H},
+\ee
+and comultiplication rules for these twisted generators become
+\be
+\comul{T_+} = q^H \otimes q^H \lsb q^H \otimes \hat{T}_+ + \hat{T}_+ \otimes q^{-H} \rsb = q^{2H} \otimes T_+ + T_+ \otimes I \\
+\comul{T_-} = \lsb q^H \otimes \hat{T}_- + \hat{T}_- \otimes q^{-H} \rsb q^{-H} \otimes q^{-H} = I \otimes T_- + T_- \otimes q^{-2H}
+\ee
+
+\subsubsection{q-Exponent factorisation and macrolanguage}
+q-Exponent has an interesting property
+\be
+\me_q(y)\me_q(x) = \me_q(x + y)\ if\ xy = q^2 yx, \label{fact_q}
+\ee
+which, for convenience, we will also write in terms of $1/q$ instead of $q$
+\be
+\me_{1/q}(y)\me_{1/q}(x) = \me_{1/q}(x + y)\ if\ xy = q^{-2} yx, \label{fact_over_q}
+\ee
+
+Now comultiplication of the part of the group element corresponding to he positive root factorises as (using (\ref{fact_q}))
+\be
+\comul{\me_q \lb \psi T_+ \rb} & = \me_q \lb \psi \comul{T_+}\rb = \me_q \lb \psi \lb q^{2H} \otimes T_+ + T_+ \otimes I \rb \rb & \\
+& = \me_q \lb \psi T_+ \otimes I\rb \me_q \lb \psi q^{2H} \otimes T_+\rb
+\ee
+
+Analogously, using (\ref{fact_over_q}) we get for the negative root
+\be
+\comul{\me_{1/q} \lb \chi T_- \rb} & = \me_{1/q} \lb \chi \comul{T_-}\rb = \me_{1/q} \lb \chi \lb I \otimes T_- + T_- \otimes q^{-2H} \rb \rb & \\
+& = \me_{1/q} \lb \chi T_- \otimes q^{-2H}\rb \me_{1/q} \lb \chi I \otimes T_-\rb
+\ee
+
+At this point it is convenient to introduce some notations, which will be like macrolanguage
+\be
+\Psi \equiv \me_q \lb \psi T_+ \rb,\ \Chi \equiv \me_{1/q} \lb \chi T_- \rb,\ \Phi = q^H \\
+\EPsiD \equiv \comul{\me_\psi},\ \EChiD \equiv \comul{\me_\chi},\ \QPhiD \equiv \comul{Q_\phi} \\
+\EPsiL = \me_q \lb \psi T_+ \otimes I\rb,\ \EPsiR = \me_q \lb \psi I \otimes T_+ \rb \\
+\EPsiLT = \me_q \lb \psi T_+ \otimes q^{-2H}\rb,\ \EPsiRT = \me_q \lb \psi q^{2H} \otimes T_+ \rb \\
+\EChiL = \me_{1/q} \lb \chi T_- \otimes I\rb,\ \EChiR = \me_{1/q} \lb \chi I \otimes T_- \rb \\
+\EChiLT = \me_{1/q} \lb \chi T_- \otimes q^{-2H}\rb,\ \EChiRT = \me_{1/q} \lb \chi q^{2H} \otimes T_- \rb \\
+\QPhiL = q^H \otimes I,\ \QPhiR = I \otimes q^H
+\ee
+
+Using this notation, rules for comultiplication can be expressed as
+\be
+\EPsiD = \EPsiL \EPsiRT,\ \EChiD = \EChiLT \EChiR,\ \QPhiD = \QPhiL \QPhiR
+\ee
+
+Now we are ready to tackle derivation of commutation relations for $\phi$, $\psi$ and $\chi$.
+\be
+\gog = \EPsiL \QPhiL \EChiL \EPsiR \QPhiR \EPsiR \label{gog_sl_two} \\ 
+\dg = \EPsiD \QPhiD \EChiD = \EPsiL \EPsiRT \QPhiL \QPhiR \EChiLT \EChiR \label{dg_sl_two}
+\ee
+
+One can see that if
+\be
+\EPsiRT \QPhiL = \QPhiL \EPsiR,\ \QPhiR \EChiLT = \EChiL \QPhiR \label{sl_two_first_pass} \\
+\EPsiR \EChiL = \EChiL \EPsiR \label{sl_two_second_pass}
+,
+\ee
+then (\ref{dg_sl_two}) coincides with (\ref{gog_sl_two}).
+
+Equation (\ref{sl_two_second_pass}) is satisfied if
+\be
+\psi \chi = \chi \psi
+\ee
+
+First of (\ref{sl_two_first_pass}) is satisfied if
+\be
+\psi \lb q^{2H} \otimes T_+ \rb \lb q^{\phi H} \otimes I \rb = \psi \lb q^{\phi H} \otimes I \rb \lb q^{2H} \otimes T_+ \rb =
+\lb q^{\phi H} \otimes I \rb \psi \lb q^{-2H} \otimes I \rb \lb q^{2H} \otimes T_+ \rb = \lb q^{\phi H} \otimes I \rb \psi \lb I \otimes T_+ \rb,
+\ee
+
+which implies
+\be
+\psi q^{\phi/2} = q^{\phi/2} \psi q^{-1},\ that\ is\ q^\phi \psi = q^2 \psi q^\phi
+\ee
+
+Similarly, second of (\ref{sl_two_first_pass}) is satisfied if
+\be
+q^{\phi H} \chi = \chi q^{\phi H} q^{2H} \\ q^{\phi/2} \chi = \chi q^{\phi/2} q \nonumber \\ q^\phi \chi = q^2 \chi q^\phi \nonumber
+\ee
+
+Again, let us write all the commutational relations obtained
+
+\be
+\boxed{
+q^\phi \psi = q^2 \psi q^\phi,\ \ q^\phi \chi = q^2 \chi q^\phi,\ \ \psi \chi = \chi \psi
+}
+\ee
+
+
+
+Note, that our {\it ad hoc} suggestion \delabel{comm_suggest} on the form of commutation relations proved to be true.
+Hence, relation between quantum and ``classical'' variables \delabel{quant_class} is valid already in the quantum case,
+which justifies quotes around ``classical''.
+
+%% \subsection{Heisenbergisation of commutation relations}
+
+%% Let's rewrite commutation relations, say, between, $\psi$ and $q^\phi$ in terms of Planck constant
+%% \be
+%% e^{\hbar \phi} \psi = e^{2\hbar} \psi e^{\hbar \phi}
+%% \ee
+
+%% Note that if we substitute $\phi = \frac{\partial}{\partial x}$ and $\psi = e^{2x}$, then above equality remains valid.
+%% This means, we've found representation of $\phi$ and $\psi$.
+
+%% Commutation relation between $\frac{\partial}{\partial x}$ and $2x$ is
+%% \be
+%% \lsb \partial_x, 2x \rsb = 2,
+%% \ee
+%% from which we can conclude, that if we introduce new variable $\mu$
+%% \be
+%% \psi = e^{2 \mu},
+%% \ee
+%% then we would have the following commutation relation between $\phi$ and $\mu$
+%% \be
+%% \lsb \phi, \mu \rsb = 1
+%% \ee
+
+%% Analogously,
+%% \be
+%% \chi = e^{2\nu},\ \ \lsb \phi, \nu \rsb = 1
+%% \ee
+
+%% If we introduce logarithmic coordinates on the ``classical'' side
+%% \be
+%% w = e^{\tw},\ y = e^{\ty},\ x = e^{\tx}
+%% \ee
+
+%% then our quantum-classical correspondance \delabel{quant_class} can be rewritten as
+%% \be
+%% e^{\hbar \phi} = e^{\tw} e^{\tx} e^{\ty}\\
+%% e^{2\mu} = e^{\tw} \\
+%% e^{2\nu} = e^{\ty},
+%% \ee
+%% from which we derive
+%% \be
+%% \tw = 2\mu,\ \ty = 2\nu,\ \tx = \ln \lb e^{-2\mu}e^{\hbar \phi} e^{-2\nu}\rb,
+%% \ee
+%% and expression for $\tx$ simplifies only in classical limit $\hbar \rightarrow 0$, because exponents become mutually commuting and
+%% logarithm can be taken, leading
+%% \be
+%% \tx = \hbar \phi - 2\nu - 2\mu
+%% \ee
+
+\subsection{Poisson submanifold}
+Although reduction $\psi = 1$ is not consistent with commutational relations, if we
+restrict ourselves to only functions, depending on $\chi$ and $q^\phi$, it is still consistent,
+since we will never get any $\psi$'s while considering such functions, hence will never actually
+know, that commutation relations did break.
+
+Note: in Fock-Goncharov they do precisely that in their example with $sl(2)$ (arXiv:math/0508408),
+but in classical limit.
+
+\subsection{Mutation}
+
+One can consider different parametrization of group element
+\be
+g = \Foned{\alpha} \matd{q^{\beta/2}}{0}{0}{q^{-\beta/2}} \Eoned{\gamma} = \matd{q^{\beta/2} }{q^{\beta/2}\gamma}{\alpha q^{\beta/2}}{q^{-\beta/2} + \alpha q^{\beta/2}\gamma} \label{g_quantd_2}
+\ee
+
+Thus, transition is given by equations
+\be
+q^{\phi/2} + \psi q^{-\phi/2} \chi = q^{\beta/2} \\
+\psi q^{-\phi/2} = q^{\beta/2} \gamma \\
+q^{-\phi/2} \chi = \alpha q^{\beta/2} \\
+q^{-\phi/2} = \alpha q^{\beta/2} \gamma + q^{-\beta/2}
+\ee
+
+One can explicitly solve these equations w.r.t $\alpha$, $\beta$ and $\gamma$
+(fourth equation provides a consistency check) to get
+\be
+q^{\beta/2} = q^{\phi/2} + \psi q^{-\phi/2} \chi \\
+\alpha = q^{-\phi/2} \chi q^{-\phi/2} \lb 1 + \psi q^{-\phi/2} \chi q^{-\phi/2} \rb^{-1}
+\gamma = \lb 1 + q^{-\phi/2} \psi q^{-\phi/2} \chi \rb^{-1} q^{-\phi/2} \psi q^{-\phi/2}
+\ee
+
+One can further verify that the form of the commutation relations is preserved by this transformation, i.e.
+\be
+q^{\beta} \alpha = q^2 \alpha q^{\beta} \\
+q^{\beta} \gamma = q^2 \gamma q^{\beta} \\
+\alpha \gamma = \gamma \alpha
+\ee
+
+These formulas look much nicer, when expressed as relation between $x, y, z$ and $a, b, c$
+variables, namely (see formulas \delabel{quant_class} and \delabel{quant_class_other})
+
+\be
+\boxed{
+  a = w (1 + q x),\ \ c = y(1 + q x), \ \ b = \frac{\lb 1 + x\rb^2}{\lb 1 + q x\rb\lb 1 + \frac{x}{q}\rb} \frac{1}{x},
+}
+\ee
+
+and they reproduce classical formulas for mutation in the limit $\classlim$
+\be
+a = w \lb 1 + x\rb \\
+c = y \lb 1 + x\rb \\
+b = \frac{1}{x}
+\ee
+
+
+%% \section{$A(n)$ for $n > 1$}
+
+%% The main obstacle now (since we understand how to restrict consideration to $2g$ leafs) is
+%% to solve $\dg = \gog$ equation.
+
+%% It is relatively easy, if ansatz, taken for a group element, is
+%% \be
+%% g = \prod_i \me_q \lb \psi_i T_{+i}\rb q^{2 \phi_i H_i} \me_{1/q} \lb \chi_i T_{-i}\rb,
+%% \ee
+
+%% with $H_i$'s with $1/2$ $-1/2$ somewhere on the diagonal.
+
+%% But I was unable to do it even for $SL(3)$ with ``upper'' Cartan elements $\tilde{H}_i$, which in case
+%% of $SL(3)$ are $\tilde{H}_1 = diag \lb 2/3, -1/3, -1/3 \rb$ and $\tilde{H}_2 = diag \lb 1/3, 1/3, -2/3 \rb$,
+%% which are the ones, that are present in the MFG construction.
+
+%% The problem is that comultiplication still includes ``untilded'' Cartans.
+%% If I would be able to get tilded Cartans into rules of comultiplication of $T_{\pm i}$,
+%% \be
+%% \Delta{T_{\pm i}} = q^{\tilde{H}_i} \otimes T_{\pm i} + T_{\pm i} \otimes q^{-\tilde{H}_i}
+%% \ee
+%% or something like that, everything
+%% would solve, and will (almost obviously) give in the limit the MFG.
+
+%% But I don't know, whether writing such comultiplication will break something else.
+
+%% \subsubsection{$SL(3)$}
+%% \be
+%% \gog = \EPsiLi{1} \QPhiLi{1} \EChiLi{1} \EPsiLi{2} \QPhiLi{2} \EChiLi{2} \times \EPsiRi{1} \QPhiRi{1} \EChiRi{1} \EPsiRi{2} \QPhiRi{2} \EChiRi{2} \\
+%% \dg = \EPsiLi{1} \EPsiRTi{1} \QPhiLi{1} \QPhiRi{1} \EChiLTi{1} \EChiRi{1} \times \EPsiLi{2} \EPsiRTi{2} \QPhiLi{2} \QPhiRi{2} \EChiLTi{2} \EChiRi{2}
+%% \ee
+
+%% Take a look at $\EChiLTi{1}$ in the second equation. It clearly must be pushed to the left through
+%% $\QPhiRi{1}$ and $\EPsiRTi{1}$. Since $H$'s in $\QPhiRi{1}$ and in $\EChiLTi{1}$ are different,
+%% exchange of these will not be able to completely ``neutralize'' the twist of $\EChiLTi{1}$.
+%% However, since $\psi$ and $\chi$ are just numbers themselves, not matrices, 
+%% exchanging the  $\EPsiRTi{1}$ and $\EChiLTi{1}$ will also not be able to completely neutralize
+%% the residual twist of $\EChiLTi{1}$.
+
+%% \subsection{Relation between quantum and classical revised: skewed quasiclassical limit}
+
+%% \subsubsection{Naive $\classlim$}
+
+%% If we just take $\classlim$, then we will get
+%% \be
+%% \tw = 2\mu,\ \ty = 2\nu,\ \tx = -2\mu - 2\nu, \label{class_corr}
+%% \ee
+%% which already does not reproduce the expression for $g$ of MFG.
+
+%% Since on the quantum side
+%% \be
+%% \lsb \tx, \tw \rsb = 2\hbar,\ \lsb \tx, \ty \rsb = 2\hbar,\ \lsb \tw, \ty \rsb = 0,
+%% \ee
+
+%% Poisson bracket equals
+%% \be
+%% \lcb \tx, \tw \rsb = 2,\ \lcb \tx, \ty \rsb = 2, \lcb \tw, \ty \rsb = 0,
+%% \ee
+%% which, when we substitute \delabel{class_corr} there, simultaneously imply
+%% \be
+%% \lcb \mu, \nu \rcb = 0,\ and \lcb \mu, \nu \rcb = 1,
+%% \ee
+
+%% hence this naive way of taking the classical limit fails.
+
+%% \subsubsection{Skewed $\classlim$}
+
+%% Let's perform the following asymmetric (breaking symmetry between $\mu$ and $\nu$) rescaling of variables 
+%% \be
+%% \mu = \hbar M \\
+%% \nu = N \\
+%% \phi = \frac{1}{\hbar} \Phi,
+%% \ee
+
+%% then commutation relations between these rescaled variables take the form
+%% \be
+%% \lsb \Phi, M \rsb = 1 \\
+%% \lsb \Phi, N \rsb = \hbar,
+%% \ee
+%% which means that we still can not put $M$ to zero on the quantum side.
+
+
+%% However, taking the limit $\hbar \rightarrow 0$ now results in
+%% \be
+%% \tw = \lim_{\hbar \rightarrow 0} 2 \hbar M = 0,\ \ty = 2N,\ \tx = \Phi - 2N, \label{class_corr_skewed},
+%% \ee
+
+%% which imply that $g$ becomes of MFG form ($w$ added for symmetry later had zeroed out).
+
+%% Poisson brackets of $\tx$ $\ty$ and $\tw$ now impose the following equations
+%% \be
+%% \lcb \Phi - 2N, M\rcb = 2 \\
+%% \lcb M, N \rcb = 0 \\
+%% \lcb \Phi - 2N, 2N\rcb = 2,
+%% \ee
+%% which are resolved as
+%% \be
+%% \lcb M, N\rcb = 0, \lcb \Phi, M \rcb = 1, \lcb \Phi, N \rcb = 1
+%% \ee
+
+%% Note, that field $M$ had dissappeared from expression of the group element $g$ in the limit.
+%% This means, that it is not contained in the integrals of motion, generated by it, which generate the dynamics.
+%% This, in turn, means, that we can put $M$ to any value, for instance, zero and consider
+%% motion in only $\Phi$ and $N$ variables.
+
+%% Note that Poisson bracket of $\tx$ and $\ty$ equals $2$, which also coincides with what we have in MFG for SL(2).
+
+%% \subsection{Morale}
+
+%% So, as we see, classical MFG system is a peculiar limit of a quantum system, where some
+%% degrees of freedom are not properly fixed, but rather decouple from the rest of the system.
+%% If we recall, that system on the classical side is in fact Toda chain, this seems natural,
+%% because Toda chain itself is a peculiar Inozemtsev limit of more natural Calogero system.
+
+
+%% \section{The case of $SL(3)$}
+
+%% \subsection{Relation between variables}
+
+%% Since there are actually many variants of Morozov-Vinet construction, we need to guess the relevant one.
+
+%% Consider (slightly extended, for symmetricity reasons) building block of MFG
+
+%% \be
+%% B_{1 cl} \equiv & H_1(w_1) E_1 H_1(x_1) F_1 H_1(y_1) & = \\
+%% & \Hone{w_1} \Eone{1} \Hone{x_1} \Fone{1} \Hone{y_1} & = \\
+%% = & \lb \begin{array}{ccc}
+%% w_1^{2/3} x_1^{2/3} y_1^{2/3} + w_1^{2/3} x_1^{-1/3} y_1^{-1/3} & w_1^{2/3} x_1^{-1/3} y_1^{-1/3} & 0 \\
+%%  w_1^{-1/3} x_1^{-1/3} y_1^{2/3} & w_1^{-1/3} x_1^{-1/3} y_1^{-1/3} & 0 \\
+%%  0 & 0 & w_1^{-1/3} x_1^{-1/3} y_1^{-1/3}
+%% \end{array} \rb & 
+
+%% \ee
+
+%% Hence, corresponding building block on the quantum side should be
+%% \be
+%% B_{1 q} = & \Eone{\psi_1} \lb \begin{array}{ccc}
+%% q^{2/3 \phi_1} & 0 & 0 \\ 0 & q^{-1/3 \phi_1} & 0 \\ 0 & 0 & q^{-1/3 \phi_1}
+%% \end{array} \rb \Fone{\chi_1} & = \\
+%% = & \lb \begin{array}{ccc}
+%% q^{2/3 \phi_1} + \psi_1 q^{-1/3 \phi_1} \chi_1 & \psi_1 q^{-1/3 \phi_1} & 0 \\
+%% q^{-1/3 \phi_1} \chi_1 & q^{-1/3 \phi_1} & 0 \\
+%%  0 & 0 & q^{-1/3 \phi_1}
+%% \end{array} \rb
+%% \ee
+
+%% Comparing $B_{1q}$ to $B_{1cl}$ we get that quantum and classical variables are related as
+%% \be
+%% q^{\phi_1} = w_1 x_1 y_1 \\
+%% \psi_1 = w_1 \\
+%% \chi_1 = y_1
+%% \ee
+
+%% Considering building blocks related to the second root:
+%% \be
+%% B_{2 cl} \equiv & H_2(w_2) E_2 H_2(x_2) F_2 H_2(y_2) & = \\
+%% & \Htwo{w_2} \Etwo{1} \Htwo{x_2} \Ftwo{1} \Htwo{y_2} & = \\
+%% = & \lb \begin{array}{ccc}
+%% w_1^{2/3} x_1^{2/3} y_1^{2/3} + w_1^{2/3} x_1^{-1/3} y_1^{-1/3} & w_1^{2/3} x_1^{-1/3} y_1^{-1/3} & 0 \\
+%%  w_1^{-1/3} x_1^{-1/3} y_1^{2/3} & w_1^{-1/3} x_1^{-1/3} y_1^{-1/3} & 0 \\
+%%  0 & 0 & w_1^{-1/3} x_1^{-1/3} y_1^{-1/3} 
+%% \end{array} \rb
+%% \ee
+
+%% \be
+%% B_{2 q} = & \Etwo{\psi_2} \lb \begin{array}{ccc}
+%% q^{1/3 \phi_2} & 0 & 0 \\ 0 & q^{1/3 \phi_2} & 0 \\ 0 & 0 & q^{-2/3 \phi_2}
+%% \end{array} \rb \Ftwo{\chi_2} & = \\
+%% = & \lb \begin{array}{ccc}
+%% q^{1/3 \phi_2} & 0 & 0 \\
+%% 0 & q^{1/3 \phi_2} + \psi_2 q^{-2/3 \phi_2} \chi_2 & \psi_2 q^{-2/3 \phi_2} \\
+%%  0 & q^{-2/3 \phi_2} \chi_2 & q^{-2/3 \phi_2}
+%% \end{array} \rb
+%% \ee
+
+
+%% gives analogous relations
+%% \be
+%% q^{\phi_2} = w_2 x_2 y_2 \\
+%% \psi_2 = w_2 \\
+%% \chi_2 = y_2
+%% \ee
+
+%% \subsection{Commutation relations on the quantum side}
+
+\section{$SL(3)$ case}
+
+\subsection{Commutational relations}
+\be
+g  = \Psi_1 \Phi_1 \Chi_1 \Psi_2 \Phi_2 \Chi_2 \\
+\gog  = \EBlockLi{1}\EBlockLi{2}\EBlockRi{1}\EBlockRi{2} \\
+\dg  = \ComultBlock{1}\ComultBlock{2}
+\ee
+
+Commutational relations between variables with index $1$,
+as well as commutational relations between variables with index $2$,
+are obtained analogously to the $SL(2)$ case.
+
+This allows us to express $\dg$ as
+\be
+\dg = \EBlockLi{1} \EBlockRi{1} \EBlockLi{2} \EBlockRi{2}
+\ee
+
+Now, if all variables with {\it distinct} incides mutually commute,
+then $\dg = \gog$.
+
+\section{$SL(n)$ case}
+
+
+\subsection{Gauss parametrization vs. multi-cartan parametrization}
+
+All matrices ($E_i$, $F_i$ and $H_i$), corresponding to the $i-th$ root contain
+only $2\times2$ non-trivial block. Thus, calculations from $SL(2)$ apply.
+
+For the word of roots $1\overline{1}2\overline{2} \dots n \overline{n}$
+\be
+q^{\phi_i} = w_i x_i y_i,\ \ \psi_i = w_i,\ \ \chi_i = y_i
+\ee
+
+For the word of roots $\overline{1}1\overline{2}2 \dots \overline{n} n$
+\be
+q^{\beta_i} = a_i b_i c_i,\ \ \alpha_i = \frac{1}{a_i},\ \ \gamma_i = \frac{1}{c_i}
+\ee
+
+\subsection{Commutational relations}
+\be
+q^{\phi_i} \psi_j = q^{2\delta_{ij}} \psi_j q^{\phi_i} \\
+q^{\phi_i} \chi_j = q^{2\delta_{ij}} \chi_j q^{\phi_i} \\
+\chi_i \psi_j = \psi_j \chi_i
+\ee
+
+\be
+q^{\beta_i} \alpha_j = q^{2\delta_{ij}} \alpha_j q^{\beta_i} \\
+q^{\beta_i} \gamma_j = q^{2\delta_{ij}} \gamma_j q^{\beta_i} \\
+\alpha_i \gamma_j = \gamma_j \alpha_i
+\ee
+
+Thus, Poisson brackets are
+\be
+\lcb x_i w_j\rcb = 2 \delta_{ij} \\
+\lcb x_i y_j\rcb = 2 \delta_{ij} \\
+\lcb y_i w_j\rcb = 0
+\ee
+
+\be
+\lcb b_i a_j\rcb = -2 \delta_{ij} \\
+\lcb b_i c_j\rcb = -2 \delta_{ij} \\
+\lcb a_i c_j\rcb = 0
+\ee
+
+\subsection{Mutations}
+
+\be
+  a_i = w_i (1 + q x_i),\ \ c_i = y_i(1 + q x_i), \ \ b_i = \frac{\lb 1 + x_i\rb^2}{\lb 1 + q x_i\rb\lb 1 + \frac{x_i}{q}\rb} \frac{1}{x_i},
+\ee
+
+\section{TODO}
+\begin{itemize}
+\item Lift construction from $3g$ leaf to the whole quantum group
+\item What to do with different definitions of ``twisted'' $T_\pm$ generators
+for direct $i\overline{i}$ and reversed $\overline{i}i$ order of roots?
+\end{itemize}
+
+\end{document}
