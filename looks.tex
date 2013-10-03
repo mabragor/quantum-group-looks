@@ -42,6 +42,7 @@
 \newcommand{\wG}{\widetilde{G}}
 \newcommand{\me}[0]{\mathcal{E}}
 \newcommand{\hT}[0]{\hat{T}}
+\newcommand{\Bp}[1]{B^{'}\lb #1 \rb}
 
 \newcommand{\YAMLSectionize}[1]{}
 
@@ -295,9 +296,9 @@ y_i w_j = w_j y_i, \ \ x_i w_j = q^{2\delta_{ij}} w_j x_i, \ \ x_i y_j = q^{2\de
 \ee
 
 Furthermore, in every place where building block $B(i)$ is, slightly
-different building block $B^{'}(i)$ could be used
+different building block $\Bp{i}$ could be used
 \be
-B^{'}(i) = \me_{1/q} \lb \alpha_i q^{H_{[i]}} \hT_{-[i]} \rb q^{\beta_i H_{[i]}} \me_q \lb \gamma_i \hT_{+[i]} q^{-H_{[i]}} \rb   = 
+\Bp{i} = \me_{1/q} \lb \alpha_i q^{H_{[i]}} \hT_{-[i]} \rb q^{\beta_i H_{[i]}} \me_q \lb \gamma_i \hT_{+[i]} q^{-H_{[i]}} \rb   = 
 a_i^{H_{[i]}} \me_{1/q} \lb q^{H_{[i]}} \hT_{-[i]} \rb b_i^{H_{[i]}} \me_q \lb  \hT_{+[i]} q^{-H_{[i]}} \rb c_i^{H_{[i]}},
 \ee
 and {\bf quantum} substitution of variables, which relates newly obtained $g$' to the old one
@@ -422,12 +423,12 @@ Namely, let's assume, that
 \begin{equation}
   \label{comm-assumption-sl2}
   \boxed {
-    \psi \chi = \chi \psi,\ q^\phi \psi = q^\alpha \psi q^\phi,\ q^\phi \chi = q^\alpha \chi q^\phi,\ \And1 \
-    w y = y w,\ x w = q^\alpha w x, \ x y = q^\alpha y x
+    \psi \chi = \chi \psi,\ q^\phi \psi = q^n \psi q^\phi,\ q^\phi \chi = q^n \chi q^\phi,\ \And1 \
+    w y = y w,\ x w = q^n w x, \ x y = q^n y x
   }
 \end{equation}
 
-for some parameter $\alpha$.
+for some parameter $n$.
 Then
 \be
 w x y = y x w,\ \And1 \ \lb w^{1/2} x^{1/2} y^{1/2} \rb \lb w^{1/2} x^{1/2} y^{1/2} \rb = w x y,
@@ -467,7 +468,7 @@ and formula \delabel{mv-fg-relation-sl2} is a valid non-commutative substitution
 %% that commutation relations of the quantum variables take the form
 %% \be
 %% \boxed{
-%% \psi \chi = \chi \psi,\ q^\phi \psi = q^\alpha \psi q^\phi,\ q^\phi \chi = q^\alpha \chi q^\phi, \label{comm_suggest}
+%% \psi \chi = \chi \psi,\ q^\phi \psi = q^n \psi q^\phi,\ q^\phi \chi = q^n \chi q^\phi, \label{comm_suggest}
 %% }
 %% \ee
 
@@ -620,17 +621,24 @@ q^{\phi H} \chi = \chi q^{\phi H} q^{2H} \\ q^{\phi/2} \chi = \chi q^{\phi/2} q 
 
 Let's write commutational relations just obtained all on one line
 
-\be
+\begin{equation}
+\label{comm-relations-psichiphi-sl2}
 \boxed{
 q^\phi \psi = q^2 \psi q^\phi,\ \ q^\phi \chi = q^2 \chi q^\phi,\ \ \psi \chi = \chi \psi
 }
-\ee
+\end{equation}
 
 Thus, our {\it ad hoc} suggestion \delabel{comm-assumption-sl2} proved to be true for commutational
-relations on $\psi$, $\chi$ and $\phi$, with $\alpha = 2$.
+relations on $\psi$, $\chi$ and $\phi$, with $n = 2$.
 Now \delabel{mv-fg-relation-sl2}, understood as {\it quantum} substitution of variables is sufficient to
 prove, that commutational relations for $x$, $y$ and $w$ are also of the form \delabel{comm-assumption-sl2},
-also with $\alpha = 2$.
+also with $n = 2$
+\begin{equation}
+\label{comm-relations-wxy-sl2}
+\boxed{
+x w = q^2 w x,\ \ x y = q^2 y x,\ \ w y = y w
+}
+\end{equation}
 Hence, formula \delabel{mv-fg-relation-sl2} is indeed a full non-commutative change of variables on the
 dual algebra of the quantum group $SL_q(2)$.
 
@@ -683,61 +691,117 @@ dual algebra of the quantum group $SL_q(2)$.
 %% \tx = \hbar \phi - 2\nu - 2\mu
 %% \ee
 
-\subsection{Poisson submanifold}
-Although reduction $\psi = 1$ is not consistent with commutational relations, if we
-restrict ourselves to only functions, depending on $\chi$ and $q^\phi$, it is still consistent,
-since we will never get any $\psi$'s while considering such functions, hence will never actually
-know, that commutation relations did break.
+\subsection{Alternative ansatz for group element}
 
-Note: in Fock-Goncharov they do precisely that in their example with $sl(2)$ (arXiv:math/0508408),
-but in classical limit.
-
-\subsection{Mutation}
-
-One can consider different parametrization of group element
+We can use different form of the building block in the ansatz for the group element.
 \be
-g = \Foned{\alpha} \matd{q^{\beta/2}}{0}{0}{q^{-\beta/2}} \Eoned{\gamma} = \matd{q^{\beta/2} }{q^{\beta/2}\gamma}{\alpha q^{\beta/2}}{q^{-\beta/2} + \alpha q^{\beta/2}\gamma} \label{g_quantd_2}
+\label{quantum-group-element-alt-sl2}
+g = \Bp{1},
+\ee
+where building block can be again expressed in two forms
+\be
+\label{building-block-alt-sl2-fg}
+\Bp{1} = & a^H \me_{1/q} \lb T_-\rb b^H \me_{q} \lb T_+ \rb c^H & = \\
+= & \Honed{a} \Foned{1} \Honed{b} \Eoned{1} \Honed{c} & = \nonumber \\
+= & \matd{a^{1/2}b^{1/2}c^{1/2}}{a^{1/2}b^{1/2}c^{-1/2}}
+{a^{-1/2}b^{1/2}c^{1/2}}{a^{-1/2}b^{1/2}c^{-1/2} + a^{-1/2}b^{-1/2}c^{-1/2}} \nonumber,
+\ee
+or
+\be
+\label{building-block-alt-sl2-mv}
+\Bp{1} = & \me_q \lb \alpha T_- \rb q^{\beta H} \me_{1/q} \lb \gamma T_+ \rb & = \\
+= & \Foned{\alpha} \matd{q^{\beta/2}}{0}{0}{q^{-\beta/2}} \Eoned{\gamma}
+= \matd{q^{\beta/2}}{q^{\beta/2}\gamma}{\alpha q^{\beta/2}}{\alpha q^{\beta/2}\gamma  + q^{-\beta/2}} \nonumber.
 \ee
 
-Thus, transition is given by equations
+Note, that although the form of $T_\pm$ in this formulae appears to be the same as in
+\delabel{building-block-sl2-fg} and \delabel{building-block-sl2-mv}, here they are twisted like
+in \delabel{twist-negatively}. That is, one should be very careful when writing formulae, which include
+both types of ansaetze (for example, the ones in Appendix \ref{alpha-beta-gamma-from-chi-psi-phi}, where
+we derive commutational relations on $\alpha$, $\beta$ and $\gamma$ from the ones obtained in
+\ref{comm-relations-dual-algebra-sl2} for
+$\chi$, $\psi$ and $\phi$), as they include additional factors of $q^H$ where appropriate.
+
+Again, naive commutative relation between $(a, b, c)$ and $(\alpha, \beta, \gamma)$ can be
+lifted to the full non-commutative relation
+\begin{equation}
+  \boxed {
+    \label{mv-fg-relation-alt-sl2}
+    q^\beta = a b c, \ \ \alpha = \frac{1}{a},\ \ \gamma = \frac{1}{c},
+  }
+\end{equation}
+provided the following commutation relations hold
+\begin{equation}
+  \label{comm-assumption-alt-sl2}
+  \boxed {
+    \alpha \gamma = \gamma \alpha,\ q^\beta \alpha = q^n \alpha q^\beta,\ q^\beta \gamma = q^n \gamma q^\beta,\ \And1 \
+    a c = c a,\ b a = q^{-n} a b, \ b c = q^{-n} c b,
+  }
+\end{equation}
+for some $n$.
+
+\subsubsection{Relation between MV-type ansaetze}
+Comparing \delabel{building-block-sl2-mv} to \delabel{building-block-alt-sl2-mv}, one can write
+the following four equations
 \be
-q^{\phi/2} + \psi q^{-\phi/2} \chi = q^{\beta/2} \\
-\psi q^{-\phi/2} = q^{\beta/2} \gamma \\
-q^{-\phi/2} \chi = \alpha q^{\beta/2} \\
-q^{-\phi/2} = \alpha q^{\beta/2} \gamma + q^{-\beta/2}
+& q^{\phi/2} + \psi q^{-\phi/2} \chi = q^{\beta/2} \\
+& \psi q^{-\phi/2} = q^{\beta/2} \gamma \\
+& q^{-\phi/2} \chi = \alpha q^{\beta/2} \\
+& q^{-\phi/2} = \alpha q^{\beta/2} \gamma + q^{-\beta/2}
 \ee
 
-One can explicitly solve these equations w.r.t $\alpha$, $\beta$ and $\gamma$
-(fourth equation provides a consistency check) to get
+First three are sufficient to express $\alpha$, $\beta$ and $\gamma$ through $\chi$, $\psi$ and $\phi$,
+while the fourth provides consistency check.
+
 \be
-q^{\beta/2} = q^{\phi/2} + \psi q^{-\phi/2} \chi \\
-\alpha = q^{-\phi/2} \chi q^{-\phi/2} \lb 1 + \psi q^{-\phi/2} \chi q^{-\phi/2} \rb^{-1}
-\gamma = \lb 1 + q^{-\phi/2} \psi q^{-\phi/2} \chi \rb^{-1} q^{-\phi/2} \psi q^{-\phi/2}
+& q^{\beta/2} = q^{\phi/2} + \psi q^{-\phi/2} \chi \\
+& \alpha = q^{-\phi/2} \chi q^{-\phi/2} \lb 1 + \psi q^{-\phi/2} \chi q^{-\phi/2} \rb^{-1}
+& \gamma = \lb 1 + q^{-\phi/2} \psi q^{-\phi/2} \chi \rb^{-1} q^{-\phi/2} \psi q^{-\phi/2}
 \ee
 
-One can further verify that the form of the commutation relations is preserved by this transformation, i.e.
+One can further verify that the form of the commutation relations is preserved by this change of variables, i.e.
 \be
 q^{\beta} \alpha = q^2 \alpha q^{\beta} \\
 q^{\beta} \gamma = q^2 \gamma q^{\beta} \\
 \alpha \gamma = \gamma \alpha
 \ee
 
-These formulas look much nicer, when expressed as relation between $x, y, z$ and $a, b, c$
-variables, namely (see formulas \delabel{quant_class} and \delabel{quant_class_other})
+The details of this verification and check, that the fourth equation indeed holds
+can be found in Appendix \ref{alpha-beta-gamma-from-chi-psi-phi}
 
-\be
-\boxed{
-  a = w (1 + q x),\ \ c = y(1 + q x), \ \ b = \frac{\lb 1 + x\rb^2}{\lb 1 + q x\rb\lb 1 + \frac{x}{q}\rb} \frac{1}{x},
-}
-\ee
+\subsubsection{Relation between FG-type ansaetze}
+Comparing \delabel{building-block-sl2-fg} to \delabel{building-block-alt-sl2-fg} and then
+solving the obtained equations, one can arrive at another form of relation between
+ansaetze, corresponding to different root order.
 
-and they reproduce classical formulas for mutation in the limit $\classlim$
+Expressed like this, it takes particularly simple form
+\begin{equation}
+\label{quantum-mutation-sl2}
+  \boxed{
+    a = w (1 + q x),\ \ c = y(1 + q x), \ \ b = \frac{1}{x}
+  }
+\end{equation}
+in which one readily recognizes the quantum cluster transformation (also called the mutation).
+
+Setting $\classlim$, of course, reproduces the classical version of mutation
 \be
+\label{classical-mutation-sl2}
 a = w \lb 1 + x\rb \\
 c = y \lb 1 + x\rb \\
 b = \frac{1}{x}
 \ee
 
+The details of the derivation of \delabel{quantum-mutation-sl2} are presented in Appendix
+\ref{derivation-of-quantum-mutation-sl2}.
+
+%% \subsection{Poisson submanifold}
+%% Although reduction $\psi = 1$ is not consistent with commutational relations, if we
+%% restrict ourselves to only functions, depending on $\chi$ and $q^\phi$, it is still consistent,
+%% since we will never get any $\psi$'s while considering such functions, hence will never actually
+%% know, that commutation relations did break.
+
+%% Note: in Fock-Goncharov they do precisely that in their example with $sl(2)$ (arXiv:math/0508408),
+%% but in classical limit.
 
 \section*{Acknowledgements}
 
@@ -747,6 +811,77 @@ grants \? by joint grants \?.
 
 \appendix
 \section{Appendix. Some explicit calculations not to be placed in the main text}
+
+\section{Commutational relations on $(\alpha\ \beta\ \gamma)$ from that of $(\chi\ \psi\ \phi)$}
+\label{alpha-beta-gamma-from-chi-psi-phi}
+
+\section{Mutation formulae}
+\subsection{$SL_q(2)$ fundamental representation}
+\label{derivation-of-quantum-mutation-sl2}
+This derivation is straightforward, yet it is example of calculation,
+which already contains some peculiarities, which typically arise when doing non-commutative algebra,
+hence we present it here in very detailed form.
+
+We start from the following equations, which come from equating \delabel{building-block-sl2-fg} to \delabel{building-block-alt-sl2-fg}
+\be
+& w^{1/2}x^{1/2} y^{1/2} + w^{1/2}x^{-1/2}y^{1/2} = a^{1/2}b^{1/2}c^{1/2} \\
+& w^{1/2}x^{-1/2}y^{-1/2} = a^{1/2}b^{1/2}c^{-1/2} \\
+& w^{-1/2}x^{-1/2}y^{1/2} = a^{-1/2}b^{1/2}c^{1/2} \\
+& w^{-1/2}x^{-1/2}y^{-1/2} = a^{-1/2}b^{1/2}c^{-1/2} + a^{-1/2}b^{-1/2}c^{-1/2}
+\ee
+From second equation we get (multiplying both sides by $c$ to the right)
+\be
+& w^{1/2}x^{-1/2}y^{-1/2} c = a^{1/2}b^{1/2}c^{1/2},
+\ee
+which, using the first equation allows us to state that
+\be
+c = y^{1/2}x^{1/2}w^{-1/2}\lb w^{1/2}x^{1/2}y^{1/2} + w^{1/2}x^{-1/2}y^{1/2} \rb
+= y^{1/2} x y^{1/2} + y = y\lb 1 + qx\rb = \lb 1 + \frac{x}{q} \rb y,
+\ee
+where we used commutational relations \delabel{comm-relations-wxy-sl2}.
+
+Analogously, multiplying both sides of the third equation by a to the left, we get
+\be
+& a w^{-1/2} x^{-1/2} y^{1/2} = a^{1/2}b^{1/2}c^{1/2},
+\ee
+which, using the first equation leads
+\be
+a = \lb w^{1/2}x^{1/2}y^{1/2} + w^{1/2}x^{-1/2}y^{1/2} \rb y^{-1/2}x^{1/2}w^{1/2}
+= w^{1/2}x w^{1/2} + w = w \lb 1 + q x \rb
+\ee
+
+Now the trickiest part is to calculate the expression for $b$. Naively, one  would want
+to multiply the first equation by $a^{-1/2}$ to the left and by $c^{-1/2}$ to the right,
+get $b^{1/2}$ and then square it.
+However, calculating $a^{1/2}$ is not as simple as taking the product of square roots of both factors
+\be
+&\sqrt{a} \neq \sqrt{w} \sqrt{1 + q x},
+\ee
+instead there is this q-Exponential formula \delabel{q-exponential-a-power}, which one will need when
+doing calculation in arbitrary representation.
+Failure to notice this peculiarity easily leads to incorrect expression for $b$
+\be
+b \neq \frac{\lb 1 + x\rb^2}{\lb 1 + q x\rb\lb 1 + \frac{x}{q}\rb} \frac{1}{x}.
+\ee
+
+Here, on the other hand, we can simply observe, that
+\be
+\sqrt{a} \sqrt{b} \sqrt{c} \sqrt{a} \sqrt{b} \sqrt{c} = q^{-1/2} a \sqrt{b} \sqrt{c} \sqrt{b} \sqrt{c} = abc,
+\ee
+and then, using the first equation
+
+\be
+b = & a^{-1} \lb \sqrt{a}\sqrt{b}\sqrt{c} \rb^2 c^{-1} & \nonumber \\
+= & \lb 1 + qx\rb^{-1}w^{-1}\lsb w^{1/2}x^{1/2}y^{1/2} + w^{1/2}x^{-1/2}y^{1/2} \rsb
+\lsb w^{1/2}x^{1/2}y^{1/2} + w^{1/2}x^{-1/2}y^{1/2} \rsb y^{-1}\lb 1 + \frac{x}{q}\rb^{-1}
+\\ = & \lb 1 + qx\rb^{-1} \lsb x + \lb q + \frac{1}{q} \rb \frac{1}{x} \rsb \lb 1 + \frac{x}{q}\rb^{-1} = \frac{1}{x}
+\nonumber 
+\ee
+
+The check, that the fourth equation is valid is trivial, we do not present it here.
+
+\subsection{$SL_q(2)$ first symmetric representation}
+\subsection{$SL_q(N)$ fundamental representation}
 
 \begin{thebibliography}{12}
 
