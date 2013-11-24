@@ -9,10 +9,13 @@
 \newcommand{\hp}{\frac{\hbar}{i} \partial_x}
 \newcommand{\lb}{\left (}
 \newcommand{\rb}{\right )}
+\newcommand{\B}[1]{\lb #1 \rb}
 \newcommand{\lsb}{\left [}
 \newcommand{\rsb}{\right ]}
+\newcommand{\SB}[1]{\lsb #1 \rsb}
 \newcommand{\lab}{\left \langle}
 \newcommand{\rab}{\right \rangle}
+\newcommand{\AB}[1]{\lab #1 \rab}
 
 \newcommand{\eq}[1]{\begin{equation} #1 \end{equation}}
 \newcommand{\eqna}[1]{\begin{eqnarray} #1 \end{eqnarray}}
@@ -25,6 +28,7 @@
 \DeclareMathOperator{\Or}{or}
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\If}{if}
+\DeclareMathOperator{\For}{for}
 \DeclareMathOperator{\And1}{and}
 \DeclareMathOperator{\that}{that}
 \DeclareMathOperator{\is}{is}
@@ -43,6 +47,16 @@
 \newcommand{\me}[0]{\mathcal{E}}
 \newcommand{\hT}[0]{\hat{T}}
 \newcommand{\Bp}[1]{B^{'}\lb #1 \rb}
+\newcommand{\Tp}[1][]{T_{+ #1}}
+\newcommand{\Tm}[1][]{T_{- #1}}
+\newcommand{\hTp}[1][]{\hT_{+ #1}}
+\newcommand{\hTm}[1][]{\hT_{- #1}}
+\newcommand{\hTpm}[1][]{\hT_{\pm #1}}
+\newcommand{\qH}[2][]{q^{#1H_{#2}}}
+\newcommand{\leftFactor}[2]{#1[#2] \otimes I}
+\newcommand{\rightFactor}[2]{I \otimes #1[#2]}
+\newcommand{\leftTwistFactor}[2]{#1[#2] \otimes q^{-2H_{#2}}}
+\newcommand{\rightTwistFactor}[2]{q^{2H_{#2}} \otimes #1[#2]}
 
 \newcommand{\YAMLSectionize}[1]{}
 
@@ -73,19 +87,19 @@
 
 %% \newcommand{\EChi}[0]{\me_{1/q} \lb \chi_#1 T_{-#1} \rb}
 %% \newcommand{\EPsi}[0]{\me_{q} \lb\psi_#1 T_{+#1}\rb}
-\newcommand{\EChiL}[0]{\Chi^L}
-\newcommand{\EChiR}[0]{\Chi^R}
-\newcommand{\EChiLT}[0]{\Chi^{Lt}}
-\newcommand{\EChiRT}[0]{\Chi^{Rt}}
-\newcommand{\EChiD}[0]{\Chi^\Delta}
-\newcommand{\EPsiL}[0]{\Psi^L}
-\newcommand{\EPsiR}[0]{\Psi^R}
-\newcommand{\EPsiLT}[0]{\Psi^{Lt}}
-\newcommand{\EPsiRT}[0]{\Psi^{Rt}}
-\newcommand{\EPsiD}[0]{\Psi^\Delta}
-\newcommand{\QPhiL}[0]{\Phi^L}
-\newcommand{\QPhiR}[0]{\Phi^R}
-\newcommand{\QPhiD}[0]{\Phi^\Delta}
+\newcommand{\EChiL}[1][]{\Chi^L_{#1}}
+\newcommand{\EChiR}[1][]{\Chi^R_{#1}}
+\newcommand{\EChiLT}[1][]{\Chi^{Lt}_{#1}}
+\newcommand{\EChiRT}[1][]{\Chi^{Rt}_{#1}}
+\newcommand{\EChiD}[1][]{\Chi^\Delta_{#1}}
+\newcommand{\EPsiL}[1][]{\Psi^L_{#1}}
+\newcommand{\EPsiR}[1][]{\Psi^R_{#1}}
+\newcommand{\EPsiLT}[1][]{\Psi^{Lt}_{#1}}
+\newcommand{\EPsiRT}[1][]{\Psi^{Rt}_{#1}}
+\newcommand{\EPsiD}[1][]{\Psi^\Delta_{#1}}
+\newcommand{\QPhiL}[1][]{\Phi^L_{#1}}
+\newcommand{\QPhiR}[1][]{\Phi^R_{#1}}
+\newcommand{\QPhiD}[1][]{\Phi^\Delta_{#1}}
 
 \newcommand{\EPsii}[1]{\Psi_#1}
 \newcommand{\EChii}[1]{\Chi_#1}
@@ -201,17 +215,17 @@ bit different}
   - Details :
     commutational relations for dual algebra from comultiplication :
       - brief overview of original Morozov-Vinet
-      - derivation for sl(2)
-      - derivation for sl(3)
-      - derivation for sl(n)
+      - (done) derivation for sl(2)
+      - (wontfix) derivation for sl(3)
+      - (done) derivation for sl(n)
     connection between multicartan and Gauss parametrization
-      - sl(2)
-      - sl(n)
+      - (done) sl(2) fundamental
+      - (done) sl(n)
     commutational relations for multicartan parametrization
-      - sl(2)
-      - sl(n)
+      - (wontfix) sl(2)
+      - (wontfix) sl(n)
     mutations
-      - sl(2) fundamental
+      - (done) sl(2) fundamental
       - sl(n) fundamental reduces to sl(2)
       - sl(2) first symmetrical
 - Conclusion
@@ -329,6 +343,7 @@ and one Cartan element $H$.
 
 Commutational relations read
 \be
+\label{comm-relations-sl2}
 q^H \hT_{\pm} = q^{\pm 1} \hT_{\pm} q^H,\ \ \hT_+ \hT_- - \hT_- \hT_+ = \frac{q^{2H} - q^{-2H}}{q - q^{-1}},
 \ee
 and comultiplication relations are
@@ -363,7 +378,7 @@ with comultiplication rules
 If we restrict ourselves to only consider root-associated generators twisted this or that way or only untwisted,
 then in fundamental representation they can be chosen to be
 \be
-T_+ = \Eoned{1},\ T_- = \Foned{1},\ H = \matd{\frac{1}{2}}{0}{0}{-\frac{1}{2}}
+T_+ = \matd{0}{1}{0}{0},\ T_- = \matd{0}{0}{1}{0},\ H = \matd{\frac{1}{2}}{0}{0}{-\frac{1}{2}}
 \ee
 
 \subsection{Ansatz for group element in two equivalent forms}
@@ -534,14 +549,14 @@ comultiplication rules \delabel{comultiply-positively} apply)
 \be
 \label{comul-expt-positive-sl2}
 \comul{\me_q \lb \psi T_+ \rb} & = \me_q \lb \psi \comul{T_+}\rb = \me_q \lb \psi \lb q^{2H} \otimes T_+ + T_+ \otimes I \rb \rb & \\
-& = \me_q \lb \psi T_+ \otimes I\rb \me_q \lb \psi q^{2H} \otimes T_+\rb
+& = \me_q \lb \psi T_+ \otimes I\rb \me_q \lb \psi q^{2H} \otimes T_+\rb \nonumber
 \ee
 
 Analogously, using (\ref{fact_over_q}) we get for the negative root
 \be
 \label{comul-expt-negative-sl2}
 \comul{\me_{1/q} \lb \chi T_- \rb} & = \me_{1/q} \lb \chi \comul{T_-}\rb = \me_{1/q} \lb \chi \lb I \otimes T_- + T_- \otimes q^{-2H} \rb \rb & \\
-& = \me_{1/q} \lb \chi T_- \otimes q^{-2H}\rb \me_{1/q} \lb \chi I \otimes T_-\rb
+& = \me_{1/q} \lb \chi T_- \otimes q^{-2H}\rb \me_{1/q} \lb \chi I \otimes T_-\rb \nonumber
 \ee
 
 \subsubsection{Convenient notation}
@@ -554,8 +569,8 @@ in which to express the statements.
 Namely, let's define the following
 
 \be
-& \Psi = \me_q \lb \psi T_+ \rb,\ \Chi = \me_{1/q} \lb \chi T_- \rb,\ \Phi = q^H \nonumber \\
-& \EPsiD = \comul{\me_\psi},\ \EChiD = \comul{\me_\chi},\ \QPhiD = \comul{Q_\phi} \nonumber \\
+& \Psi = \me_q \B{\psi \Tp},\ \Chi = \me_{1/q} \B{\chi \Tm},\ \Phi = q^H \nonumber \\
+& \EPsiD = \comul{\Psi},\ \EChiD = \comul{\Chi},\ \QPhiD = \comul{\Phi} \nonumber \\
 & \EPsiL = \me_q \lb \psi T_+ \otimes I\rb,\ \EPsiR = \me_q \lb \psi I \otimes T_+ \rb \nonumber \\
 \label{macrolanguage-sl2}
 & \EPsiLT = \me_q \lb \psi T_+ \otimes q^{-2H}\rb,\ \EPsiRT = \me_q \lb \psi q^{2H} \otimes T_+ \rb \\
@@ -744,19 +759,21 @@ for some $n$.
 Comparing \delabel{building-block-sl2-mv} to \delabel{building-block-alt-sl2-mv}, one can write
 the following four equations
 \be
+\label{albega-pcp-equations}
 & q^{\phi/2} + \psi q^{-\phi/2} \chi = q^{\beta/2} \\
-& \psi q^{-\phi/2} = q^{\beta/2} \gamma \\
-& q^{-\phi/2} \chi = \alpha q^{\beta/2} \\
-& q^{-\phi/2} = \alpha q^{\beta/2} \gamma + q^{-\beta/2}
+& \psi q^{-\phi/2} = q^{\beta/2} \gamma \nonumber \\
+& q^{-\phi/2} \chi = \alpha q^{\beta/2} \nonumber \\
+& q^{-\phi/2} = \alpha q^{\beta/2} \gamma + q^{-\beta/2} \nonumber
 \ee
 
 First three are sufficient to express $\alpha$, $\beta$ and $\gamma$ through $\chi$, $\psi$ and $\phi$,
 while the fourth provides consistency check.
 
 \be
-& q^{\beta/2} = q^{\phi/2} + \psi q^{-\phi/2} \chi \\
-& \alpha = q^{-\phi/2} \chi q^{-\phi/2} \lb 1 + \psi q^{-\phi/2} \chi q^{-\phi/2} \rb^{-1}
-& \gamma = \lb 1 + q^{-\phi/2} \psi q^{-\phi/2} \chi \rb^{-1} q^{-\phi/2} \psi q^{-\phi/2}
+& q^{\beta/2} = q^{\phi/2} + \psi q^{-\phi/2} \chi \nonumber \\
+\label{albega-through-pcp}
+& \alpha = q^{-\phi/2} \chi q^{-\phi/2} \lb 1 + \psi q^{-\phi/2} \chi q^{-\phi/2} \rb^{-1} \\
+& \gamma = \lb 1 + q^{-\phi/2} \psi q^{-\phi/2} \chi \rb^{-1} q^{-\phi/2} \psi q^{-\phi/2} \nonumber
 \ee
 
 One can further verify that the form of the commutation relations is preserved by this change of variables, i.e.
@@ -803,6 +820,283 @@ The details of the derivation of \delabel{quantum-mutation-sl2} are presented in
 %% Note: in Fock-Goncharov they do precisely that in their example with $sl(2)$ (arXiv:math/0508408),
 %% but in classical limit.
 
+\section {$SL_q(3)$ case}
+In this section should be presented additional complications, that arise when switching from $SL_q(2)$,
+yet such that their solution is more easily illustrated in $SL_q(3)$ then in general $SL_q(N)$.
+
+\section {$SL_q(N)$ case}
+In this section our ideas are elaborated in the case of arbitrary $A^q_{n} = SL_q(N)$ quantum group.
+If you find the discussion too general, you may wish to read $SL_q(2)$ section, and corresponding appendices first.
+
+\subsection{Quantum algebra's commutational relations and comultiplication rules}
+
+Chevalley basis consists of $n$ positive roots, $n$ negative roots and $n$ cartans.
+Their (quantum) commutational relations are given by
+\be
+\label{comm-relations-sln}
+\qH{i} \hTpm[j] = q^{\pm C_{ij}} \hTpm[j] \qH{i},\ \ 
+\hTp[i] \hTm[j] - \hTm[j] \hTp[i] = \frac{\qH[2]{i} - \qH[-2]{i}}{q - q^{-1}},
+\ee
+
+There are also commutational relations associated with Serre relations,
+but they will not play a role in our discussion.
+
+Comultiplication rules are as follows
+\be
+\Delta(H_i) = I \otimes H_i + H_i \otimes I, \ \ 
+\Delta(\hT_{\pm i}) = q^{H_i} \otimes \hT_{\pm i} + \hT_{\pm i} \otimes q^{-H_i}
+\ee
+
+Again, we may twist {\it each} pair of generators $T_{+ i}$ $T_{- i}$ independently in two of the following ways: \\
+'positively'
+\be
+\label{twist-positively-sln}
+\Tp[i] = \qH{i} \hTp[i],\ \And1 \ \Tm[i] = \hTm[i] \qH[-]{i},
+\ee
+or 'negatively'
+\be
+\label{twist-negatively-sln}
+\Tm[i] = \qH{i} \hTm[i],\ \And1 \ \Tp[i] = \hTp[i] \qH[-]{i},
+\ee
+
+and the comultiplication rules, correspondingly, read
+\be
+\label{comultiply-positively-sln}
+\Delta(\Tp[i]) = \rightTwistFactor{\Tp}{i} + \leftFactor{\Tp}{i},\ \ 
+\Delta(\Tm[i]) = \rightFactor{\Tm}{i} + \leftTwistFactor{\Tm}{i},
+\ee
+or
+\be
+\label{comultiply-negatively-sln}
+\Delta(\Tp[i]) = \leftTwistFactor{\Tp}{i} + \rightFactor{\Tp}{i},\ \ 
+\Delta(\Tm[i]) = \leftFactor{\Tm}{i} + \rightTwistFactor{\Tm}{i},
+\ee
+
+
+If we are working in fundamental representation, and if we restrict ourselves to considering
+only 'positively' or only 'negatively' twisted generators, then we may disregard $q^{H_i}$
+factors and represent our algebra as follows:
+\begin{itemize}
+\item $\Tp[i]$ is $N \times N$ matrix of zeroes, except at $i$-th row $i + 1$-th column there is $1$.
+\item $\Tm[i]$ is $N \times N$ matrix of zeroes, except at $i+1$-th row $i$-th column there is $1$.
+\item $H_i$ is $N \times N$ matrix of zeroes, except at $i$-th row, $i$-th column there is $\frac{1}{2}$
+and at $i+1$-th row $i+1$-th column there is $-\frac{1}{2}$
+\end{itemize}
+
+\subsection{Ansatz for group element}
+
+In case of $n > 1$ the dimension of the group is larger than the total number of positive, negative roots and cartans.
+
+Hence, in order to express arbitrary group element, we must either use all the roots,
+or use simple roots multiple times.
+
+We propose the following, somewhat redundant, parametrization of the group element
+\be
+\label{quantum-group-element-sln}
+g = \prod_{i = 1}^{(n+1)^2 - 1}B(i),
+\ee
+
+where buiding block $B(i)$ can be in one of two equivalent forms \\
+Morozov-Vinet one
+\be
+\label{building-block-mv-sln}
+B(i) = \me_q \B{\psi_i \Tp[\SB{i}]} q^{\phi_i H_{[i]}} \me_{1/q} \B{\chi_i \Tm[\SB{i}]}
+\ee
+
+or Fock-Goncharov one
+\be
+\label{building-block-fg-sln}
+B(i) = w_i^{H_{[i]}} \me_q \B{\Tp[\SB{i}]} x_i^{H_{[i]}} \me_{1/q} \B{\Tm[\SB{i}]} y_i^{H_{[i]}},
+\ee
+
+where $T_\pm$'s are twisted 'positively' (see \delabel{twist-positively-sln}).
+
+Here square brackets around the index $i$ denote, which simple root
+we should take for which index. (Clearly, number of indices ($(n + 1)^2 - 1$) is larger, than the number
+or simple roots ($n$))
+
+Namely, for first $n$ indices we must literally take $i$-th simple root for $i$-th index. \\
+For next $n - 1$ indices we must take $(i - n)$-th simple root for $i$-th index. \\
+For yet next $n - 2$ indices we must take $(i - n - (n - 1))$-th simple root for $i$-th index. \\
+And so on.
+
+Here are the examples of this 'square-bracket' map for first few $n$:
+\begin{itemize}
+\item n = 1: $\SB{1} = 1$,
+\item n = 2: $\SB{1} = 1,\ \SB{2} = 2;\ \
+  \SB{3} = 1$,
+\item n = 3: $\SB{1} = 1,\ \SB{2} = 2, \SB{3} = 3;\ \ 
+  \SB{4} = 1, \SB{5} = 2;
+  \SB{6} = 1$
+\item n = 4: $\SB{1} = 1,\ \SB{2} = 2, \SB{3} = 3, \SB{4} = 4;\ \
+  \SB{5} = 1,\ \SB{6} = 2, \SB{7} = 3;\ \
+  \SB{8} = 1,\ \SB{9} = 2;\ \
+  \SB{10} = 1$
+\end{itemize}
+
+
+Looking a little bit ahead one can say that
+\begin{enumerate}
+\item building blocks corresponding to different simple roots commute with each other
+\item $w$'s commute with $y$'s, so for $w_i$ and $y_j$ corresponding to same simple root we have
+\begin{equation}
+  w_i^{H_{\SB{i}}} y_j^{H_{\SB{i}}} = \B{w_i y_j}^{H_{\SB{i}}}
+\end{equation}
+\end{enumerate}
+That is, if we express entire group element $g$ in Fock-Goncharov form, we can clump all
+the building blocks, corresponding to same simple roots together, and then substitute each neighbouring
+pair $w_i$ $y_j$ by their product, thus eliminating the redundancy of the ansatz.
+
+\subsubsection{Relation between MV and FG ansaetze}
+If one assumes certain form of commutational relations on $\psi_i$, $\chi_i$ and $phi_i$
+and on $w_i$, $x_i$ and $y_i$,
+which, as we will show in the section \ref{comm-relations-dual-algebra-sln}, is valid,
+then it is easy to write a formula, that connects parameters of MV-ansatz for the building block 
+to the parameters of FG-ansatz.
+
+Namely, let's assume, that (this literally reproduces assumption \delabel{comm-assumption-sl2},
+only with indices)
+\begin{equation}
+  \label{comm-assumption-sln}
+  \boxed {
+    \psi_i \chi_i = \chi_i \psi_i,\ q^{\phi_i} \psi_i = q^n \psi_i q^{\phi_i},\ 
+    q^{\phi_i} \chi_i = q^n \chi_i q^\phi_i,\ \And1 \
+    w_i y_i = y_i w_i,\ x_i w_i = q^n w_i x_i, \ x_i y_i = q^n y_i x_i
+  }
+\end{equation}
+
+Then from \delabel{comm-relations-sln}
+\be
+w_i^{H_{[i]}} \Tp[\SB{i}] = w_i \Tp[\SB{i}] w_i^{H_{[i]}},
+\ee
+which implies
+\be
+w_i^{H_{[i]}} \me_q \B{\Tp[\SB{i}]} = \me_q \B{w_i \Tp[\SB{i}]} w_i^{H_{[i]}}
+\ee
+
+Doing analogous thing for $y_i$ and $\Tm[i]$ one gets that
+\be
+\label{building-block-fg-transformed-sln}
+B(i) = \me_q \B{w_i \Tp[\SB{i}]} w_i^{H_{[i]}} x_i^{H_{[i]}} y_i^{H_{[i]}} \me_{1/q} \B{y_i \Tm[\SB{i}]}
+= \me_q \B{w_i \Tp[\SB{i}]} \B{w_i x_i y_i}^{H_{[i]}} \me_{1/q} \B{y_i \Tm[\SB{i}]},
+\ee
+where in the last transition we used the proposed form of commutational relations \delabel{comm-assumption-sln}.
+
+Comparing \delabel{building-block-fg-transformed-sln}
+with \delabel{building-block-mv-sln} one clearly sees, that
+\begin{equation}
+  \boxed {
+    \label{mv-fg-relation-sln}
+    q^{\phi_i} = w_i x_i y_i, \ \ \psi_i = w_i,\ \ \chi_i = y_i,
+  }
+\end{equation}
+which is a straightforward generalization of \delabel{mv-fg-relation-sl2}. Note, that here we've shown it
+to hold in arbitrary representation, not just fundamental.
+
+\subsection{Commutational relations from comultiplication}
+\subsubsection{q-Exponent factorization of comultiplication}
+Factorization property parallels the one in $SL_q(2)$ case
+(see \delabel{comul-expt-positive-sl2}, \delabel{comul-expt-negative-sl2}),
+only with indices
+\be
+\label{comul-expt-positive-sln}
+\comul{\me_q \B{\psi_i \Tp[\SB{i}]}} =
+\me_q \B{\psi_i \leftFactor{\Tp}{\SB{i}}}
+\me_q \B{\psi_i \rightTwistFactor{\Tp}{\SB{i}}} \\
+\label{comul-expt-negative-sln}
+\comul{\me_{1/q} \B{\chi_i \Tm[\SB{i}]}} =
+\me_{1/q} \B{\chi_i \leftTwistFactor{\Tm}{\SB{i}}}
+\me_{1/q} \B{\chi_i \rightFactor{\Tm}{\SB{i}}}
+\ee
+
+\subsubsection{Convenient notation}
+Again, it is convenient to define a symbolic notation similar to $SL_q(2)$ case, except
+we add indices now
+\be
+& \Psi_i = \me_q \B{\psi_i \Tp[\SB{i}]},\ \Chi_i = \me_{1/q} \B{\chi_i \Tm[\SB{i}]},\ \Phi_i = q^{H_{\SB{i}}} \nonumber \\
+& \EPsiD[i] = \comul{\Psi_i},\ \EChiD = \comul{\Chi_i},\ \QPhiD = \comul{\Phi_i} \nonumber \\
+& \EPsiL[i] = \me_q \B{\psi_i \leftFactor{\Tp}{\SB{i}}},\ \EPsiR[i] = \me_q \B{\psi_i \rightFactor{\Tp}{\SB{i}}} \nonumber \\
+\label{macrolanguage-sln}
+& \EPsiLT[i] = \me_q \B{\psi_i \leftTwistFactor{\Tp}{\SB{i}}},\ 
+\EPsiRT[i] = \me_q \B{\psi_i \rightTwistFactor{\Tp}{\SB{i}}} \\
+& \EChiL[i] = \me_{1/q} \B{\chi_i \leftFactor{\Tm}{\SB{i}}},\ 
+\EChiR[i] = \me_{1/q} \B{\chi_i \rightFactor{\Tm}{\SB{i}}} \nonumber \\
+& \EChiLT[i] = \me_{1/q} \B{\chi_i \leftTwistFactor{\Tm}{\SB{i}}},\ 
+\EChiRT[i] = \me_{1/q} \B{\chi_i \rightTwistFactor{\Tm}{\SB{i}}} \nonumber \\
+& \QPhiL[i] = \qH{\SB{i}} \otimes I,\ \QPhiR[i] = I \otimes \qH{\SB{i}} \nonumber 
+\ee
+
+\subsubsection{Solution of defining equation}
+Comultiplication relations for the general case read
+\be
+\EPsiD[i] = \EPsiL[i] \EPsiRT[i],\ \EChiD[i] = \EChiLT[i] \EChiR[i],\ \QPhiD[i] = \QPhiL[i] \QPhiR[i]
+\ee
+
+Left and right hand side of defining equation are equal, respectively
+\be
+& \dg = \prod_i \EPsiD[i] \QPhiD[i] \EChiD[i] =
+\prod_i \EPsiL[i] \EPsiRT[i] \QPhiL[i] \QPhiR[i] \EChiLT[i] \EChiR[i] \label{dg-sln} & \\
+& \gog = \B{\prod_i \EPsiL[i] \QPhiL[i] \EChiL[i]}\B{\prod_i \EPsiR[i] \QPhiR[i] \EPsiR[i]} \label{gog-sln} &
+\ee
+
+We see, that if
+\be
+\label{untwist-equations-sln}
+& \EPsiRT[i] \QPhiL[i] = \QPhiL[i] \EPsiR[i],\ \And1 \QPhiR[i] \EPsiLT[i] = \EPsiL[i] \QPhiR[i],
+\ee
+
+and, furthermore,
+\be
+\label{left-right-diag-equation-sln}
+\EPsiR[i] \EChiL[i] = \EChiL[i] \EPsiR[i],
+\ee
+
+then \delabel{dg-sln} can be brough to the form
+\be
+\delabel{db-sln} = & \prod_i \EPsiL[i] \QPhiL[i] \EChiL[i] \EPsiR[i]  \QPhiR[i]  \EChiR[i],
+\ee
+
+and this expression can be brought to the form \delabel{gog-sln}, provided following holds
+\be
+\label{left-right-offdiag-equation-sln}
+\SB{\Psi\Chi\Phi^l_i,\ \Psi\Chi\Phi^r_j} = 0, \If i \neq j,
+\ee
+
+where $\Psi\Chi\Phi$ indicates, that in this place any of $\Psi$, $\Chi$ or $\Phi$ can actually stand.
+
+Solving \delabel{untwist-equations-sln} is analogous to solving \delabel{sl_two_first_pass},
+one gets
+\be
+& q^{\phi_i} \psi_i = q^2 \psi_i q^{\phi_i},\ \ q^{\phi_i} \chi_i = q^2 \chi_i q^{\phi_i}
+\ee
+
+Solving \delabel{left-right-diag-equation-sln} (cf. solution of \delabel{sl_two_second_pass}) yields
+\be
+\psi_i \chi_i = \chi_i \psi_i
+\ee
+
+Finally, \delabel{left-right-offdiag-equation-sln} is satisfied if
+\be
+\SB{\psi_i,\ \chi_j} = 0,\ \ \SB{q^{\phi_i},\ \chi_j} = 0,\ \ \SB{q^{\phi_i},\ \psi_j} = 0, \For i \neq j
+\ee
+It is important to note, that since we always commute 'left' exemplars of $\Psi$, $\Chi$, $\Phi$ with
+'right' exemplars of $\Psi$, $\Chi$, $\Phi$, additional terms, coming from Serre relations, do not arise.
+
+In total, commutational relations just obtained can be written as
+\begin{equation}
+\label{comm-relations-psichiphi-sln}
+\boxed{
+  q^{\phi_i} \psi_j = q^{2\delta_{ij}} \psi_j q^{\phi_i},\ \ 
+  q^{\phi_i} \chi_j = q^{2\delta_{ij}} \chi_j q^{\phi_i},\ \ 
+  \psi_i \chi_j = \chi_j \psi_i
+}
+\end{equation}
+
+From this commutational relations, using the transformation \delabel{mv-fg-relation-sln}
+one can show that commutational relations on $w$'s, $x$'s and $y$'s also have the desired form,
+ thus proving the validity of \delabel{mv-fg-relation-sln} itself.
+
+
 \section*{Acknowledgements}
 
 Our work is partly supported by Ministry of Education and Science of
@@ -810,10 +1104,113 @@ the Russian Federation under contract \?, by RFBR
 grants \? by joint grants \?.
 
 \appendix
-\section{Appendix. Some explicit calculations not to be placed in the main text}
 
 \section{Commutational relations on $(\alpha\ \beta\ \gamma)$ from that of $(\chi\ \psi\ \phi)$}
 \label{alpha-beta-gamma-from-chi-psi-phi}
+
+Recall, that $(\alpha\ \beta\ \gamma)$ is expressed through $(\chi\ \psi\ \phi)$ via formula \delabel{albega-through-pcp}
+\be
+& q^{\beta/2} = q^{\phi/2} + \psi q^{-\phi/2} \chi \nonumber \\
+& \alpha = q^{-\phi/2} \chi q^{-\phi/2} \lb 1 + \psi q^{-\phi/2} \chi q^{-\phi/2} \rb^{-1} \nonumber \\
+& \gamma = \lb 1 + q^{-\phi/2} \psi q^{-\phi/2} \chi \rb^{-1} q^{-\phi/2} \psi q^{-\phi/2} \nonumber 
+\ee
+
+First, we want to check, that, given this, the fourth equation of \delabel{albega-pcp-equations} also holds.
+For this we take as input, that commutational relations \delabel{comm-relations-psichiphi-sl2} hold.
+\\
+Indeed
+\def\qbHalf{\lb q^{\phi/2} + \psi q^{-\phi/2} \chi \rb}
+\def\qbMinusHalf{\qbHalf^{-1}}
+\def\qbHalfNorm{\lb 1 + q^{-\phi/2} \psi q^{-\phi/2} \chi \rb}
+\def\qbMinusHalfNorm{\qbHalfNorm^{-1}}
+\be
+\alpha q^{\beta/2} \gamma + q^{-\beta/2}
+= & q^{-\phi/2}\chi \qbMinusHalf \psi q^{-\phi/2}
++ \qbMinusHalf & = \nonumber \\
+\label{albega-pcp-derivation-end1}
+= & q^{-\phi/2} \chi \qbMinusHalfNorm q^{-\phi/2} \psi q^{-\phi/2} + \qbMinusHalfNorm q^{-\phi/2} & =
+\ee
+
+To transform the expression further, we need two auxillary elementary facts
+\be
+& \chi \cdot \lb q^{-\phi/2} \psi q^{-\phi/2} \chi \rb
+= q^{2} \lb q^{-\phi/2}\psi q^{-\phi/2} \chi \rb \cdot \chi \nonumber \\
+& q^{-\phi/2} \cdot \lb q^{-\phi/2} \psi q^{-\phi/2} \chi \rb
+= q^{-2} \lb q^{-\phi/2}\psi q^{-\phi/2} \chi \rb \cdot q^{-\phi/2} \nonumber
+\ee
+
+So we get (this can be seen by representing $\qbMinusHalfNorm$ as infinite series and commuting $q^{-\phi/2}\chi$
+with all individual monomials
+\be
+\delabel{albega-pcp-derivation-end1} = & \qbMinusHalfNorm q^{-\phi/2} \chi q^{-\phi/2} \psi q^{-\phi/2}
++ \qbMinusHalfNorm q^{-\phi/2} & = \nonumber \\
+= & \qbMinusHalfNorm \lsb q^{-\phi/2} \chi q^{-\phi/2} \psi q^{-\phi/2} + q^{-\phi/2}\rsb = \label{albega-pcp-derivation-end2}
+\ee
+
+The first summand in the square brackets can be simplified as
+\be
+q^{-\phi/2} \chi q^{-\phi/2} \psi q^{-\phi/2} = q^{-\phi/2} q q^{-\phi/2} \chi \psi q^{-\phi/2}
+= q^{-\phi/2} q q^{-\phi/2} \psi \chi q^{-\phi/2} = q^{-\phi/2} \psi q^{-\phi/2} \chi q^{-\phi/2} \nonumber
+\ee
+
+and we finally get
+\be
+\delabel{albega-pcp-derivation-end2} = & \qbMinusHalfNorm \qbHalfNorm q^{-\phi/2} = q^{-\phi/2},
+\ee
+which completes the check.
+
+
+Second, we want to derive commutational relations on $(\alpha\ \beta\ \gamma)$ from commutational
+relations on $(\chi\ \psi\ \phi)$.
+
+First, note that if
+\be
+\lb q^{\beta/2}\gamma \rb \cdot = q^{-n} q^{\beta/2} \cdot \lb q^{\beta/2}\gamma \rb,
+\ee
+for some $n$, then also
+\be
+ \gamma \cdot q^{\beta/2} = q^{-n} q^{\beta/2} \cdot \gamma,
+\ee
+and analogous statement is valid for $\alpha$
+ (except we consider $\alpha q^{\beta/2}$ in place of $q^{\beta/2} \gamma$) 
+
+Then, using explicit expressions \delabel{albega-through-pcp} we may write
+\be
+q^{\beta/2} \gamma \cdot q^{\beta/2} = & \psi q^{-\phi/2} \qbHalf
+= q^{-1} q^{\phi/2} \psi q^{-\phi/2} + \psi q^{-2} \psi q^{-\phi/2} \chi q^{-\phi/2} & = \\
+& = q^{-1} q^{\phi/2} \psi q^{-\phi/2} + q^{-1} \psi q^{-\phi/2} \chi \psi q^{-\phi/2} = q^{-1} q^{\beta/2} \cdot q^{\beta/2} \gamma,
+\ee
+so it turned out that $n = 1$. And ditto for $\alpha$
+\be
+\alpha q^{\beta/2} \cdot q^{\beta/2} = & q^{-\phi/2} \chi \qbHalf
+= q^{-1} q^{\phi/2} q^{-\phi/2} \chi + q^{-\phi/2} q \psi q^{-\phi/2} \chi \chi & = \\
+& = q^{-1} q^{\phi/2} q^{-\phi/2} \chi + q^{-1} \psi q^{-\phi/2} \chi q^{-\phi/2} \chi
+= q^{-1} q^{\beta/2} \cdot \alpha q^{\beta/2},
+\ee
+so $n$ here also equals $1$.
+
+The only thing that remains to be shown, is that $\alpha$ and $\gamma$ commute.
+For that, let's note that if
+\be
+\alpha q^{\beta/2} \cdot q^{\beta/2} \gamma = q^m q^{\beta/2} \gamma \alpha q^{\beta/2},
+\ee
+for some $m$, then
+\be
+\alpha \gamma = q^m \gamma \alpha
+\ee
+Indeed,
+\be
+\alpha \gamma = \alpha q^{-\beta/2} q^{\beta/2} q^{\beta/2} q^{-\beta/2} \gamma
+= q^n q^{-n} q^{-\beta/2} \alpha q^{\beta/2} q^{\beta/2} \gamma q^{-\beta/2}
+= q^m q^{-\beta/2} q^{\beta/2} \gamma \alpha q^{\beta/2} q^{-\beta/2} = q^m \gamma \alpha
+\ee
+
+Now, one easily sees, that
+\be
+\alpha q^{\beta/2} q^{\beta/2} \gamma = q^{-\phi/2} \chi \psi q^{-\phi/2} = q q^{-\phi/2} \psi q^{-\phi/2} \chi
+= \psi q^{-\phi/2} q^{-\phi/2} \chi = q^{\beta/2} \gamma \alpha q^{\beta/2},
+\ee
+so $m = 0$.
 
 \section{Mutation formulae}
 \subsection{$SL_q(2)$ fundamental representation}
