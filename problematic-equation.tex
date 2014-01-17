@@ -1,0 +1,228 @@
+\documentclass{article}
+
+%\textheight 25cm \textwidth 17cm \voffset= - 1.2in \hoffset= - 1.0in
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsopn}
+\usepackage{verbatim}
+\newcommand{\hp}{\frac{\hbar}{i} \partial_x}
+\newcommand{\lb}{\left (}
+\newcommand{\rb}{\right )}
+\newcommand{\B}[1]{\lb #1 \rb}
+\newcommand{\lsb}{\left [}
+\newcommand{\rsb}{\right ]}
+\newcommand{\SB}[1]{\lsb #1 \rsb}
+\newcommand{\lab}{\left \langle}
+\newcommand{\rab}{\right \rangle}
+\newcommand{\AB}[1]{\lab #1 \rab}
+
+\newcommand{\eq}[1]{\begin{equation} #1 \end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray} #1 \end{eqnarray}}
+\newcommand{\be}{\begin{eqnarray}}
+\newcommand{\ee}{\end{eqnarray}}
+\newcommand{\bc}{\begin{comment}}
+\newcommand{\ec}{\end{comment}}
+
+\newcommand{\Lambdan}{\Lambda^{2(N-M)}}
+\DeclareMathOperator{\Or}{or}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\If}{if}
+\DeclareMathOperator{\For}{for}
+\DeclareMathOperator{\And1}{and}
+\DeclareMathOperator{\that}{that}
+\DeclareMathOperator{\is}{is}
+\newcommand{\p}{\partial}
+\newcommand{\mF}{\mathcal{F}}
+\newcommand{\e}{\epsilon}
+\newcommand{\wk}{\widetilde{k}}
+\newcommand{\ok}{\overline{k}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\cmO}{\hat{\mathcal{O}}}
+\newcommand{\wLambda}{\widetilde{\Lambda}}
+\newcommand {\?}{\textit{???}}
+\newcommand{\wZ}{\widetilde{Z}}
+\newcommand{\wF}{\widetilde{F}}
+\newcommand{\wG}{\widetilde{G}}
+\newcommand{\me}[0]{\mathcal{E}}
+\newcommand{\hT}[0]{\hat{T}}
+\newcommand{\Bp}[1]{B^{'}\lb #1 \rb}
+\newcommand{\Tp}[1][]{T_{+ #1}}
+\newcommand{\Tm}[1][]{T_{- #1}}
+\newcommand{\hTp}[1][]{\hT_{+ #1}}
+\newcommand{\hTm}[1][]{\hT_{- #1}}
+\newcommand{\hTpm}[1][]{\hT_{\pm #1}}
+\newcommand{\qH}[2][]{q^{#1H_{#2}}}
+\newcommand{\leftFactor}[2]{#1[#2] \otimes I}
+\newcommand{\rightFactor}[2]{I \otimes #1[#2]}
+\newcommand{\leftTwistFactor}[2]{#1[#2] \otimes q^{-2H_{#2}}}
+\newcommand{\rightTwistFactor}[2]{q^{2H_{#2}} \otimes #1[#2]}
+
+\newcommand{\YAMLSectionize}[1]{}
+
+\def\dg{\Delta (g)}
+\def\gog{g \otimes g}
+\def\classlim{q \rightarrow 1}
+%\newcommand{\ll}[1]{\left ( #1 \rb}
+\newcommand{\Echi}[1]{\me_{1/q} \lb \chi_#1 T_{-#1} \rb}
+\newcommand{\Epsi}[1]{\me_{q} \lb\psi_#1 T_{+#1}\rb}
+\newcommand{\Cartan}[1]{\lsb q^{2\phi_i H_i} \rsb}
+\newcommand{\EchiFirst}[1]{\me_{1/q} \lb\chi_#1 T_{-#1} \otimes I \rb}
+\newcommand{\EchiSecond}[1]{\me_{1/q} \lb\chi_#1 I \otimes T_{-#1} \rb}
+\newcommand{\EpsiFirst}[1]{\me_{q} \lb\psi_#1 T_{+#1} \otimes I \rb}
+\newcommand{\EpsiSecond}[1]{\me_{q} \lb\psi_#1 I \otimes T_{+#1} \rb}
+\newcommand{\CartanFirst}[1]{\lsb q^{2\phi_#1 H_#1} \otimes I \rsb}
+\newcommand{\CartanSecond}[1]{\lsb I \otimes q^{2\phi_#1 H_#1}  \rsb}
+\newcommand{\CartanCoprod}[1]{\lsb q^{2\phi_#1 H_#1} \otimes q^{2\phi_#1 H_#1}  \rsb}
+\newcommand{\EchiPreCoprod}[1]{\me_{1/q} \lb\chi_#1 \Delta \lb T_{-#1} \rb \rb}
+\newcommand{\EpsiPreCoprod}[1]{\me_{q} \lb\psi_#1 \Delta \lb T_{+#1} \rb \rb}
+\newcommand{\EchiCoprod}[1]{\me_{1/q} \lb\chi_#1 \lb q^{2H_i} \otimes T_{-#1} + T_{-#1} \otimes I\rb \rb}
+\newcommand{\EpsiCoprod}[1]{\me_{q} \lb\psi_#1 \lb I \otimes T_{+#1} + T_{+#1} \otimes q^{-2H_i}\rb \rb}
+\newcommand{\EchiTwisted}[1]{\me_{1/q} \lb\chi_#1 q^{2H_i} \otimes T_{-#1} \rb}
+\newcommand{\EpsiTwisted}[1]{\me_{q} \lb\psi_#1 T_{+#1} \otimes q^{-2H_i} \rb}
+
+
+\def\Chi{\mathcal{X}}
+
+
+%% \newcommand{\EChi}[0]{\me_{1/q} \lb \chi_#1 T_{-#1} \rb}
+%% \newcommand{\EPsi}[0]{\me_{q} \lb\psi_#1 T_{+#1}\rb}
+\newcommand{\EChiL}[1][]{\Chi^L_{#1}}
+\newcommand{\EChiR}[1][]{\Chi^R_{#1}}
+\newcommand{\EChiLT}[1][]{\Chi^{Lt}_{#1}}
+\newcommand{\EChiRT}[1][]{\Chi^{Rt}_{#1}}
+\newcommand{\EChiD}[1][]{\Chi^\Delta_{#1}}
+\newcommand{\EPsiL}[1][]{\Psi^L_{#1}}
+\newcommand{\EPsiR}[1][]{\Psi^R_{#1}}
+\newcommand{\EPsiLT}[1][]{\Psi^{Lt}_{#1}}
+\newcommand{\EPsiRT}[1][]{\Psi^{Rt}_{#1}}
+\newcommand{\EPsiD}[1][]{\Psi^\Delta_{#1}}
+\newcommand{\QPhiL}[1][]{\Phi^L_{#1}}
+\newcommand{\QPhiR}[1][]{\Phi^R_{#1}}
+\newcommand{\QPhiD}[1][]{\Phi^\Delta_{#1}}
+
+\newcommand{\EPsii}[1]{\Psi_#1}
+\newcommand{\EChii}[1]{\Chi_#1}
+\newcommand{\QPhii}[1]{\Phi_#1}
+\newcommand{\EChiLi}[1]{\Chi_#1^L}
+\newcommand{\EChiRi}[1]{\Chi_#1^R}
+\newcommand{\EChiLTi}[1]{\Chi_#1^{Lt}}
+\newcommand{\EChiRTi}[1]{\Chi_#1^{Rt}}
+\newcommand{\EChiDi}[1]{\Chi_#1^\Delta}
+\newcommand{\EPsiLi}[1]{\Psi_#1^L}
+\newcommand{\EPsiRi}[1]{\Psi_#1^R}
+\newcommand{\EPsiLTi}[1]{\Psi_#1^{Lt}}
+\newcommand{\EPsiRTi}[1]{\Psi_#1^{Rt}}
+\newcommand{\EPsiDi}[1]{\Psi_#1^\Delta}
+\newcommand{\QPhiLi}[1]{\Phi_#1^L}
+\newcommand{\QPhiRi}[1]{\Phi_#1^R}
+\newcommand{\QPhiDi}[1]{\Phi_#1^\Delta}
+\newcommand{\EBlockLi}[1]{\EPsiLi{#1} \QPhiLi{#1} \EChiLi{#1}}
+\newcommand{\EBlockRi}[1]{\EPsiRi{#1} \QPhiRi{#1} \EChiRi{#1}}
+\newcommand{\ComultBlock}[1]{\EPsiLi{#1}\EPsiRTi{#1}\QPhiLi{#1}\QPhiRi{#1}\EChiLTi{#1}\EChiRi{#1}}
+
+\newcommand{\matd}[4]{\lb \begin{array}{cc}
+#1 & #2 \\ #3 & #4
+\end{array} \rb}
+
+\newcommand{\comul}[1]{\Delta \lb #1 \rb}
+
+\newcommand{\delabel}[1]{(\ref{#1})}
+
+\newcommand{\Hone}[1]{\lb \begin{array}{ccc}
+#1^{2/3} & 0 & 0 \\ 0 & #1^{-1/3} & 0 \\ 0 & 0 & #1^{-1/3}
+\end{array} \rb}
+\newcommand{\Honed}[1]{\lb \begin{array}{ccc}
+#1^{1/2} & 0 \\ 0 & #1^{-1/2}
+\end{array} \rb}
+\newcommand{\Eone}[1]{\lb \begin{array}{ccc}
+1 & #1 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1
+\end{array} \rb}
+\newcommand{\Eoned}[1]{\lb \begin{array}{cc}
+1 & #1 \\ 0 & 1
+\end{array} \rb}
+\newcommand{\Fone}[1]{\lb \begin{array}{ccc}
+1 & 0 & 0 \\ #1 & 1 & 0 \\ 0 & 0 & 1
+\end{array} \rb}
+\newcommand{\Foned}[1]{\lb \begin{array}{cc}
+1 & 0 \\ #1 & 1
+\end{array} \rb}
+
+
+\newcommand{\Htwo}[1]{\lb \begin{array}{ccc}
+#1^{1/3} & 0 & 0 \\ 0 & #1^{1/3} & 0 \\ 0 & 0 & #1^{-2/3}
+\end{array} \rb}
+\newcommand{\Etwo}[1]{\lb \begin{array}{ccc}
+1 & 0 & 0 \\ 0 & 1 & #1 \\ 0 & 0 & 1
+\end{array} \rb}
+\newcommand{\Ftwo}[1]{\lb \begin{array}{ccc}
+1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & #1 & 1
+\end{array} \rb}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%               SPACE FILLING SETTINGS               %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textheight 24.5cm
+\textwidth 17cm
+%\voffset=-1.2in
+\voffset=-1.4in
+%\voffset= - 1.85in
+\hoffset= - 1.0in         % switch off for draft style
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{{\bf Problematic $SL_2(2)$ equation \vspace{.2cm}}}
+
+\begin{document}
+ \maketitle
+
+To prove, that formula
+\be
+a = w(1 + qx),\ \ c = y(1 + q x),\ \ b = 1/x
+\ee
+describes mutation on a quantum group, it is needed to prove, that the following holds
+
+\be
+\me_q(q^H T_+ q^H) x^H \me_{1/q}(q^{-H} T_- q^{-H}) = \me_q\lb \frac{q^{2H} x}{q - 1/q}\rb
+\me_{1/q}(T_-) x^{-H} \me_{q}(T_+) \me_{1/q}\lb \frac{q^{-2H} x}{1/q - q}\rb
+\ee
+
+I've check in Mathematica, that this formula is valid for first $n = 20$ representations of $SL_q(2)$.
+
+\paragraph{Check for fundamental representation}
+In this case we have
+\be
+& T_+ = \matd{0}{1}{0}{0},\ \ T_- = \matd{0}{0}{1}{0},\ \ H = \matd{1/2}{0}{0}{-1/2},
+\ee
+hence l.h.s of the identity equals
+\be
+& \matd{1}{1}{0}{1} \cdot \matd{x^{1/2}}{0}{0}{x^{-1/2}}\cdot \matd{1}{0}{1}{1}
+= \matd{x^{1/2}+x^{-1/2}}{x^{-1/2}}{x^{-1/2}}{x^{-1/2}},
+\ee
+
+while the r.h.s equals
+\be
+& \matd{\me_q\lb \frac{q x}{q - 1/q}\rb}{0}{0}{\me_q\lb \frac{q^{-1} x}{q - 1/q}\rb}
+\cdot \matd{1}{0}{1}{1} \cdot \matd{x^{1/2}}{0}{0}{x^{-1/2}} \cdot \matd{1}{1}{0}{1} \cdot
+\matd{\me_{1/q}\lb \frac{q^{-1} x}{1/q - q}\rb}{0}{0}{\me_{1/q}\lb \frac{q x}{1/q - q}\rb} & \\
+= & \matd{\me_q\lb \frac{q x}{q - 1/q}\rb}{0}{0}{\me_q\lb \frac{q^{-1} x}{q - 1/q}\rb}
+\cdot
+\matd{x^{-1/2}}{x^{-1/2}}{x^{-1/2}}{x^{1/2} + x^{-1/2}}
+\cdot \matd{\me_{1/q}\lb \frac{q^{-1} x}{1/q - q}\rb}{0}{0}{\me_{1/q}\lb \frac{q x}{1/q - q}\rb}
+\ee
+
+Now, using
+\be
+\me_q(x) \me_{1/q}(-x) = 1
+\ee
+and
+\be
+\me_q(\frac{q^2 x}{q - 1/q}) = (1 + qx) \me_q(\frac{x}{q - 1/q})
+\ee
+it is straightforward to show that
+\be
+\me_q\lb \frac{q x}{q - 1/q}\rb \me_{1/q}\lb \frac{q^{-1} x}{1/q - q}\rb = (1 + x),
+\ee
+from which validity of equation readily follows.
+
+\end{document}

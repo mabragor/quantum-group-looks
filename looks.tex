@@ -35,6 +35,7 @@
 \newcommand{\p}{\partial}
 \newcommand{\mF}{\mathcal{F}}
 \newcommand{\e}{\epsilon}
+\newcommand{\ve}{\varepsilon}
 \newcommand{\wk}{\widetilde{k}}
 \newcommand{\ok}{\overline{k}}
 \newcommand{\D}{\mathcal{D}}
@@ -197,8 +198,6 @@ Widely used \cite{Hik1} formulae for mutations \cite{FG1},\cite{FG2} are
 direct consequence of independency of group element on the order of simple roots.
 Usual formulae \cite{Mars1} for $2 n$ Poisson leaf emerge in classical limit,
 if all but few ($2n$) coordinates vanish.
-{\it do not know, whether I should say here, that formulae are in fact a little
-bit different}
 }
 
 %\tableofcontents
@@ -272,70 +271,85 @@ bit different}
 
 %% This, however, is out of scope of this paper and is left for further investigation.
 
-\section{Introduction/Cheatsheet}
+\section{Introduction}
 Quantum groups are very cool and everywhere-important objects.
 
 So do cluster varieties.
 
-Let's briefly summarize the progress made in this paper.
-If this section looks somewhat overgeneric or sketchy to you, you can safely skip to the next
-section, where ideas are elaborated in the simplest case of $SL(2)_q$.
+\section{Cheatsheet}
+
+This section is a brief summary of all the important formulae in the paper.
+For more detailed explanations, see, for example, next section, where everything is
+ done in the simplest case of $SL(2)_q$.
 
 First, we take the quantum group element $g$ to be of the form
 of the word of elementary {\it building blocks} $B(i)$, each related to some positive-negative pair
 of simple roots $\alpha_{\pm \lsb i \rsb}$
 \be
-g = B \lb i_1 \rb B \lb i_2 \rb \dots B \lb i_{n^2-1} \rb,
+g = B \lb i_1 \rb B \lb i_2 \rb \dots B \lb i_{\frac{n(n + 1)}{2}} \rb,
 \ee
-where building block $B(i)$ can be expressed in one of the two equivalent forms
-\be
-B(i) = \me_q \lb \psi_i q^{H_{[i]}} \hT_{+[i]} \rb q^{\phi_i H_{[i]}} \me_{1/q} \lb \chi_i \hT_{-[i]} q^{-H_{[i]}} \rb
-\equiv
-w_i^{H_{[i]}} \me_q \lb q^{H_{[i]}} \hT_{+[i]} \rb x_i^{H_{[i]}} \me_{1/q} \lb \hT_{-[i]} q^{-H_{[i]}} \rb y_i^{H_{[i]}},
-\ee
-where $\me_q(x)$ is $q$-exponential, and $H_{[i]}$, $T_{+[i]}$ and $T_{-[i]}$ are Chevalley generators of the algebra.
-Square brackets denote the \? map from $n^2-1-n$ parameters to only {\it simple} ones.
+where each building block $B(i)$ can be expressed in one of the two equivalent forms
+\begin{align}
+B(i) & = \me_q \lb \psi_i q^{H_{[i]}} \hT_{+[i]} \rb q^{\phi_i H_{[i]}} \me_{1/q} \lb \chi_i \hT_{-[i]} q^{-H_{[i]}} \rb \\ \notag
+& \equiv
+w_i^{H_{[i]}} \me_q \lb q^{H_{[i]}} \hT_{+[i]} \rb x_i^{H_{[i]}} \me_{1/q} \lb \hT_{-[i]} q^{-H_{[i]}} \rb y_i^{H_{[i]}}
+\end{align}
+Here $\me_q(x)$ is $q$-exponential, and $H_{[i]}$, $\hT_{+[i]}$ and $\hT_{-[i]}$ are Chevalley generators of the algebra.
+Square brackets denote auxillary map from all roots to only {\it simple} ones.
 
-Equivalence between two building block parametrisations is given by
+Equivalence between two building block parametrizations is given by
 \be
 \psi_i = w_i,\ \ \chi_i = y_i,\ \ q^{\phi_i} = w_i x_i y_i = y_i x_i w_i
 \ee
 
-Quantum group defining equation $\dg = \gog$ then implies the Darboux-like commutational
+Quantum group defining equation
+\begin{equation}
+\label{eq:q-group-def}
+\dg = \gog
+\end{equation}
+ then implies the Darboux-like commutational
 relations on the quantum group parameters (also called elements of the dual algebra).
-\be
+\begin{align}
 & \psi_i \chi_j = \chi_j \psi_i, \ \ q^{\phi_i} \psi_j = q^{2 \delta_{ij}} \psi_j q^{\phi_i}, \ \
-q^{\phi_i} \chi_j = q^{2 \delta_{ij}} \chi_j q^{\phi_i} & \\ &
+q^{\phi_i} \chi_j = q^{2 \delta_{ij}} \chi_j q^{\phi_i} & \\ \notag &
 y_i w_j = w_j y_i, \ \ x_i w_j = q^{2\delta_{ij}} w_j x_i, \ \ x_i y_j = q^{2\delta_{ij}} y_j x_i
-\ee
+\end{align}
 
-Furthermore, in every place where building block $B(i)$ is, slightly
-different building block $\Bp{i}$ could be used
-\be
-\Bp{i} = \me_{1/q} \lb \alpha_i q^{H_{[i]}} \hT_{-[i]} \rb q^{\beta_i H_{[i]}} \me_q \lb \gamma_i \hT_{+[i]} q^{-H_{[i]}} \rb   = 
+Furthermore, instead of any $B(i)$ one can use slightly different building block $\Bp{i}$
+(which also can be written in one of two equivalent forms)
+\begin{align}
+\Bp{i} & = \me_{1/q} \lb \alpha_i q^{H_{[i]}} \hT_{-[i]} \rb q^{\beta_i H_{[i]}} \me_q \lb \gamma_i \hT_{+[i]} q^{-H_{[i]}} \rb  \\ \notag & \equiv
 a_i^{H_{[i]}} \me_{1/q} \lb q^{H_{[i]}} \hT_{-[i]} \rb b_i^{H_{[i]}} \me_q \lb  \hT_{+[i]} q^{-H_{[i]}} \rb c_i^{H_{[i]}},
-\ee
-and {\bf quantum} substitution of variables, which relates newly obtained $g$' to the old one
-is of the form of a mutation.
+\end{align}
+and {\bf quantum} substitution of variables, which relates thus obtained $g$ to the old one
+is of the form of a (quantum) mutation.
 \be
 a_i = w_i(1 + q x_i), \ \ c_i = y_i(1 + q x_i), \ \ b_i = \frac{1}{x_i},
 \ee 
 assuming mutation occured in the building block $B(i)$.
 
-We interpret our results as follows: quantum group $SL(n)_q$ is a cluster  variety,
-with very simple cluster data:
-\begin{enumerate}
-\item $I$ - it is in fact hard to describe what seed and frozen seed look like
-\item $I_0$ - since it is being done on like two pages in Fock Goncharov 0508408.
-\item $\epsilon_{ij} = offdiag \lb \delta_{ij}, -\delta_{ij} \rb$
-\item $d_i \equiv 1$ for all $i$
-\end{enumerate}
+We thus conclude that quantum group $SL(n)_q$ is naturally a cluster  variety,
+with very simple cluster data \cite{FG2}:
+\begin{itemize}
+\item The word of roots $D$, from which seed and frozen seed are constructed is
+($i$ denotes $i$-th positive simple root and $\overline{i}$ - negative simple root)
+\begin{equation}
+D = 1 \overline{1} 2 \overline{2} \dots n \overline{n} 1 \overline{1} 2 \overline{2} \dots (n - 1)\overline{(n-1)}
+\dots \dots 1 \overline{1} 2 \overline{2} 1 \overline{1}
+\end{equation}
+\item $d_i \equiv 1$ for all $i$;
+\item $\ve_{ij}$ is almost always zero, only in $x$-$w$- and $x$-$y$-subspaces
+  it takes the form of a standard Darboux symplectic matrix, e.g
+\begin{equation}
+  \ve_{ij} \Big{|}_{x-y-subspace} = \lb \begin{array}{cc} 0 & E \\ -E & 0 \end{array} \rb
+\end{equation}
+
+\end{itemize}
 
 \section {$SL(2)_q$ case}
-In this section we detail all parts of the construction in case simplest example of $SL(2)_q$.
-Furthermore, unless explicitly stated, we restrict considerations to fundamental representation.
-This is done to make this section clear and illustrarive, although all calculations, of course,
-remain valid in higher representations.
+In this section we present all parts of the construction in the simplest case - $SL(2)_q$.
+Some calculations are shown only in fundamental representation, although
+we performed computer checks for higher finite-dimensional representations as well.
 
 \subsection{Quantum algebra's commutational relations and comultiplication rules}
 In case of $SL(2)_q$ there are only one positive root $T_{+}$, one negative root $T_{-}$
@@ -346,7 +360,7 @@ Commutational relations read
 \label{comm-relations-sl2}
 q^H \hT_{\pm} = q^{\pm 1} \hT_{\pm} q^H,\ \ \hT_+ \hT_- - \hT_- \hT_+ = \frac{q^{2H} - q^{-2H}}{q - q^{-1}},
 \ee
-and comultiplication relations are
+and comultiplication rules are
 \be
 \Delta(H) = I \otimes H + H \otimes I, \ \ \Delta(\hT_\pm) = q^H \otimes \hT_\pm + \hT_\pm \otimes q^{-H}
 \ee
@@ -354,7 +368,7 @@ and comultiplication relations are
 There are two obvious ways to twist generators, associated to roots, which play crucial role in
 the construction below.
 
-One is to consider
+One is to consider (we call it {\it positive twist})
 \be
 \label{twist-positively}
 T_+ = q^H \hT_+,\ \And1 \ T_- = \hT_- q^{-H}
@@ -364,7 +378,7 @@ with comultiplication rules
 \label{comultiply-positively}
 \Delta(T_+) = q^{2H} \otimes T_+ + T_+ \otimes I,\ \ \Delta(T_-) = I \otimes T_- + T_- \otimes q^{-2H},
 \ee
-and another is
+and another is (we call it {\it negative twist})
 \be
 \label{twist-negatively}
 T_- = q^H \hT_-,\ \And1 \ T_+ = \hT_+ q^{-H},
@@ -375,8 +389,9 @@ with comultiplication rules
 \Delta(T_-) = q^{2H} \otimes T_- + T_- \otimes I,\ \ \Delta(T_+) = I \otimes T_+ + T_+ \otimes q^{-2H},
 \ee
 
-If we restrict ourselves to only consider root-associated generators twisted this or that way or only untwisted,
-then in fundamental representation they can be chosen to be
+Note, that twists preserve commutational relations. That means, that if we are working with only positive-twisted
+generators, or with only negative-twisted generators,
+we may still choose their fundamental representation to be (like in untwisted case)
 \be
 T_+ = \matd{0}{1}{0}{0},\ T_- = \matd{0}{0}{1}{0},\ H = \matd{\frac{1}{2}}{0}{0}{-\frac{1}{2}}
 \ee
@@ -390,7 +405,7 @@ g = B(1),
 \ee
 where $B$ can be chosen to be in one of two equivalent forms.
 
-The former is inspired by Fock-Goncharov construction and reads
+The former is inspired by Fock-Goncharov construction \cite{FG2} and reads
 \be
 \label{building-block-sl2-fg}
 B(1) = & w^H \me_q \lb T_+\rb x^H \me_{1/q} \lb T_- \rb y^H & = \\
@@ -399,7 +414,7 @@ B(1) = & w^H \me_q \lb T_+\rb x^H \me_{1/q} \lb T_- \rb y^H & = \\
 {w^{-1/2}x^{-1/2}y^{1/2}}{w^{-1/2}x^{-1/2}y^{-1/2}} \nonumber,
 \ee
 
-The latter comes from Morozov-Vinet considerations and reads
+The latter comes from Morozov-Vinet considerations \cite{MV1} and reads
 \be
 \label{building-block-sl2-mv}
 B(1) = & \me_q \lb \psi T_+ \rb q^{\phi H} \me_{1/q} \lb \chi T_- \rb & = \\
@@ -410,20 +425,19 @@ In the above formulae $\me_q(x)$ is $q$-exponential (known also as quantum dilog
 \be
 \me_q(x) = \sum_{i = 0}^\infty \frac{x^n}{[n]!} q^{-\frac{1}{2}n(n-1)},
 \ee
-quantum numbers are defined to be symmetrical
+and $q$-analogs are defined to be symmetrical
 $$[n] = \frac{q^n - q^{-n}}{q - q^{-1}}$$
-and we have explicitly used the fact, that in fundamental representation $T_+^2 = T_-^2 = 0$,
-so exponential is in fact quite simple and not yet so quantum.
+Note also, that we have explicitly used the fact, that in fundamental representation $T_+^2 = T_-^2 = 0$,
+and $q$-exponential is hence quite simple.
 
 For the reasons, that will become clear in section \ref{comm-relations-dual-algebra-sl2},
 $T_+$ and $T_-$ in these formulae should be twisted like in \delabel{twist-positively}
-(otherwise there won't be any solution to quantum group defining equation).
-Looking a little bit ahead one can say, that the other twist convention \delabel{twist-negatively}
-is relevant when we change the order of positive-negative roots in the ansatz for $B(1)$.
+(otherwise there won't be any solution to quantum group defining equation \delabel{eq:q-group-def}).
+The other, negative, choice of twist is needed, when we consider building block $\Bp{1}$.
 
 If variables $w$, $x$, $y$ and $\psi$, $\chi$, $q^\phi$ were commutative, then we could immediately
 conclude (by equating two different forms of $B(1)$ \delabel{building-block-sl2-fg} and \delabel{building-block-sl2-mv}),
- that relation between them is
+ that correct substitution of variables is
 \begin{equation}
   \boxed {
     \label{mv-fg-relation-sl2}
@@ -507,7 +521,7 @@ and formula \delabel{mv-fg-relation-sl2} is a valid non-commutative substitution
 \subsection{Commutational relations on the dual algebra from comultiplication}
 \label{comm-relations-dual-algebra-sl2}
 
-In this section we use quantum group defining equation $\dg = \gog$ to determine
+In this section we use quantum group defining equation \delabel{eq:q-group-def} to determine
 commutational relations on the dual algebra, following the lines of \cite{MV1}.
  Namely, we take $g$ to be of the form
 \delabel{quantum-group-element-sl2}, where $B(1)$ is taken to be of Morozov-Vinet form
@@ -543,7 +557,7 @@ which, for convenience, we will also write in terms of $1/q$ instead of $q$
 \me_{1/q}(y)\me_{1/q}(x) = \me_{1/q}(x + y)\ if\ xy = q^{-2} yx, \label{fact_over_q}
 \ee
 
-Now comultiplication of the part of the group element corresponding to he positive root factorises as
+Now comultiplication of the part of the group element corresponding to the positive root factorises as
 (using \delabel{fact_q}; recall, that we use twisting convention \delabel{twist-positively}, hence
 comultiplication rules \delabel{comultiply-positively} apply)
 \be
@@ -561,12 +575,9 @@ Analogously, using (\ref{fact_over_q}) we get for the negative root
 
 \subsubsection{Convenient notation}
 
-When written directly in terms of $\me_q$, $T_\pm$, $H$ and $\otimes$, formulae quickly become involved,
-although these elementary 'letters' often enter only in specific combinations.
-In situations like this, commonly used technique is to introduce some higher-level language,
-in which to express the statements.
+It is convenient to abbreviate frequently occuring combinations of $\me_q$, $T_\pm$, $H$ and $\otimes$.
 
-Namely, let's define the following
+Namely, let's define the following notation
 
 \be
 & \Psi = \me_q \B{\psi \Tp},\ \Chi = \me_{1/q} \B{\chi \Tm},\ \Phi = q^H \nonumber \\
@@ -579,7 +590,7 @@ Namely, let's define the following
 & \QPhiL = q^H \otimes I,\ \QPhiR = I \otimes q^H \nonumber 
 \ee
 
-Mnemonics is as follows:
+Mnemonic behind this is:
 \begin{itemize}
 \item $\Psi$, $\Chi$ or $\Phi$ means, that the expression it denotes depends, respectively,
 on $\psi$, $\chi$ or $\phi$.
@@ -599,7 +610,7 @@ can be expressed as
 \EPsiD = \EPsiL \EPsiRT,\ \EChiD = \EChiLT \EChiR,\ \QPhiD = \QPhiL \QPhiR
 \ee
 
-Now, left and right hand side of defining equation is equal, respectively
+Now, left and right hand side of defining equation \delabel{eq:q-group-def} are equal, respectively
 \be
 & \dg = \EPsiD \QPhiD \EChiD = \EPsiL \EPsiRT \QPhiL \QPhiR \EChiLT \EChiR \label{dg_sl_two} & \\
 & \gog = \EPsiL \QPhiL \EChiL \EPsiR \QPhiR \EPsiR \label{gog_sl_two} &
@@ -645,8 +656,8 @@ q^\phi \psi = q^2 \psi q^\phi,\ \ q^\phi \chi = q^2 \chi q^\phi,\ \ \psi \chi = 
 
 Thus, our {\it ad hoc} suggestion \delabel{comm-assumption-sl2} proved to be true for commutational
 relations on $\psi$, $\chi$ and $\phi$, with $n = 2$.
-Now \delabel{mv-fg-relation-sl2}, understood as {\it quantum} substitution of variables is sufficient to
-prove, that commutational relations for $x$, $y$ and $w$ are also of the form \delabel{comm-assumption-sl2},
+Now if \delabel{mv-fg-relation-sl2}, understood as {\it quantum} substitution of variables, is correct,
+then commutational relations for $x$, $y$ and $w$ are also of the form \delabel{comm-assumption-sl2},
 also with $n = 2$
 \begin{equation}
 \label{comm-relations-wxy-sl2}
@@ -714,23 +725,24 @@ We can use different form of the building block in the ansatz for the group elem
 g = \Bp{1},
 \ee
 where building block can be again expressed in two forms
-\be
+\begin{align}
 \label{building-block-alt-sl2-fg}
-\Bp{1} = & a^H \me_{1/q} \lb T_-\rb b^H \me_{q} \lb T_+ \rb c^H & = \\
-= & \Honed{a} \Foned{1} \Honed{b} \Eoned{1} \Honed{c} & = \nonumber \\
-= & \matd{a^{1/2}b^{1/2}c^{1/2}}{a^{1/2}b^{1/2}c^{-1/2}}
-{a^{-1/2}b^{1/2}c^{1/2}}{a^{-1/2}b^{1/2}c^{-1/2} + a^{-1/2}b^{-1/2}c^{-1/2}} \nonumber,
-\ee
+\Bp{1} & = a^H \me_{1/q} \lb T_-\rb b^H \me_{q} \lb T_+ \rb c^H & \\
+& = \Honed{a} \Foned{1} \Honed{b} \Eoned{1} \Honed{c} & \notag \\
+& = \matd{a^{1/2}b^{1/2}c^{1/2}}{a^{1/2}b^{1/2}c^{-1/2}}
+{a^{-1/2}b^{1/2}c^{1/2}}{a^{-1/2}b^{1/2}c^{-1/2} + a^{-1/2}b^{-1/2}c^{-1/2}} \notag,
+\end{align}
 or
-\be
+\begin{align}
 \label{building-block-alt-sl2-mv}
-\Bp{1} = & \me_q \lb \alpha T_- \rb q^{\beta H} \me_{1/q} \lb \gamma T_+ \rb & = \\
-= & \Foned{\alpha} \matd{q^{\beta/2}}{0}{0}{q^{-\beta/2}} \Eoned{\gamma}
-= \matd{q^{\beta/2}}{q^{\beta/2}\gamma}{\alpha q^{\beta/2}}{\alpha q^{\beta/2}\gamma  + q^{-\beta/2}} \nonumber.
-\ee
+\Bp{1} & = \me_q \lb \alpha T_- \rb q^{\beta H} \me_{1/q} \lb \gamma T_+ \rb & \\
+& = \Foned{\alpha} \matd{q^{\beta/2}}{0}{0}{q^{-\beta/2}} \Eoned{\gamma}
+\\ \notag
+& = \matd{q^{\beta/2}}{q^{\beta/2}\gamma}{\alpha q^{\beta/2}}{\alpha q^{\beta/2}\gamma  + q^{-\beta/2}} \notag.
+\end{align}
 
 Note, that although the form of $T_\pm$ in this formulae appears to be the same as in
-\delabel{building-block-sl2-fg} and \delabel{building-block-sl2-mv}, here they are twisted like
+\delabel{building-block-sl2-fg} and \delabel{building-block-sl2-mv}, here they are twisted negatively, like
 in \delabel{twist-negatively}. That is, one should be very careful when writing formulae, which include
 both types of ansaetze (for example, the ones in Appendix \ref{alpha-beta-gamma-from-chi-psi-phi}, where
 we derive commutational relations on $\alpha$, $\beta$ and $\gamma$ from the ones obtained in
@@ -777,21 +789,20 @@ while the fourth provides consistency check.
 \ee
 
 One can further verify that the form of the commutation relations is preserved by this change of variables, i.e.
-\be
-q^{\beta} \alpha = q^2 \alpha q^{\beta} \\
-q^{\beta} \gamma = q^2 \gamma q^{\beta} \\
+\begin{align}
+q^{\beta} \alpha = q^2 \alpha q^{\beta} \\ \notag
+q^{\beta} \gamma = q^2 \gamma q^{\beta} \\ \notag
 \alpha \gamma = \gamma \alpha
-\ee
+\end{align}
 
-The details of this verification and check, that the fourth equation indeed holds
+The details of the derivation of this commutational relations
 can be found in Appendix \ref{alpha-beta-gamma-from-chi-psi-phi}
 
 \subsubsection{Relation between FG-type ansaetze}
 Comparing \delabel{building-block-sl2-fg} to \delabel{building-block-alt-sl2-fg} and then
-solving the obtained equations, one can arrive at another form of relation between
-ansaetze, corresponding to different root order.
+solving the obtained equations, one can express relation between
+ansaetze, corresponding to different root orders, in a particularly nice form
 
-Expressed like this, it takes particularly simple form
 \begin{equation}
 \label{quantum-mutation-sl2}
   \boxed{
@@ -800,13 +811,13 @@ Expressed like this, it takes particularly simple form
 \end{equation}
 in which one readily recognizes the quantum cluster transformation (also called the mutation).
 
-Setting $\classlim$, of course, reproduces the classical version of mutation
-\be
+Taking the limit $\classlim$, of course, reproduces the classical mutation formula
+\begin{align}
 \label{classical-mutation-sl2}
-a = w \lb 1 + x\rb \\
+\notag a = w \lb 1 + x\rb \\
 c = y \lb 1 + x\rb \\
-b = \frac{1}{x}
-\ee
+b = \frac{1}{x} \notag
+\end{align}
 
 The details of the derivation of \delabel{quantum-mutation-sl2} are presented in Appendix
 \ref{derivation-of-quantum-mutation-sl2}.
@@ -820,12 +831,12 @@ The details of the derivation of \delabel{quantum-mutation-sl2} are presented in
 %% Note: in Fock-Goncharov they do precisely that in their example with $sl(2)$ (arXiv:math/0508408),
 %% but in classical limit.
 
-\section {$SL_q(3)$ case}
-In this section should be presented additional complications, that arise when switching from $SL_q(2)$,
-yet such that their solution is more easily illustrated in $SL_q(3)$ then in general $SL_q(N)$.
+%% \section {$SL_q(3)$ case}
+%% In this section should be presented additional complications, that arise when switching from $SL_q(2)$,
+%% yet such that their solution is more easily illustrated in $SL_q(3)$ then in general $SL_q(N)$.
 
 \section {$SL_q(N)$ case}
-In this section our ideas are elaborated in the case of arbitrary $A^q_{n} = SL_q(N)$ quantum group.
+In this section describes the construction for arbitrary $A^q_{n} = SL_q(N)$ quantum group.
 If you find the discussion too general, you may wish to read $SL_q(2)$ section, and corresponding appendices first.
 
 \subsection{Quantum algebra's commutational relations and comultiplication rules}
@@ -834,12 +845,12 @@ Chevalley basis consists of $n$ positive roots, $n$ negative roots and $n$ carta
 Their (quantum) commutational relations are given by
 \be
 \label{comm-relations-sln}
-\qH{i} \hTpm[j] = q^{\pm C_{ij}} \hTpm[j] \qH{i},\ \ 
+\qH{i} \hTpm[j] = q^{\pm C_{ij}/2} \hTpm[j] \qH{i},\ \ 
 \hTp[i] \hTm[j] - \hTm[j] \hTp[i] = \frac{\qH[2]{i} - \qH[-2]{i}}{q - q^{-1}},
 \ee
 
 There are also commutational relations associated with Serre relations,
-but they will not play a role in our discussion.
+but they are left out of the scope of this paper.
 
 Comultiplication rules are as follows
 \be
@@ -847,7 +858,7 @@ Comultiplication rules are as follows
 \Delta(\hT_{\pm i}) = q^{H_i} \otimes \hT_{\pm i} + \hT_{\pm i} \otimes q^{-H_i}
 \ee
 
-Again, we may twist {\it each} pair of generators $T_{+ i}$ $T_{- i}$ independently in two of the following ways: \\
+Again, we may twist each pair of generators $T_{+ i}$ $T_{- i}$ independently in two of the following ways: \\
 'positively'
 \be
 \label{twist-positively-sln}
@@ -885,7 +896,8 @@ and at $i+1$-th row $i+1$-th column there is $-\frac{1}{2}$
 
 \subsection{Ansatz for group element}
 
-In case of $n > 1$ the dimension of the group is larger than the total number of positive, negative roots and cartans.
+In case of $n > 1$ the dimension of the group is larger than the total number of positive, negative
+simple roots and cartans.
 
 Hence, in order to express arbitrary group element, we must either use all the roots,
 or use simple roots multiple times.
@@ -893,10 +905,10 @@ or use simple roots multiple times.
 We propose the following, somewhat redundant, parametrization of the group element
 \be
 \label{quantum-group-element-sln}
-g = \prod_{i = 1}^{(n+1)^2 - 1}B(i),
+g = \prod_{i = 1}^{\frac{n(n+1)}{2}}B(i),
 \ee
 
-where buiding block $B(i)$ can be in one of two equivalent forms \\
+where each buiding block $B(i)$ can be in one of two equivalent forms \\
 Morozov-Vinet one
 \be
 \label{building-block-mv-sln}
@@ -911,14 +923,17 @@ B(i) = w_i^{H_{[i]}} \me_q \B{\Tp[\SB{i}]} x_i^{H_{[i]}} \me_{1/q} \B{\Tm[\SB{i}
 
 where $T_\pm$'s are twisted 'positively' (see \delabel{twist-positively-sln}).
 
-Here square brackets around the index $i$ denote, which simple root
-we should take for which index. (Clearly, number of indices ($(n + 1)^2 - 1$) is larger, than the number
-or simple roots ($n$))
+\paragraph{Square bracket map.} Here square brackets around the index $i$ denote, which simple root
+we should take for which index. (Clearly, number of indices $\frac{n(n + 1)}{2}$ is larger, than the number
+or simple roots, which is $n$)
 
-Namely, for first $n$ indices we must literally take $i$-th simple root for $i$-th index. \\
-For next $n - 1$ indices we must take $(i - n)$-th simple root for $i$-th index. \\
-For yet next $n - 2$ indices we must take $(i - n - (n - 1))$-th simple root for $i$-th index. \\
-And so on.
+Namely:
+\begin{itemize}
+  \item for first $n$ indices we must literally take $i$-th simple root for $i$-th index;
+\item for next $n - 1$ indices we must take $(i - n)$-th simple root for $i$-th index;
+  \item for yet next $n - 2$ indices we must take $(i - n - (n - 1))$-th simple root for $i$-th index;
+\item and so on.
+\end{itemize}
 
 Here are the examples of this 'square-bracket' map for first few $n$:
 \begin{itemize}
@@ -934,28 +949,26 @@ Here are the examples of this 'square-bracket' map for first few $n$:
   \SB{10} = 1$
 \end{itemize}
 
-
-Looking a little bit ahead one can say that
-\begin{enumerate}
-\item building blocks corresponding to different simple roots commute with each other
-\item $w$'s commute with $y$'s, so for $w_i$ and $y_j$ corresponding to same simple root we have
-\begin{equation}
-  w_i^{H_{\SB{i}}} y_j^{H_{\SB{i}}} = \B{w_i y_j}^{H_{\SB{i}}}
-\end{equation}
-\end{enumerate}
-That is, if we express entire group element $g$ in Fock-Goncharov form, we can clump all
-the building blocks, corresponding to same simple roots together, and then substitute each neighbouring
-pair $w_i$ $y_j$ by their product, thus eliminating the redundancy of the ansatz.
+%% Looking a little bit ahead one can say that
+%% \begin{enumerate}
+%% \item building blocks corresponding to different simple roots commute with each other
+%% \item $w$'s commute with $y$'s, so for $w_i$ and $y_j$ corresponding to same simple root we have
+%% \begin{equation}
+%%   w_i^{H_{\SB{i}}} y_j^{H_{\SB{i}}} = \B{w_i y_j}^{H_{\SB{i}}}
+%% \end{equation}
+%% \end{enumerate}
+%% That is, if we express entire group element $g$ in Fock-Goncharov form, we can clump all
+%% the building blocks, corresponding to same simple roots together, and then substitute each neighbouring
+%% pair $w_i$ $y_j$ by their product, thus eliminating the redundancy of the ansatz.
 
 \subsubsection{Relation between MV and FG ansaetze}
-If one assumes certain form of commutational relations on $\psi_i$, $\chi_i$ and $phi_i$
-and on $w_i$, $x_i$ and $y_i$,
-which, as we will show in the section \ref{comm-relations-dual-algebra-sln}, is valid,
+If one assumes that $\psi_i$, $\chi_i$ and $\phi_i$ commute in a particular way,
+and also $w_i$, $x_i$ and $y_i$ commute in a particular way,
+which will turn out to be the case,
 then it is easy to write a formula, that connects parameters of MV-ansatz for the building block 
 to the parameters of FG-ansatz.
 
-Namely, let's assume, that (this literally reproduces assumption \delabel{comm-assumption-sl2},
-only with indices)
+Namely, let's assume, that (note the similarity with \delabel{comm-assumption-sl2} of $SL_q(2)$ case)
 \begin{equation}
   \label{comm-assumption-sln}
   \boxed {
@@ -974,12 +987,13 @@ which implies
 w_i^{H_{[i]}} \me_q \B{\Tp[\SB{i}]} = \me_q \B{w_i \Tp[\SB{i}]} w_i^{H_{[i]}}
 \ee
 
-Doing analogous thing for $y_i$ and $\Tm[i]$ one gets that
-\be
+and similar for $y_i$ and $\Tm[i]$, one gets that
+\begin{align}
 \label{building-block-fg-transformed-sln}
-B(i) = \me_q \B{w_i \Tp[\SB{i}]} w_i^{H_{[i]}} x_i^{H_{[i]}} y_i^{H_{[i]}} \me_{1/q} \B{y_i \Tm[\SB{i}]}
-= \me_q \B{w_i \Tp[\SB{i}]} \B{w_i x_i y_i}^{H_{[i]}} \me_{1/q} \B{y_i \Tm[\SB{i}]},
-\ee
+B(i) & = \me_q \B{w_i \Tp[\SB{i}]} w_i^{H_{[i]}} x_i^{H_{[i]}} y_i^{H_{[i]}} \me_{1/q} \B{y_i \Tm[\SB{i}]}
+\\ \notag
+& = \me_q \B{w_i \Tp[\SB{i}]} \B{w_i x_i y_i}^{H_{[i]}} \me_{1/q} \B{y_i \Tm[\SB{i}]},
+\end{align}
 where in the last transition we used the proposed form of commutational relations \delabel{comm-assumption-sln}.
 
 Comparing \delabel{building-block-fg-transformed-sln}
@@ -994,11 +1008,16 @@ which is a straightforward generalization of \delabel{mv-fg-relation-sl2}. Note,
 to hold in arbitrary representation, not just fundamental.
 
 \subsection{Commutational relations from comultiplication}
+Now we must see, that our assumption on the form of commutation relations
+\delabel{comm-relations-sln} is indeed true.
+So we almost literally reproduce the logic of section \label{comm-relations-dual-algebra-sl2} here,
+only in $SL_q(N)$ case.
+
 \subsubsection{q-Exponent factorization of comultiplication}
-Factorization property parallels the one in $SL_q(2)$ case
+Factorization property parallels the one of $SL_q(2)$ case
 (see \delabel{comul-expt-positive-sl2}, \delabel{comul-expt-negative-sl2}),
-only with indices
-\be
+only with indices inserted accordingly
+\begin{align}
 \label{comul-expt-positive-sln}
 \comul{\me_q \B{\psi_i \Tp[\SB{i}]}} =
 \me_q \B{\psi_i \leftFactor{\Tp}{\SB{i}}}
@@ -1007,13 +1026,13 @@ only with indices
 \comul{\me_{1/q} \B{\chi_i \Tm[\SB{i}]}} =
 \me_{1/q} \B{\chi_i \leftTwistFactor{\Tm}{\SB{i}}}
 \me_{1/q} \B{\chi_i \rightFactor{\Tm}{\SB{i}}}
-\ee
+\end{align}
 
 \subsubsection{Convenient notation}
 Again, it is convenient to define a symbolic notation similar to $SL_q(2)$ case, except
-we add indices now
+everything also has indices now
 \be
-& \Psi_i = \me_q \B{\psi_i \Tp[\SB{i}]},\ \Chi_i = \me_{1/q} \B{\chi_i \Tm[\SB{i}]},\ \Phi_i = q^{H_{\SB{i}}} \nonumber \\
+& \Psi_i = \me_q \B{\psi_i \Tp[\SB{i}]},\ \Chi_i = \me_{1/q} \B{\chi_i \Tm[\SB{i}]},\ \Phi_i = q^{\phi_i H_{\SB{i}}} \nonumber \\
 & \EPsiD[i] = \comul{\Psi_i},\ \EChiD = \comul{\Chi_i},\ \QPhiD = \comul{\Phi_i} \nonumber \\
 & \EPsiL[i] = \me_q \B{\psi_i \leftFactor{\Tp}{\SB{i}}},\ \EPsiR[i] = \me_q \B{\psi_i \rightFactor{\Tp}{\SB{i}}} \nonumber \\
 \label{macrolanguage-sln}
@@ -1023,21 +1042,22 @@ we add indices now
 \EChiR[i] = \me_{1/q} \B{\chi_i \rightFactor{\Tm}{\SB{i}}} \nonumber \\
 & \EChiLT[i] = \me_{1/q} \B{\chi_i \leftTwistFactor{\Tm}{\SB{i}}},\ 
 \EChiRT[i] = \me_{1/q} \B{\chi_i \rightTwistFactor{\Tm}{\SB{i}}} \nonumber \\
-& \QPhiL[i] = \qH{\SB{i}} \otimes I,\ \QPhiR[i] = I \otimes \qH{\SB{i}} \nonumber 
+& \QPhiL[i] = q^{\phi_i H_{\SB{i}}} \otimes I,\ \QPhiR[i] = I \otimes q^{\phi_i H_{\SB{i}}} \nonumber 
 \ee
 
 \subsubsection{Solution of defining equation}
-Comultiplication relations for the general case read
+Comultiplication relations \delabel{comul-expt-positive-sln} and \delabel{comul-expt-negative-sln}
+ now may be written as
 \be
 \EPsiD[i] = \EPsiL[i] \EPsiRT[i],\ \EChiD[i] = \EChiLT[i] \EChiR[i],\ \QPhiD[i] = \QPhiL[i] \QPhiR[i]
 \ee
 
-Left and right hand side of defining equation are equal, respectively
-\be
-& \dg = \prod_i \EPsiD[i] \QPhiD[i] \EChiD[i] =
+Left and right hand side of defining equation \delabel{eq:q-group-def} are equal, respectively
+\begin{align}
+\dg & = \prod_i \EPsiD[i] \QPhiD[i] \EChiD[i] =
 \prod_i \EPsiL[i] \EPsiRT[i] \QPhiL[i] \QPhiR[i] \EChiLT[i] \EChiR[i] \label{dg-sln} & \\
-& \gog = \B{\prod_i \EPsiL[i] \QPhiL[i] \EChiL[i]}\B{\prod_i \EPsiR[i] \QPhiR[i] \EPsiR[i]} \label{gog-sln} &
-\ee
+\gog & = \B{\prod_i \EPsiL[i] \QPhiL[i] \EChiL[i]}\B{\prod_i \EPsiR[i] \QPhiR[i] \EPsiR[i]} \label{gog-sln} &
+\end{align}
 
 We see, that if
 \be
@@ -1051,18 +1071,19 @@ and, furthermore,
 \EPsiR[i] \EChiL[i] = \EChiL[i] \EPsiR[i],
 \ee
 
-then \delabel{dg-sln} can be brough to the form
-\be
-\delabel{db-sln} = & \prod_i \EPsiL[i] \QPhiL[i] \EChiL[i] \EPsiR[i]  \QPhiR[i]  \EChiR[i],
-\ee
+then \delabel{dg-sln} can be brought to the form
+\begin{align}
+\delabel{dg-sln} = & \prod_i \EPsiL[i] \QPhiL[i] \EChiL[i] \EPsiR[i]  \QPhiR[i]  \EChiR[i],
+\end{align}
 
 and this expression can be brought to the form \delabel{gog-sln}, provided following holds
 \be
 \label{left-right-offdiag-equation-sln}
-\SB{\Psi\Chi\Phi^l_i,\ \Psi\Chi\Phi^r_j} = 0, \If i \neq j,
+\SB{\Psi\Chi\Phi^L_i,\ \Psi\Chi\Phi^R_j} = 0, \If i \neq j,
 \ee
 
-where $\Psi\Chi\Phi$ indicates, that in this place any of $\Psi$, $\Chi$ or $\Phi$ can actually stand.
+where $\Psi\Chi\Phi$ is {\bf not} a product of 3 expressions, but a {\bf wildcard},
+in this place of which any of $\Psi$, $\Chi$ or $\Phi$ can actually stand.
 
 Solving \delabel{untwist-equations-sln} is analogous to solving \delabel{sl_two_first_pass},
 one gets
@@ -1077,28 +1098,37 @@ Solving \delabel{left-right-diag-equation-sln} (cf. solution of \delabel{sl_two_
 
 Finally, \delabel{left-right-offdiag-equation-sln} is satisfied if
 \be
-\SB{\psi_i,\ \chi_j} = 0,\ \ \SB{q^{\phi_i},\ \chi_j} = 0,\ \ \SB{q^{\phi_i},\ \psi_j} = 0, \For i \neq j
+\SB{\psi_i,\ \chi_j} = 0,\ \ \SB{q^{\phi_i},\ \chi_j} = 0,\ \ \SB{q^{\phi_i},\ \psi_j} = 0,\ \For i \neq j
 \ee
 It is important to note, that since we always commute 'left' exemplars of $\Psi$, $\Chi$, $\Phi$ with
 'right' exemplars of $\Psi$, $\Chi$, $\Phi$, additional terms, coming from Serre relations, do not arise.
 
-In total, commutational relations just obtained can be written as
+Thus, commutational relations just obtained can be written as
 \begin{equation}
 \label{comm-relations-psichiphi-sln}
 \boxed{
   q^{\phi_i} \psi_j = q^{2\delta_{ij}} \psi_j q^{\phi_i},\ \ 
   q^{\phi_i} \chi_j = q^{2\delta_{ij}} \chi_j q^{\phi_i},\ \ 
-  \psi_i \chi_j = \chi_j \psi_i
+  \psi_i \chi_j = \chi_j \psi_i,
 }
 \end{equation}
 
+which is consistent with our initial assumption on the form of commutational relations \delabel{comm-assumption-sln}.
+
 From this commutational relations, using the transformation \delabel{mv-fg-relation-sln}
-one can show that commutational relations on $w$'s, $x$'s and $y$'s also have the desired form,
- thus proving the validity of \delabel{mv-fg-relation-sln} itself.
+one can show that commutational relations on $w$'s, $x$'s and $y$'s also have the desired form
+\begin{equation}
+\boxed{
+w_i y_j = y_j w_i,\ x_i w_j = q^{2 \delta_{ij}} w_j x_i, \ x_i y_j = q^{2 \delta_{ij}} y_j x_i
+}
+\end{equation}
+ thus proving the validity of \delabel{mv-fg-relation-sln} itself, as a non-commutative change of variables.
 
 
 \section*{Acknowledgements}
 
+Author kindly thanks ETH Zurich and GQT national Dutch mathematical research cluster,
+as parts of works were done during their conferences and schools.
 Our work is partly supported by Ministry of Education and Science of
 the Russian Federation under contract \?, by RFBR
 grants \? by joint grants \?.
@@ -1277,13 +1307,82 @@ b = & a^{-1} \lb \sqrt{a}\sqrt{b}\sqrt{c} \rb^2 c^{-1} & \nonumber \\
 
 The check, that the fourth equation is valid is trivial, we do not present it here.
 
-\subsection{$SL_q(2)$ first symmetric representation}
+\subsection{$SL_q(2)$ general case}
+\paragraph{Formula for $a^H$}
+As was mentioned above, one should be careful, when writing down formula for $a^n$ in terms of $w$.
+
+First few examples
+\begin{align}
+& a^1 = w(1 + q x) & \\ \notag
+& a^2 = w(1 + q x) w (1 + q x) = w^2 (1 + q^3 x) (1 + q x) & \\ \notag
+& a^3 = w(1 + q x) w (1 + q x) w (1 + q x) = w^3 (1 + q^5 x) (1 + q^3 x) (1 + q x) &
+\end{align}
+
+and in general we get
+\begin{align}
+& a^n = w^n \prod_{i = 1}^n (1 + q^{2 i - 1} x) = w^n
+  \frac{\prod_{i = 1}^\infty (1 + q^{2i -1} x)}{\prod_{i = 1}^\infty (1 + q^{2n} q^{2i -1} x)}
+\end{align}
+
+and the last expression can be easily generalized for matrix-valued $n$'s.
+We are specifically interested in $n = H$
+\begin{align}
+\label{a-h-through-w}
+a^H & = w^H \frac{\prod_{i = 1}^\infty (1 + q^{2i -1} x)}{\prod_{i = 1}^\infty (1 + q^{2H} q^{2i -1} x)} & \\ \notag
+& = w^H \frac{\me_q \lb q^{2H} \frac{x}{q - 1/q} \rb}{\me_q \lb \frac{x}{q - 1/q} \rb}
+\end{align}
+
+Analogously, for $c^H$ we get (this time we push all $y$'s to the right)
+\begin{align}
+\label{c-h-through-y}
+c^H = \frac{\me_{1/q} \lb q^{-2H} \frac{x}{q - 1/q} \rb}{\me_{1/q} \lb \frac{x}{q - 1/q} \rb} y^H
+\end{align}
+
+Obviously,
+\begin{align}
+\label{b-h-through-x}
+& b^H = x^{-H}
+\end{align}
+
+\paragraph{Mutation equation}
+Again, equating \delabel{building-block-sl2-fg} to \delabel{building-block-alt-sl2-fg},
+and using formulas \delabel{a-h-through-w}, \delabel{c-h-through-y} and \delabel{b-h-through-x}
+we arrive at
+\begin{align}
+\label{mutation-sl2-main-equation}
+\me_q(q^H \hT_+) x^H \me_{1/q}(\hT_- q^{-H}) = \me_q\lb \frac{q^{2H} x}{q - 1/q}\rb
+\me_{1/q}(q^H \hT_-) x^{-H} \me_{q}(\hT_+ q^{-H}) \me_{1/q}\lb \frac{q^{-2H} x}{1/q - q}\rb
+\end{align}
+
+Note, that $T_\pm$'s were expressed through $\hT_\pm$'s differently at the l.h.s and the r.h.s.
+
+
+We've checked in Mathematica explicitly, that this equation holds for first 20 symmetric representations,
+but the general proof is still missing.
+
 \subsection{$SL_q(N)$ fundamental representation}
 
 \begin{thebibliography}{12}
 
-\bibitem{RefName}
- Authors., Journal {\bf issue} (year) pages, arxiv:99999999;
+\bibitem{MV1}
+A.Morozov and L.Vinet et al. {\it Free-Field Representation of Group Element for Simple Quantum Groups},
+preprint ITEP-M3/94, CRM-2202 hep-th/9409093;
+
+\bibitem{FG1}
+Fock V.V., Goncharov A.B.: {\it Cluster ensembles, quantization and the dilogarithm.}
+math.AG/0311245
+
+\bibitem{FG2}
+Fock V.V., Goncharov A.B.: {\it Cluster X-varieties, amalgamation and Poisson-Lie groups.}
+arXiv:math/0508408
+
+\bibitem{Hik1}
+K.Hikami, R.Inoue: {\it Braids, Complex volume and Cluster Algebra}
+arXiv:1304.4776
+
+\bibitem{Mars1}
+A.Marshakov: {\it Lie Groups, Cluster Variables and Integrable Systems}
+arXiv:1207.1869
 
 \end{thebibliography}
 
