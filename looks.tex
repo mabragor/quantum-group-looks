@@ -200,7 +200,8 @@ Usual formulae \cite{Mars1} for $2 n$ Poisson leaf emerge in classical limit,
 if all but few ($2n$) coordinates vanish.
 }
 
-%\tableofcontents
+
+\tableofcontents
 
 \YAMLSectionize{
 # The sketch and logic of the presentation
@@ -917,7 +918,7 @@ B(i) = \me_q \B{\psi_i \Tp[\SB{i}]} q^{\phi_i H_{[i]}} \me_{1/q} \B{\chi_i \Tm[\
 
 or Fock-Goncharov one
 \be
-\label{building-block-fg-sln}
+\label{building-block-sln-fg}
 B(i) = w_i^{H_{[i]}} \me_q \B{\Tp[\SB{i}]} x_i^{H_{[i]}} \me_{1/q} \B{\Tm[\SB{i}]} y_i^{H_{[i]}},
 \ee
 
@@ -1119,11 +1120,111 @@ From this commutational relations, using the transformation \delabel{mv-fg-relat
 one can show that commutational relations on $w$'s, $x$'s and $y$'s also have the desired form
 \begin{equation}
 \boxed{
+\label{comm-relations-wxy-sln}
 w_i y_j = y_j w_i,\ x_i w_j = q^{2 \delta_{ij}} w_j x_i, \ x_i y_j = q^{2 \delta_{ij}} y_j x_i
 }
 \end{equation}
  thus proving the validity of \delabel{mv-fg-relation-sln} itself, as a non-commutative change of variables.
 
+
+\subsection{The cluster variety data}
+
+Looking at the commutation relations \delabel{comm-relations-wxy-sln} one can already
+recognize the appearance of quantum $\mathcal{X}$-variety structure of \cite{FG1},
+and read off the corresponsing cluster data.
+
+Namely, vector of integers $d$ is in fact vector of ones, since our group is simply laced.
+
+Then, comparing of ansatz for the group element \delabel{quantum-group-element-sln}
+with map to group, presented in section 3 of \cite{FG2}, we see, that
+seed $J$ and frozen seed $J_0$ correspond to the following word $D$ of simple roots
+\begin{equation}
+D = 1 \overline{1} 2 \overline{2} \dots n \overline{n} 1 \overline{1} 2 \overline{2} \dots (n - 1)\overline{(n-1)}
+\dots \dots 1 \overline{1} 2 \overline{2} 1 \overline{1},
+\end{equation}
+where $i$ denotes $i$-th positive simple root, and $\overline{i}$ - corresponding negative simple root.
+
+Finally, the skew-symmetric matrix $\ve$ is nonzero only in x-y and x-w subspaces and
+there takes the form of a standard symplectic form
+\begin{equation}
+  \ve_{ij} \Big{|}_{x-y-subspace} = \ve_{ij} \Big{|}_{x-w-subspace} = \lb \begin{array}{cc} 0 & E \\ -E & 0 \end{array} \rb
+\end{equation}
+
+From the length of the word $D$ it follows, that 
+
+\subsection{Relation between FG-type ansaetze}
+
+Analogously to $SL_q(2)$ case, one can consider different parametrization
+of a building block $\Bp{i}$
+
+\begin{align}
+\label{building-block-alt-sln-fg}
+\Bp{i} & = a_i^{H_{\SB{i}}} \me_{1/q} \lb \Tm[\SB{i}] \rb b_i^{H_{\SB{i}}} \me_{q} \lb \Tp[\SB{i}] \rb c_i^{H_{\SB{i}}} &
+\end{align}
+
+In order for \delabel{building-block-alt-sln-fg} to be equal to the other parametrization
+ \delabel{building-block-sln-fg}, we must have the following relation between parameters
+
+\begin{equation}
+a_i = w_i (1 + q x_i),\ \ c_i = y_i ( 1 + q x_i), \ \ b_i = \frac{1}{x_i}
+\end{equation}
+
+And again, for this to be valid, the following equation should hold
+
+\begin{align}
+\label{mutation-sl2-main-equation}
+\me_q(q^{H_{\SB{i}}} \hT_{+ \SB{i}})
+x_i^{H_{\SB{i}}}
+\me_{1/q}(\hT_{- \SB{i}} q^{-H_{\SB{i}}})
+= \me_q\lb \frac{q^{2H_{\SB{i}}} x_i}{q - 1/q}\rb \me_{1/q}(q^{H_{\SB{i}}} \hT_{-\SB{i}})
+x_i^{-H_{\SB{i}}}
+\me_{q}(\hT_{+ \SB{i}} q^{-H_{\SB{i}}}) \me_{1/q}\lb \frac{q^{-2H_{\SB{i}}} x_i}{1/q - q}\rb
+\end{align}
+
+Since, we change only the variables associated with $i$-th index,
+ essentially we are reparametrizing some $SL_q(2)$ subgroup of $SL_q(N)$,
+so for details see appendix \ref{sec:mutation-formulae}.
+
+
+Note, that here we've in fact considered only simplest possible changes
+in MV parametrization. In FG construction it is also possible to perform mutations
+in other directions. Roughly speaking, these other mutations should correspond to
+to the interchange of $\Tp{\SB{i}}$ with $\Tm{\SB{i}}$, that are not in the same building block $B(i)$.
+ However, it is now not clear how to precisely do that, so this is the subject of
+further investigation.
+
+
+\subsection{Reduction to $2n$ symplectic leaf}
+
+It is clear, that if we consider only subalgebra of functions of first $n$ $x_i$'s and first $n$ $w_i$'s,
+it is closed under commutational relations \delabel{comm-relations-wxy-sln}. This means,
+that it defines a $2n$-dimensional submanifold in quantum group $SL_q(N)$.
+Points of this manifold can be explicitly parametrized as
+
+\begin{equation}
+g_{2n} = \prod_{i = 1}^n w_i^{H_{i}} \me_q \B{\Tp[i]} x_i^{H_{i}} \me_{1/q} \B{\Tm[i]}
+\end{equation}
+
+Taking the limit $\classlim$ in this expression, one readily recognizes
+parametrization of $2n$ symplectic manifold of a Lie group from \cite{Mars1},
+on which a relativistic Toda chain lives.
+
+
+Thus, it is natural to think, that on $g_{2n}$ a $q$-deformation of relativistic Toda chain
+system lives.
+
+\section{Conclusion}
+In this paper we looked at $SL_q(2)$ and $SL_q(N)$ quantum groups through
+the lens of Morozov-Vinet construction of free-field representation of
+quantum group element \cite{MV1}. Namely, by a clever choice of order of factors, we
+ensured that classical limit $\classlim$ of a group element $g$ looks like
+Fock-Goncharov map of a cluster variety into a Lie group \cite{FG2}.
+We demonstrated, that some different choices of MV parametrization are equivalent
+and related by quantum cluster mutations.
+We also showed, how to make a reduction to a quantum version of $2n$ Poisson submanifold,
+on which a natural integrable system thus lives \cite{Mars1}.
+We interpret our results as strongly indicating that quantum group $SL_q(N)$ naturally
+caries the structure of a quantum cluster variety, in fact with very simple cluster data.
 
 \section*{Acknowledgements}
 
@@ -1243,6 +1344,7 @@ Now, one easily sees, that
 so $m = 0$.
 
 \section{Mutation formulae}
+\label{sec:mutation-formulae}
 \subsection{$SL_q(2)$ fundamental representation}
 \label{derivation-of-quantum-mutation-sl2}
 This derivation is straightforward, yet it is example of calculation,
@@ -1356,11 +1458,8 @@ we arrive at
 
 Note, that $T_\pm$'s were expressed through $\hT_\pm$'s differently at the l.h.s and the r.h.s.
 
-
 We've checked in Mathematica explicitly, that this equation holds for first 20 symmetric representations,
 but the general proof is still missing.
-
-\subsection{$SL_q(N)$ fundamental representation}
 
 \begin{thebibliography}{12}
 
