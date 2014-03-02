@@ -174,7 +174,7 @@
 
 \title{{\bf The cluster variety face of quantum groups} \vspace{.2cm}}
 \author{{\bf A.Popolitov}\thanks{{\small
-{\it ITEP, Moscow, Russia}}; popolit@itep.ru}}
+{\it ITEP, Moscow, Russia and KdVI, University of Amsterdam, the Netherlands}}; popolit@itep.ru, A.Popolitov@uva.nl}}
 
 \begin{document}
  \maketitle
@@ -203,81 +203,60 @@ if all but few ($2n$) coordinates vanish.
 
 \tableofcontents
 
-\YAMLSectionize{
-# The sketch and logic of the presentation
-- Introduction :
-  - first a blah-blah-blah on how quantum groups are great and important objects,
-    and cluster varieties - even more important
-  - convenient MV parametrization of group element and commutational relations
-  - convenient MFG parametrization of group element
-  - mutations
-- Body :
-  - Details :
-    commutational relations for dual algebra from comultiplication :
-      - brief overview of original Morozov-Vinet
-      - (done) derivation for sl(2)
-      - (wontfix) derivation for sl(3)
-      - (done) derivation for sl(n)
-    connection between multicartan and Gauss parametrization
-      - (done) sl(2) fundamental
-      - (done) sl(n)
-    commutational relations for multicartan parametrization
-      - (wontfix) sl(2)
-      - (wontfix) sl(n)
-    mutations
-      - (done) sl(2) fundamental
-      - sl(n) fundamental reduces to sl(2)
-      - sl(2) first symmetrical
-- Conclusion
-}
-
 \bigskip
 
 \bigskip
-
-%% \section{Introduction}
-
-%% Quantum groups were studied by Leningrad school and particularly Drinfeld.
-%% They arise as symmetries of non-commutative spaces, though their applications
-%% are not limited by this.
-%% Cluster varieties, on the other hand, originate from cluster algebras, which
-%% appeared in works of Zelevinski et al, and were developed by Goncharov and Fock \?
-
-%% In \? the explicit construction was developed to embed cluster variety into classical Lie group.
-%% The claim was made (though not illustrated with formulas), that this can also be done in the quantum case.
-%% The drawback (or the advantage) of this approach, however, is, that cluster varieties and
-%% Lie groups still seem to be quite different objects, though an embeddings exist, that
-%% respect the structures of these objects.
-
-%% In this paper we demonstrate, for the case of quantum $SL(n)$ group, that quantum group
-%% naturally is a (quantum) cluster variety, with certain intersection matrix \?.
-%%  Namely, starting from certain version of ansatz for
-%% quantum group element (long known as free-field formalism \?) and comultiplication rules.
-%% We derive commutational relations for the algebra of functions on quantum group (the so-called {\it dual algebra}),
-%% which turn out to be of the form of relations defined in \? and formulas for gluing maps between
-%% parametrisations, related to different equivalent choices of ordering of simple roots
-%% turn out to be of the form of (quantum) mutations, also defined in \?.
-
-%% This requirement of correspondence between quantum group setting and cluster variety setting
-%% allows us to fix both constructions a little bit.
-%% On one hand, we find, that certain subfamily of ansaetze, suggested in \?,
-%% has most simple (Darboux-like) commutational relations.
-%% On the other hand, only particular ``words'' of roots in the construction from \?
-%% allow to parametrize whole quantum group.
-%% Also we find, that lower-indexed, not upped-indexed basis in Cartan subalgebra is involved in the construction.
-
-%% This last fact indicates, either, that some other definition of quantum group is possible
-%% (involving the other basis in the rules for comultiplications),
-%% or that classical construction, presented in \? is somehow isomorphic to to the one we find here.
-
-%% This, however, is out of scope of this paper and is left for further investigation.
 
 \section{Introduction}
-Quantum groups are very cool and everywhere-important objects.
 
-So do cluster varieties.
+In modern mathematical physics, one of crucial directions of development is
+the search for models, that are integrable, i.e. can be solved exactly.
+Having at our disposal sufficiently large toolbox of such models, we
+may hope to constructively address real world problems, such as
+non-perturbative phenomena in gauge theories.
+
+Traditionally, integrability of a system is
+thought to be related to existence of some hidden symmetries, which form a Lie group
+(see e.g. \cite{AASZ} and \cite{LOZ1}).
+ If integrable system under consideration is quantum, then
+corresponding underlying symmetries also form quantum Lie group.
+
+Recently, a novel way to construct integrable systems, classical as well as quantum,
+based on some combinatorial data was presented.
+In this approach, discrete integrable systems are governed by so-called cluster algebras \cite{GShTV}, while
+continuous integrable systems are governed by cluster varieties \cite{FM}.
+
+Thus, it is natural to ask, whether two kinds of structures, that can control integrability,
+are related, and if so, how. In \cite{FG2} an explicit construction of map from cluster variety
+to a Lie group was developed, providing a link in one direction. On the other hand,
+in \cite{GShV} natural cluster structures on classical Lie groups were studied.
+
+In this paper we show in case of $SL_q(N)$ quantum group, that quantum group posesses natural
+structure of quantum $\Chi$-variety of \cite{FG1}. Namely, we restrict ourselves to preferred
+family of coordinate systems on quantum group, which is motivated by gauss decomposition of
+element of classical Lie group. Then equation \eqref{eq:q-group-def},
+ defining group subvariety in universal enveloping algebra dictates commutational
+relations between coordinate functions, which turn out to have form (49) from \cite{FG1}.
+Furthermore, independence of group element from the choice of particular coordinate system
+ in the family implies that change from one coordinate system to another
+is a substitution of the form (56) from \cite{FG1} (the quantum mutation).
+
+All this poses very intriguing question: can other, less trivial quantum $\Chi$-varieties be
+obtained from quantum groups, perhaps, in non-simplylaced cases, or through some reduction procedures?
+This, however, is out of scope of the present paper.
+
+This paper is organized as follows: in section \ref{sec:cheatsheet} all the main formulae are
+presented without any derivations, mainly for ease of future reference, then
+in section \ref{sec:sl2q-case} everything is done for the simplest nontrivial case of $SL_q(2)$,
+then in section \ref{sec:slnq-case} general construction for $SL_q(N)$ is presented, and plan
+of exposition largely repeats the one in section \ref{sec:sl2q-case}. Finally,
+appendix \ref{sec:alpha-beta-gamma-from-chi-psi-phi} is devoted to detailed derivation of commutational
+relations for one parametrization of group element from another and appendix \ref{sec:mutation-formulae}
+is devoted to some routine checks about validity of mutation formulae.
+
 
 \section{Cheatsheet}
+\label{sec:cheatsheet}
 
 This section is a brief summary of all the important formulae in the paper.
 For more detailed explanations, see, for example, next section, where everything is
@@ -348,6 +327,7 @@ D = 1 \overline{1} 2 \overline{2} \dots n \overline{n} 1 \overline{1} 2 \overlin
 \end{itemize}
 
 \section {$SL(2)_q$ case}
+\label{sec:sl2q-case}
 In this section we present all parts of the construction in the simplest case - $SL(2)_q$.
 Some calculations are shown only in fundamental representation, although
 we performed computer checks for higher finite-dimensional representations as well.
@@ -745,7 +725,7 @@ or
 Note, that although the form of $T_\pm$ in this formulae appears to be the same as in
 \delabel{building-block-sl2-fg} and \delabel{building-block-sl2-mv}, here they are twisted negatively, like
 in \delabel{twist-negatively}. That is, one should be very careful when writing formulae, which include
-both types of ansaetze (for example, the ones in Appendix \ref{alpha-beta-gamma-from-chi-psi-phi}, where
+both types of ansaetze (for example, the ones in Appendix \ref{sec:alpha-beta-gamma-from-chi-psi-phi}, where
 we derive commutational relations on $\alpha$, $\beta$ and $\gamma$ from the ones obtained in
 \ref{comm-relations-dual-algebra-sl2} for
 $\chi$, $\psi$ and $\phi$), as they include additional factors of $q^H$ where appropriate.
@@ -797,7 +777,7 @@ q^{\beta} \gamma = q^2 \gamma q^{\beta} \\ \notag
 \end{align}
 
 The details of the derivation of this commutational relations
-can be found in Appendix \ref{alpha-beta-gamma-from-chi-psi-phi}
+can be found in Appendix \ref{sec:alpha-beta-gamma-from-chi-psi-phi}
 
 \subsubsection{Relation between FG-type ansaetze}
 Comparing \delabel{building-block-sl2-fg} to \delabel{building-block-alt-sl2-fg} and then
@@ -837,6 +817,7 @@ The details of the derivation of \delabel{quantum-mutation-sl2} are presented in
 %% yet such that their solution is more easily illustrated in $SL_q(3)$ then in general $SL_q(N)$.
 
 \section {$SL_q(N)$ case}
+\label{sec:slnq-case}
 In this section describes the construction for arbitrary $A^q_{n} = SL_q(N)$ quantum group.
 If you find the discussion too general, you may wish to read $SL_q(2)$ section, and corresponding appendices first.
 
@@ -1011,8 +992,9 @@ to hold in arbitrary representation, not just fundamental.
 \subsection{Commutational relations from comultiplication}
 Now we must see, that our assumption on the form of commutation relations
 \delabel{comm-relations-sln} is indeed true.
-So we almost literally reproduce the logic of section \label{comm-relations-dual-algebra-sl2} here,
+So we almost literally reproduce the logic of section \ref{comm-relations-dual-algebra-sl2} here,
 only in $SL_q(N)$ case.
+
 
 \subsubsection{q-Exponent factorization of comultiplication}
 Factorization property parallels the one of $SL_q(2)$ case
@@ -1172,7 +1154,7 @@ a_i = w_i (1 + q x_i),\ \ c_i = y_i ( 1 + q x_i), \ \ b_i = \frac{1}{x_i}
 And again, for this to be valid, the following equation should hold
 
 \begin{align}
-\label{mutation-sl2-main-equation}
+\label{mutation-sln-main-equation}
 \me_q(q^{H_{\SB{i}}} \hT_{+ \SB{i}})
 x_i^{H_{\SB{i}}}
 \me_{1/q}(\hT_{- \SB{i}} q^{-H_{\SB{i}}})
@@ -1226,18 +1208,23 @@ on which a natural integrable system thus lives \cite{Mars1}.
 We interpret our results as strongly indicating that quantum group $SL_q(N)$ naturally
 caries the structure of a quantum cluster variety, in fact with very simple cluster data.
 
+Also, as an experiment, all versions of LaTeX source of this article, as well as
+photos of some drafts of calculations, used in preparation
+and some Mathematica plain-text files (conveniently usable through corresponding Emacs mode), will be available as
+a publicly read-accessible Git repository, at
+\\ https://github.com/mabragor/quantum-group-looks.git
+
+
 \section*{Acknowledgements}
 
-Author kindly thanks ETH Zurich and GQT national Dutch mathematical research cluster,
-as parts of works were done during their conferences and schools.
-Our work is partly supported by Ministry of Education and Science of
-the Russian Federation under contract \?, by RFBR
-grants \? by joint grants \?.
+Author is indebted to A.Mironov and A.Morozov for numerous stimulating discussions.
+Author also kindly thanks ETH Zurich and GQT national Dutch mathematical research cluster,
+as parts of work were done during their conferences and schools.
 
 \appendix
 
 \section{Commutational relations on $(\alpha\ \beta\ \gamma)$ from that of $(\chi\ \psi\ \phi)$}
-\label{alpha-beta-gamma-from-chi-psi-phi}
+\label{sec:alpha-beta-gamma-from-chi-psi-phi}
 
 Recall, that $(\alpha\ \beta\ \gamma)$ is expressed through $(\chi\ \psi\ \phi)$ via formula \delabel{albega-through-pcp}
 \be
@@ -1386,13 +1373,12 @@ However, calculating $a^{1/2}$ is not as simple as taking the product of square 
 \be
 &\sqrt{a} \neq \sqrt{w} \sqrt{1 + q x},
 \ee
-instead there is this q-Exponential formula \delabel{q-exponential-a-power}, which one will need when
+instead there is this q-Exponential formula \delabel{a-h-through-w}, which one will need when
 doing calculation in arbitrary representation.
 Failure to notice this peculiarity easily leads to incorrect expression for $b$
 \be
 b \neq \frac{\lb 1 + x\rb^2}{\lb 1 + q x\rb\lb 1 + \frac{x}{q}\rb} \frac{1}{x}.
 \ee
-
 Here, on the other hand, we can simply observe, that
 \be
 \sqrt{a} \sqrt{b} \sqrt{c} \sqrt{a} \sqrt{b} \sqrt{c} = q^{-1/2} a \sqrt{b} \sqrt{c} \sqrt{b} \sqrt{c} = abc,
@@ -1448,7 +1434,7 @@ Obviously,
 
 \paragraph{Mutation equation}
 Again, equating \delabel{building-block-sl2-fg} to \delabel{building-block-alt-sl2-fg},
-and using formulas \delabel{a-h-through-w}, \delabel{c-h-through-y} and \delabel{b-h-through-x}
+and using formulae \delabel{a-h-through-w}, \delabel{c-h-through-y} and \delabel{b-h-through-x}
 we arrive at
 \begin{align}
 \label{mutation-sl2-main-equation}
@@ -1460,6 +1446,82 @@ Note, that $T_\pm$'s were expressed through $\hT_\pm$'s differently at the l.h.s
 
 We've checked in Mathematica explicitly, that this equation holds for first 20 symmetric representations,
 but the general proof is still missing.
+
+\paragraph{Remarks on infinite-dimensional representation}
+Here we provide example of check of mutation equation for infinite dimensional representation.
+
+Generators $H$ and $\hT_\pm$'s can be represented as differential operators,
+either acting on space of functions of $x$ and $y$;
+\begin{equation}
+\label{eq:sl2q-diff-hom-repr}
+H = \frac{1}{2} x \partial_x - \frac{1}{2} y \partial_y,\ \ \ \hT_+ = x \partial^q_y,\ \ \ \hT_- = y \partial^q_x,
+\end{equation}
+or as differential operators, acting on functions of $x$ only (this time there is 1-parametric
+family of possible representations, parametrized by $j$)
+\begin{equation}
+\label{eq:sl2q-diff-nonhom-repr}
+H = x \partial_x - j,\ \ \ \hT_+ = [2 j] x M_q - q^{2j} x^2 \partial^q_x,\ \ \ \hT_- = \partial^q_x
+\end{equation}
+Here $\partial^q_x$ is a (symmetric) $q$-derivative w.r.t $x$ (analogously for $y$) and
+$M_q$ is operator of dilation of $x$
+\begin{equation}
+\partial^q_x f(x) = \frac{f(qx) - f(x / q)}{q - 1/q},\ \ \ M_q f(x) = f(q x)
+\end{equation}
+
+We will consider representation, corresponding to highest weight $x^{-2}$ in both representations
+(in second representation we then must put $j = -1$).
+
+After that, in basis $x^{-2 + k}$, $k = 0, 1, 2, \dots$ generators become semi-infinite matrices
+\begin{equation}
+H = \lb \begin{array}{cccc}
+  -1 & 0 & 0 & . \\
+  0 & -2 & 0 & . \\
+  0 & 0 & -3 & . \\
+  . & . & . & \dots \\
+\end{array}\rb,\ \ \ 
+\hT_+ = \lb \begin{array}{ccccc}
+  0 & [1] & 0 & 0 & . \\
+  0 & 0 & [2] & 0 & . \\
+  0 & 0 & 0 & [3] & . \\
+  0 & 0 & 0 & 0 & . \\
+  . & . & . & . & \dots \\
+\end{array}\rb,\ \ \ 
+\hT_- = \lb \begin{array}{ccccc}
+  0 & 0 & 0 & 0 & . \\
+  -[2] & 0 & 0 & 0 & . \\
+  0 & -[3] & 0 & 0 & . \\
+  0 & 0 & -[4] & 0 & . \\
+  . & . & . & . & \dots \\
+\end{array}\rb,\ \ \ 
+\end{equation}
+and it is straightforward to calculate q-Exponential building blocks in equation \eqref{mutation-sl2-main-equation}
+(we write formulae for element in $i$-th row $j$-th column, when it's nonzero)
+
+\newcommand{\qbin}[2]{\lsb \begin{array}{c} #1 \\ #2 \end{array} \rsb}
+
+\begin{align}
+\me_q(q^H \hT_+)_{ij} = \qbin{j - 1}{i - 1} q^{-(j-i)(j-1)},\ \ \
+\me_{1/q}(\hT_- q^{-H})_{ij} = \qbin{i}{j} (-1)^{i - j} q^{(i-j)(i-1)} \\ \notag
+\me_{1/q}(q^H \hT_-)_{ij} = \qbin{i}{j} (-1)^{i-j} q^{-(i-j)(j+1)},\ \ \
+\me_{q}(\hT_+ q^{-H})_{ij} = \qbin{j-1}{i-1} q^{(j-i)(i+1)},
+\end{align}
+where $\qbin{n}{k}$ denotes quantum binomial coefficient.
+
+Then, $n$-$m$-th matrix element of equation \eqref{mutation-sl2-main-equation}
+, in region where $m \geq n$,
+is the following equality between hypergeometric functions (for simplicity we provide formula for $q = 1$)
+\begin{equation}
+\label{eq:mutation-equation-sl2-corollary}
+x^{-m} \frac{\Gamma(m)}{\Gamma(n) \Gamma(m - n + 1)} {_2F_1} \lb m, m+1 ; m - n + 1; -\frac{1}{x}\rb
+= \frac{(-1)^{n+1} n x}{(1 + x)^{m + n}} {_2F_1} \lb 1-m, 1-n ; 2; -x \rb
+\end{equation}
+
+If we put $m = n + k$, for each particular choice of $n$ this becomes elementary function in $x$ and $k$,
+so we checked, that the equality \eqref{eq:mutation-equation-sl2-corollary} holds for first 25 $n$ and
+arbitrary $x$ and $k$.
+
+Generalization to $q \neq 1$ seems straightforward (just substitute all functions by their $q$-analogs),
+however, we didn't perform any checks in this case.
 
 \begin{thebibliography}{12}
 
@@ -1482,6 +1544,28 @@ arXiv:1304.4776
 \bibitem{Mars1}
 A.Marshakov: {\it Lie Groups, Cluster Variables and Integrable Systems}
 arXiv:1207.1869
+
+\bibitem{AASZ}
+G.Aminov, S.Arthamonov, A.Smirnov, A.Zotov: {\it Rational top and its classical R-matrix}
+arXiv:1402.3189
+\bibitem{LOZ1}
+A.Levin, M.Olshanetsky, A.Zotov: {\it Classification of Isomonodromy Problems on Elliptic Curves}
+arXiv:1311.4498
+
+\bibitem{GShTV}
+M.Gekhtman, M.Shapiro, S.Tabachnikov, A.Vainshtein: {\it Higher pentagram maps, weighted directed networks
+and cluster dynamics}
+arXiv:1110.0472
+
+\bibitem{GShV}
+M.Gekhtman, M.Shapiro, A.Vainshtein: {\it Cluster structures on simple complex Lie groups and Belavin-Drinfeld
+classification}
+arXiv:1110.0472
+
+
+\bibitem{FM}
+V.Fock, A.Marshakov: {\it Loop groups, Clusters, Dimers and Integrable systems}
+arXiv:1401.1606
 
 \end{thebibliography}
 
