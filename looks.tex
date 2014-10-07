@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[a4paper]{elsarticle}
 
 %\textheight 25cm \textwidth 17cm \voffset= - 1.2in \hoffset= - 1.0in
 \usepackage{amsmath}
@@ -172,40 +172,34 @@
 \hoffset= - 1.0in         % switch off for draft style
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{{\bf The cluster variety face of quantum groups} \vspace{.2cm}}
-\author{{\bf A.Popolitov}\thanks{{\small
-{\it ITEP, Moscow, Russia and KdVI, University of Amsterdam, the Netherlands}}; popolit@itep.ru, A.Popolitov@uva.nl}}
-
 \begin{document}
- \maketitle
+\begin{frontmatter}
+\author[itep,kdvi]{Alexandr Popolitov}
+\ead{popolit@itep.ru, A.Popolitov@uva.nl}
+\address[itep]{Institute for Theoretical and Experimental Physics, Moscow, Russia}
+\address[kdvi]{Korteweg-de~Vries Institute for Mathematics, University of Amsterdam, the Netherlands}
+\title{The cluster variety face of quantum groups}
 
-\vspace{-5.0cm}
+%% \begin{center}
+%% \hfill ITEP/TH-05/14\\
+%% \end{center}
 
-\begin{center}
-\hfill ITEP/TH-05/14\\
-\end{center}
-
-\vspace{3.5cm}
-
-\centerline{ABSTRACT}
-
-\bigskip
-
-{\footnotesize
+\begin{abstract}
 Using the well-known free-field formalism for quantum groups \cite{MV1}, we demonstrate
 in case of $A(n)_q$, that quantum group is naturally also a cluster variety \cite{FG1}.
 Widely used \cite{Hik1} formulae for mutations \cite{FG1},\cite{FG2} are
 direct consequence of independence of group element on the order of simple roots.
 Usual formulae \cite{Mars1} for $2 n$ Poisson leaf emerge in classical limit,
 if all but few ($2n$) coordinates vanish.
-}
+\end{abstract}
 
+\begin{keyword}
+quantum groups; cluster varieties; integrability; arXiv: 1403.1834
+\end{keyword}
 
-\tableofcontents
+\end{frontmatter}
 
-\bigskip
-
-\bigskip
+% \tableofcontents
 
 \section{Introduction}
 
@@ -1525,63 +1519,7 @@ arbitrary $x$ and $k$.
 Generalization to $q \neq 1$ seems straightforward (just substitute all functions by their $q$-analogs),
 however, we didn't perform any checks in this case.
 
-\begin{thebibliography}{12}
-
-\bibitem{MV1}
-A.Morozov and L.Vinet et al. {\it Free-Field Representation of Group Element for Simple Quantum Groups},
-preprint ITEP-M3/94, CRM-2202 hep-th/9409093;
-
-\bibitem{FG1}
-Fock V.V., Goncharov A.B.: {\it Cluster ensembles, quantization and the dilogarithm.}
-math.AG/0311245
-
-\bibitem{FG2}
-Fock V.V., Goncharov A.B.: {\it Cluster X-varieties, amalgamation and Poisson-Lie groups.}
-arXiv:math/0508408
-
-\bibitem{Hik1}
-K.Hikami, R.Inoue: {\it Braids, Complex volume and Cluster Algebra}
-arXiv:1304.4776
-
-\bibitem{Mars1}
-A.Marshakov: {\it Lie Groups, Cluster Variables and Integrable Systems}
-arXiv:1207.1869
-
-\bibitem{M1}
-A.Morozov: {\it String theory: What is it? }
- (Moscow, ITEP). 1992.
-Published in Sov.Phys.Usp. 35 (1992) 671-714, Usp.Fiz.Nauk 162 (1992) 83-176
-DOI: 10.1070/PU1992v035n08ABEH002255
-\bibitem{M2}
-A. Morozov: {\it Integrability and matrix models}
- (Moscow, ITEP). 1994. 55 pp.
-Published in Phys.Usp. 37 (1994) 1-55
-DOI: 10.1070/PU1994v037n01ABEH000001
-e-Print: hep-th/9303139 
-\bibitem{AASZ}
-G.Aminov, S.Arthamonov, A.Smirnov, A.Zotov: {\it Rational top and its classical R-matrix}
-arXiv:1402.3189
-\bibitem{LOZ1}
-A.Levin, M.Olshanetsky, A.Zotov: {\it Classification of Isomonodromy Problems on Elliptic Curves}
-arXiv:1311.4498
-
-
-\bibitem{GShTV}
-M.Gekhtman, M.Shapiro, S.Tabachnikov, A.Vainshtein: {\it Higher pentagram maps, weighted directed networks
-and cluster dynamics}
-arXiv:1110.0472
-
-\bibitem{GShV}
-M.Gekhtman, M.Shapiro, A.Vainshtein: {\it Cluster structures on simple complex Lie groups and Belavin-Drinfeld
-classification}
-arXiv:1110.0472
-
-
-\bibitem{FM}
-V.Fock, A.Marshakov: {\it Loop groups, Clusters, Dimers and Integrable systems}
-arXiv:1401.1606
-
-\end{thebibliography}
-
+\bibliographystyle{utphys}
+\bibliography{looks-bibitems}
 
 \end{document}
